@@ -1,0 +1,34 @@
+---
+# tasks file for sabnzbd
+
+- name: Add requirements for dynamically adding repository
+  apt: pkg={{ item }} state=installed update_cache=yes cache_valid_time=3600
+  with_items:
+    - python-apt
+    - python-pycurl
+
+- name: Add Sabnzbd repository
+  apt_repository: repo=ppa:jcfp/ppa state=present
+
+- name: Install Sabnzbd
+  apt: pkg=sabnzbdplus state=latest update_cache=yes cache_valid_time=3600
+
+- name: Create Sabnzbd directory
+  file: path=/opt/sabnzbd owner={{ xbmc_user_name }} group={{ xbmc_user_name }} state=directory mode=0755
+
+  # TODO: Add task for fetching sabnzbd api key if exists and using it in template.
+  # TODO: Fix Downloads directory configuration to absolute path using prior defined variables.
+  # TODO: Automatically Download Movies, TV and the rest of the media into separate directories
+
+- name: Update Sabnzbd configuration
+  template: src=opt_sabnzbd_subnzbd.ini.j2 dest=/opt/sabnzbd/sabnzbd.ini owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0644
+  notify:
+    - restart sabnzbd
+
+- name: Update Sabnzbd Daemon configuration
+  template: src=etc_default_sabnzbd.j2 dest=/etc/default/sabnzbdplus owner=root group=root mode=0644
+  notify:
+    - restart sabnzbd
+
+- name: Make sure Sabnzbd is running and started on boot
+  service: name=sabnzbdplus state=started enabled=yes

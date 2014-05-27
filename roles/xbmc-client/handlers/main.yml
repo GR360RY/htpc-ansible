@@ -1,0 +1,6 @@
+---
+# handlers file for xbmc-client
+
+- name: restart lightdm
+  service: name=lightdm state=restarted
+  when: ansible_env.DESKTOP_SESSION is not defined

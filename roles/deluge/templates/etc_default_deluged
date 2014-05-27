@@ -1,0 +1,13 @@
+# Defaults for deluged initscript
+# sourced by /etc/init.d/deluged
+
+# change to 1 to enable daemon
+ENABLE_DELUGED=1
+
+# Customisation
+DELUGED_USER={{ deluged_user }}
+
+DAEMON_PATH={{ deluged_path }}
+DELUGED_CONFIG_PATH=${DAEMON_PATH}/config
+DELUGED_LOG_FILE=${DAEMON_PATH}/deluged.log
+DELUGE_WEB_LOG_FILE=${DAEMON_PATH}/deluge-web.log

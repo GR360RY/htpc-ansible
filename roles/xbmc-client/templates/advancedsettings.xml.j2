@@ -1,0 +1,39 @@
+<advancedsettings>
+{% if not xbmc_standalone_mode %}
+  <videodatabase>
+    <type>mysql</type>
+    <host>{{ xbmc_mysqldb_host }}</host>
+    <port>3306</port>
+    <user>{{ xbmc_mysqldb_user }}</user>
+    <pass>{{ xbmc_mysqldb_password }}</pass>
+  </videodatabase> 
+  <musicdatabase>
+    <type>mysql</type>
+    <host>{{ xbmc_mysqldb_host }}</host>
+    <port>3306</port>
+    <user>{{ xbmc_mysqldb_user }}</user>
+    <pass>{{ xbmc_mysqldb_password }}</pass>
+  </musicdatabase>
+  <videolibrary>
+    <importwatchedstate>true</importwatchedstate>
+    <importresumepoint>true</importresumepoint>
+  </videolibrary>
+{% endif %}
+  <services>
+        <webserver>true</webserver>
+  </services>
+  <scrapers>
+    <moviesdefault>metadata.themoviedb.org</moviesdefault>
+    <tvshowsdefault>metadata.tvdb.com</tvshowsdefault>
+  </scrapers>
+{% if ansible_product_name == 'VirtualBox' %}
+  <lookandfeel>
+    <soundskin>OFF</soundskin>
+  </lookandfeel>
+{% endif %}
+{% if ansible_product_name == 'VirtualBox' %}
+  <screensaver>
+    <mode></mode>
+  </screensaver>
+{% endif %}
+</advancedsettings>

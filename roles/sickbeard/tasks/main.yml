@@ -1,0 +1,32 @@
+---
+# tasks file for sickbeard
+
+- name: Install Requirements
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - python-cheetah
+    - git
+
+- name: Get SickBeard Code from GitHub
+  git: repo={{ sickbeard_repo }} dest=/opt/sickbeard
+
+- name: Make sure sickbeard directory has correct ownership
+  file: path=/opt/sickbeard owner={{ sickbeard_user }} group={{ sickbeard_user }} recurse=yes
+
+- name: Update SickBeard init.d script
+  copy: src=init.ubuntu dest=/etc/init.d/sickbeard owner=root group=root mode=0755
+
+- name: Update SickBeard Daemon Configuration
+  template: src=etc_default_sickbeard.j2 dest=/etc/default/sickbeard owner=root group=root mode=0644
+
+# SickBeard Config cannot be updated when the service is running - running config is saved on stop.
+# SickBeard should be stopped first config reapplied following by sickbeard start.
+# The logic resolved using self notifing handlers
+
+- name: Update sickbeard config.ini
+  template: src=config.ini.j2 dest=/opt/sickbeard/config.ini owner={{ sickbeard_user }} group={{ sickbeard_user }}
+  notify:
+    - sickbeard updated
+
+- name: Make sure SickBeard starts on boot
+  service: name=sickbeard state=started enabled=yes

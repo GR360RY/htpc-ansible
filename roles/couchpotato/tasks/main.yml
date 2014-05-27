@@ -1,0 +1,38 @@
+---
+# tasks file for couchpotato
+
+- name: Install Requirements
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - python-cheetah
+    - git
+
+- name: Get Couchpotato Code from GitHub
+  git: repo={{ couchpotato_repo }} dest={{ couchpotato_path }}
+
+- name: Make sure Couchpotato directory has correct ownership
+  file: path={{ couchpotato_path }} owner={{ couchpotato_user }} group={{ couchpotato_user }} recurse=yes
+
+- name: Update Couchpotato init.d script
+  template: src=init.{{ ansible_os_family }} dest=/etc/init.d/{{ couchpotato_init_script }} owner=root group=root mode=0755
+
+- name: Update Couchpotato Daemon configuration
+  template: src=etc_default_couchpotato dest=/etc/default/couchpotato owner=root group=root mode=0644
+
+- name: Create CouchPotato database and settings directory
+  file: path=/var/couchpotato state=directory owner=xbmc group=root mode=0755
+
+- name: Run Couchpotato once to generate config files
+  service: name={{ couchpotato_init_script }} state=started pattern='/usr/bin/python CouchPotato.py'
+
+- name: Make sure Couchpotato is stopped before modifications
+  service: name={{ couchpotato_init_script }} state=stopped pattern='/usr/bin/python CouchPotato.py'
+
+- name: Update CouchPotato configuration
+  template: src=var_couchpotato_settings.conf.j2 dest=/var/couchpotato/settings.conf owner=xbmc group=xbmc
+
+- name: Upload CouchPotato Database
+  copy: src=couchpotato.db dest=/var/couchpotato/couchpotato.db owner=xbmc group=xbmc
+
+- name: Start Couchpotato and make sure it starts on boot
+  service: name={{ couchpotato_init_script }} state=started pattern='/usr/bin/python CouchPotato.py' enabled=yes

@@ -1,0 +1,44 @@
+---
+# tasks file for xbmc-nas
+
+- name: Install NFS Server
+  apt: name=nfs-kernel-server state=installed update_cache=yes cache_valid_time=3600
+
+- name: Define NFS shares in /etc/exports
+  lineinfile: dest=/etc/exports regexp='^{{ xbmc_media_path }}' line='{{ xbmc_media_path }} *(ro,insecure)'
+  notify:
+    - update nfs exports
+
+- name: Make sure NFS directories are avialble
+  file: path={{ xbmc_media_path }} state=directory owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0755
+
+- name: Create sub Media Folders
+  file: path="{{ xbmc_media_path }}/{{ item.value }}" state=directory owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0755
+  with_dict: xbmc_default_media_folders
+
+- name: Create XBMC Download Folders
+  file: path="{{ xbmc_media_path }}/{{ item.value }}" state=directory owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0755
+  with_dict: xbmc_download_folders
+  when: xbmc_with_download_clinets
+
+- name: Create Incomplete Download Folders
+  file: path={{ xbmc_media_path }}/{{ xbmc_download_folders.tmp }}/{{ item }} state=directory owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0755
+  with_items:
+    - sabnzbd_incomplete
+    - deluged_incomplete
+  when: xbmc_with_download_clinets
+
+- name: Make sure NFS server is started on boot
+  service: name=nfs-kernel-server state=started enabled=yes
+
+- name: Install SAMBA server
+  apt: name=samba state=installed update_cache=yes cache_valid_time=3600
+
+- name: Update SAMBA configuration
+  template: src=smb.conf dest=/etc/samba/smb.conf owner=root group=root
+  notify:
+    - create samba users
+    - restart samba
+
+- name: Make sure SAMBA server is started on boot
+  service: name=samba state=started enabled=yes

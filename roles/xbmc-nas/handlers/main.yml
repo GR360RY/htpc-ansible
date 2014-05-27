@@ -1,0 +1,15 @@
+---
+# handlers file for xbmc-nas
+
+- name: update nfs exports
+  command: /usr/sbin/exportfs -a
+
+- name: create samba users
+  sudo: yes
+  shell: (echo "{{ xbmc_user_password }}"; echo "{{ xbmc_user_password }}") | smbpasswd -s -a {{ xbmc_user_name }}
+
+- name: restart samba
+  service: name={{ item }} state=restarted
+  with_items:
+    - nmbd
+    - smbd

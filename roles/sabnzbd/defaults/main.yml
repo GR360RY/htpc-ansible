@@ -1,0 +1,7 @@
+---
+# defaults file for sabnzbd
+
+sabnzbd_port: 9000
+sab_apikey: c48afc846972e295826bb05d2e84dd59
+
+sabnzbd_host: "{{ ansible_default_ipv4.address }}"

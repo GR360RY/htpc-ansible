@@ -1,0 +1,9 @@
+---
+# defaults file for deluge
+
+# Deluge Daemon Path
+deluged_path: /opt/deluged
+deluged_user: debian-deluged
+
+deluged_host: "{{ ansible_default_ipv4.address }}"
+deluged_port: 8112

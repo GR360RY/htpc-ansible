@@ -1,0 +1,5 @@
+---
+# vars file for htpc-manager
+
+htpc_manager_repo: https://github.com/styxit/HTPC-Manager
+htpc_manger_init_script: htpc-manager

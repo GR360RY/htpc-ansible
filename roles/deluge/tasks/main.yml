@@ -1,0 +1,37 @@
+---
+# tasks file for deluge
+
+- name: Install Deluge Daemon
+  apt: name={{ item }} state=latest update_cache=yes cache_valid_time=3600
+  with_items:
+    - deluged
+    - deluge-web
+    - deluge-console
+
+- name: Make sure deluge user is available
+  user: name={{ deluged_user }} group={{ deluged_user }} state=present
+
+- name: Create Deluge Daemon Directory
+  file: path={{ item }} state=directory owner={{ deluged_user }} group={{ deluged_user }} mode=0755
+  with_items:
+    - "{{ deluged_path }}"
+    - "{{ deluged_path }}/config"
+
+- name: Update Deluge Daemon init script
+  template: src=etc_init.d_deluged dest=/etc/init.d/deluged owner=root group=root mode=0755
+
+- name: Update Deluge Web init script
+  template: src=etc_init.d_deluge-web dest=/etc/init.d/deluge-web owner=root group=root mode=0755
+
+- name: Update Deluge Daemon default config
+  template: src=etc_default_deluged dest=/etc/default/deluged owner=root group=root
+
+- name: Update Deluge download folders location
+  template: src=core.conf dest={{ deluged_path }}/config/core.conf owner={{ deluged_user }} group={{ deluged_user }} mode=0640
+  when: xbmc_media_path is defined
+
+- name: Make sure Deluge Daemon is running and enabled on boot
+  service: name=deluged state=started enabled=yes
+
+- name: Make sure Deluge Daemon is running and enabled on boot
+  service: name=deluge-web state=started enabled=yes

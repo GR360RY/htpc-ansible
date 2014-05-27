@@ -1,0 +1,7 @@
+---
+# defaults file for couchpotato
+
+couchpotato_path: /opt/couchpotato
+couchpotato_apikey: bb138ccd9df84c33af9b310325b0d658
+
+couchpotato_host: "{{ ansible_default_ipv4.address }}"

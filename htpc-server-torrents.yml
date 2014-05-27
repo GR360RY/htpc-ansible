@@ -1,0 +1,13 @@
+---
+- hosts: htpc-server
+  sudo: True
+
+  roles:
+    - role: xbmc-client
+    - role: xbmc-mysql
+    - role: xbmc-nas
+    - role: deluge
+    # - role: sabnzbd
+    - role: sickbeard
+    - role: couchpotato
+    - role: htpc-manager

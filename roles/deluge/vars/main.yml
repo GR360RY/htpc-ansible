@@ -1,0 +1,5 @@
+---
+# vars file for deluge
+
+# Variables also used in xbmc-client role
+xbmc_with_download_clinets: True

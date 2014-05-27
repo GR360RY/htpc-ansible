@@ -1,0 +1,5 @@
+---
+# defaults file for xbmc-mysql
+
+xbmc_mysqldb_user: xbmc
+xbmc_mysqldb_password: xbmc

@@ -1,0 +1,4 @@
+---
+# defaults file for htpc-manager
+
+htpc_manager_path: /opt/htpc-manager

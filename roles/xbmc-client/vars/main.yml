@@ -1,0 +1,17 @@
+---
+# vars file for xbmc-client
+
+# When used together with deluge role, make sure deluge runs as xbmc user
+deluged_user: "{{ xbmc_user_name }}"
+
+# When used together with sabnzbd role, make sure sabnzbd runs as xbmc user
+sabnzbd_user: "{{ xbmc_user_name }}"
+
+# When used together with couchpotato role, make sure couchpotato runs as xbmc user
+couchpotato_user: "{{ xbmc_user_name }}"
+
+# When used together with sickbeard role, make sure sickbeard runs as xbmc user
+sickbeard_user: "{{ xbmc_user_name }}"
+
+# When used together with htpc-manager role, make sure htpc-manager runs as xbmc user
+htpc_manager_user: "{{ xbmc_user_name }}"
