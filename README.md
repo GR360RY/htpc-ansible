@@ -1,5 +1,5 @@
 # htpc-ansible
-HTPC Server Automation with XBMC and Newsgroups Software
+HTPC Server Automation with XBMC, Bittorent and Usenet Software
 
 # Overview
 This ansible playbook is designed to quickly deploy home HTPC server, which can perform variety of funcitons. It's based on an Ubuntu 14.04, and can set up several configuration variants. It includes roles, which can be set up on a single machine, or on a different ones, and can be customized through single configuration file, correctly deploying all the software.
@@ -8,8 +8,9 @@ This ansible playbook is designed to quickly deploy home HTPC server, which can 
 - NAS configuration with support for sharing the library over NFS and CIFS (AFP to come)
 - [HTPC Manager - combines all your favorite software into one slick interface](http://htpc.io)
 - [Couchpotato - download movies automatically](https://couchpota.to/)
-- [SABnzbd - NZB capable binary newsgrabber](http://sabnzbd.org/)
 - [Sick Beard - Internet PVR for your TV Shows](http://sickbeard.com)
+- [SABnzbd - NZB capable binary newsgrabber](http://sabnzbd.org/)
+- [Deluge -  Cross-platform BitTorrent client](http://deluge-torrent.org/)
 
 # Installation
 
