@@ -16,36 +16,32 @@ This ansible playbook is designed to quickly deploy home HTPC server, which can 
 
 ## Prerequisites
 
-1. Machine designated for an HTPC with Ubuntu 14.04 Desktop installed
-2. htpc-ansible playbook requires [ansible](http://www.ansible.com/) installed on a machine, from which deployment is run. Installation instructions are [here](http://docs.ansible.com/intro_installation.html)
+Machine designated for an HTPC with Ubuntu 14.04 Desktop installed
 
 ## Quick installation
 
-### From an HTPC itself
+Open terminal and run one of the following commands:
+
+Install HTPC Server with Bittorent Downloader ( Deluge )
 ```bash
-sudo apt-get -y install ansible git
-git clone https://github.com/GR360RY/htpc-ansible
-cd htpc-ansible
-echo -e  "[xbmc-server]\n127.0.0.1" >! hosts
-ansible-playbook -i hosts -K xbmc-client-server.yml --connection=local
+sh -c "`curl -fsSL https://raw.github.com/GR360RY/htpc-ansible/master/scripts/htpc-server-torrents.sh`"
 ```
 
-### From another machine
-
-This requires SSH daemon to be up on HTPC machine. Installation can be performed with regular user (sudo password will be required) or root.
-
+Install HTPC Server with Usenet Downloader ( Sabnzbd )
 ```bash
-git clone https://github.com/GR360RY/htpc-ansible
-cd htpc-ansible
-ADDR=___HTPC_ADDR_OR_HOSTNAME___ echo "[xbmc-server]\n${ADDR}" > hosts
-ansible-playbook -i hosts -K --user ___USERNAME___ --ask-pass xbmc-client-server.yml
+sh -c "`curl -fsSL https://raw.github.com/GR360RY/htpc-ansible/master/scripts/htpc-server-usenet.sh`"
+```
+Install HTPC Server with both Bittorent and Usenet Downloaders
+```bash
+sh -c "`curl -fsSL https://raw.github.com/GR360RY/htpc-ansible/master/scripts/htpc-server.sh`"
 ```
 
 ## Customizing the setup
 To customize the setup - edit xbmc-client-server.yml
 
 # Default configuration settings
-All packages are configured with their default ports and settings, unless xbmc-client-server.yml has been modified.
+Sabnzbd if installed, will run on port 9000 to avoid conflit with XBMC.
+All other packages are configured with their default ports and settings, unless xbmc-client-server.yml has been modified.
 
 # Development and testing
 
