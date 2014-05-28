@@ -19,7 +19,7 @@
 
 - name: Update hostname
   hostname: name={{ htpc_hostname }}
-  when: htpc_hostname is defined
+  when: htpc_hostname is defined and ansible_product_name != 'VirtualBox'
 
 - name: Update libsdl1.2 ( Ubuntu BUG 1280665 )
   apt: name=libsdl1.2debian state=latest update_cache=yes
