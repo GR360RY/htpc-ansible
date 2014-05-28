@@ -33,33 +33,31 @@ Role Variables
 
 List of variables that can be passed to the role with default variable values.
 
-    xbmc_repo: 'ppa:team-xbmc/ppa'              # xbmc apt repository. can be changed to unstable
-    xbmc_media_path: /mnt/xbmc                  # Location of xbmc media folders.
+```yaml
+xbmc_repo: 'ppa:team-xbmc/ppa'      # xbmc apt repository. can be changed to unstable
+xbmc_media_path: /mnt/xbmc          # Location of xbmc media folders.
+xbmc_default_media_folders:         # Default folder names for Movies, TV, Music and etc.
+  movies: Movies
+  tv: TV
+  music: Music
 
-    xbmc_default_media_folders:                 # Default folder names for Movies, TV, Music and etc.
-      movies: Movies
-      tv: TV
-      music: Music
+xbmc_download_folders:              # Default download folders
+  downloads: Downloads
+  tmp: tmp
 
-    xbmc_download_folders:
-      downloads: Downloads
-      tmp: tmp
+xbmc_user_name: xbmc                # User that will run xbmc and related htpc services
+xbmc_user_password: xbmc            # User Password
+xbmc_enable_ubuntu_desktop: True    # Start xbmc as part of Ubuntu desktop
+xbmc_standalone_mode: True          # Standalone box setup. No NAS and xbmc DB sharing.
+xbmc_mysqldb_host: localhost        # Mysql host for shared xbmc database.
+xbmc_mysqldb_user: xbmc             # Mysql user
+xbmc_mysqldb_password: xbmc         # Mysql password
+xbmc_dont_create_folders: False     # Skip creation of Media and Downloads folders
+xbmc_with_download_clinets: False   # Skip creation of Downloads folders.
 
-    xbmc_user_name: xbmc                        # User that will run xbmc and related htpc services
-    xbmc_user_password: xbmc                    # User's Password
-    xbmc_enable_ubuntu_desktop: True            # Start xbmc as part of Ubuntu desktop
-    xbmc_standalone_mode: True                  # Standalone box setup. No NAS and xbmc DB sharing.
-    xbmc_mysqldb_host: localhost                # Mysql host for shared xbmc database.
-    xbmc_mysqldb_user: xbmc                     # Mysql user
-    xbmc_mysqldb_password: xbmc                 # Mysql password
-    xbmc_dont_create_folders: False             # Don't create Media and Downloads folders
-    xbmc_with_download_clinets: False           # Don't create downloads and temporary folders.
-    
-    xbmc_external_nas:                          # Can be passed to role to use external NFS storage.
-
-For Home networks with correctly defined DHCP/DNS in frastructures. Use Hostnames and not "IP Address" when setting up communication between hosts and services.
-
-    use_hostnames: False                        # Use hostnames
+use_hostnames: False                # Use hostnames
+xbmc_external_nas:                  # Can be passed to role to use external NFS storage.
+```
 
 Dependencies
 ------------
