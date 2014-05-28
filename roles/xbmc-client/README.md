@@ -55,7 +55,6 @@ xbmc_mysqldb_password: xbmc         # Mysql password
 xbmc_dont_create_folders: False     # Skip creation of Media and Downloads folders
 xbmc_with_download_clinets: False   # Skip creation of Downloads folders.
 
-use_hostnames: False                # Use hostnames
 xbmc_external_nas:                  # Can be passed to role to use external NFS storage.
 ```
 

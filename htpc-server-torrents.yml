@@ -2,6 +2,9 @@
 - hosts: htpc-server
   sudo: True
 
+  vars:
+    htpc_hostname: htpc-server
+
   roles:
     - role: xbmc-client
     - role: xbmc-mysql

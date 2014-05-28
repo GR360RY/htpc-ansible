@@ -17,6 +17,10 @@
 - name: Make sure SSH is started on boot
   service: name=ssh state=started enabled=yes
 
+- name: Update hostname
+  hostname: name={{ htpc_hostname }}
+  when: htpc_hostname is defined
+
 - name: Update libsdl1.2 ( Ubuntu BUG 1280665 )
   apt: name=libsdl1.2debian state=latest update_cache=yes
 

@@ -36,10 +36,6 @@ List of variables that can be passed to the role with default variable values.
     
     xbmc_external_nas:                          # Can be passed to role to use external NFS storage.
 
-For Home networks with correctly defined DHCP/DNS in frastructures. Use Hostnames and not "IP Address" when setting up communication between hosts and services.
-
-    use_hostnames: False                        # Use hostnames
-
 Dependencies
 ------------
 

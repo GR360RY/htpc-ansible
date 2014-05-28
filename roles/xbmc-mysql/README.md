@@ -32,11 +32,6 @@ The following variables should be defined in playbook if xbmc-mysql is added wit
       tv:
       music:
 
-
-For Home networks with correctly defined DHCP/DNS in frastructures. Use Hostnames and not "IP Address" when setting up communication between hosts and services.
-
-    use_hostnames: False                        # Use hostnames
-
 Dependencies
 ------------
 
