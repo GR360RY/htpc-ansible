@@ -24,15 +24,15 @@ Open terminal and run __one__ of the below commands:
 
 Install HTPC Server with Bittorent Downloader ( Deluge )
 ```
-sh -c "`curl -fsSL https://raw.github.com/GR360RY/htpc-ansible/master/scripts/htpc-server-torrents.sh`"
+wget --no-check-certificate https://raw.github.com/GR360RY/htpc-ansible/master/scripts/htpc-server-torrents.sh -O - | sh
 ```
 Install HTPC Server with Usenet Downloader ( Sabnzbd )
 ```
-sh -c "`curl -fsSL https://raw.github.com/GR360RY/htpc-ansible/master/scripts/htpc-server-usenet.sh`"
+wget --no-check-certificate https://raw.github.com/GR360RY/htpc-ansible/master/scripts/htpc-server-usenet.sh -O - | sh
 ```
 Install HTPC Server with both Bittorent and Usenet Downloaders
 ```
-sh -c "`curl -fsSL https://raw.github.com/GR360RY/htpc-ansible/master/scripts/htpc-server.sh`"
+wget --no-check-certificate https://raw.github.com/GR360RY/htpc-ansible/master/scripts/htpc-server.sh -O - | sh
 ```
 	
 __Reboot your machine following the installation.__
