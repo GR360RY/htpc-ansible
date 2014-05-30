@@ -6,9 +6,10 @@
   with_items:
     - python-cheetah
     - git
+    - python-setproctitle
 
 - name: Get SickBeard Code from GitHub
-  git: repo={{ sickbeard_repo }} dest=/opt/sickbeard
+  git: repo={{ sickbeard_repo }} dest=/opt/sickbeard version={{ sickbeard_branch }}
 
 - name: Make sure sickbeard directory has correct ownership
   file: path=/opt/sickbeard owner={{ sickbeard_user }} group={{ sickbeard_user }} recurse=yes
