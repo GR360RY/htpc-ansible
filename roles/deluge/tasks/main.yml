@@ -30,6 +30,9 @@
   template: src=core.conf dest={{ deluged_path }}/config/core.conf owner={{ deluged_user }} group={{ deluged_user }} mode=0640
   when: xbmc_media_path is defined
 
+- name: Update Deluge credentials
+  lineinfile: dest={{ deluged_path }}/config/auth regexp='^localclient' line='localclient:{{ deluged_localclient_password }}:10' owner={{ deluged_user }} group={{ deluged_user }} mode=0600
+
 - name: Make sure Deluge Daemon is running and enabled on boot
   service: name=deluged state=started enabled=yes
 

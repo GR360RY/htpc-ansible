@@ -5,5 +5,8 @@
 deluged_path: /opt/deluged
 deluged_user: debian-deluged
 
+# For using with external apps
+deluged_localclient_password: 2b9cf85259f2149da47458eda73ba23ac06faa21
+
 deluged_host: "{{ ansible_default_ipv4.address }}"
 deluged_port: 8112

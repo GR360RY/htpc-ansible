@@ -36,20 +36,35 @@ library =
 
 [renamer]
 nfo_name = <filename>.orig.<ext>
+{% if xbmc_media_path is defined and xbmc_download_folders is defined %}
+from = {{ xbmc_media_path }}/{{ xbmc_download_folders.downloads }}/
+{% else %}
 from = 
+{% endif %}
 force_every = 2
 move_leftover = False
+{% if xbmc_media_path is defined and xbmc_default_media_folders is defined %}
+to = {{ xbmc_media_path }}/{{ xbmc_default_media_folders.movies }}/
+{% else %}
 to = 
-file_name = <thename><cd>.<ext>
+{% endif %}
+file_name =
+{#
+{% if xbmc_media_path is defined and xbmc_download_folders is defined %}
+enabled = 1
+{% else %}
+enabled = 0
+{% endif %}
+#}
 enabled = 0
 next_on_failed = True
 unrar = False
-rename_nfo = True
-cleanup = False
-separator = 
-folder_name = <namethe> (<year>)
+rename_nfo = 0
+cleanup = 1
+separator =
+folder_name = <original_folder>
 run_every = 1
-foldersep = 
+foldersep =
 file_action = link
 ntfs_permission = False
 
@@ -72,18 +87,36 @@ create_subdir = 0
 use_for = nzb
 
 [deluge]
-username = 
+username = localclient
 delete_failed = True
-completed_directory = 
+completed_directory =
 manual = 0
+{% if deluged_host is defined %}
+enabled = 1
+{% else %}
 enabled = 0
-label = 
+{% endif %}
+label =
 paused = False
+{% if deluged_host is defined and deluged_host == ansible_default_ipv4.address %}
 host = localhost:58846
+{% elif deluged_host is defined and sabnzbd_host != ansible_default_ipv4.address %}
+host = {{ deluged_host}}:58846
+{% else %}
+host = 
+{% endif %}
 delete_files = True
-directory = 
+{% if xbmc_media_path is defined and xbmc_default_media_folders is defined %}
+directory = {{ xbmc_media_path }}/{{ xbmc_default_media_folders.movies }}/
+{% else %}
+directory =
+{% endif %}
 remove_complete = True
+{% if deluged_localclient_password is defined %}
+password = {{ deluged_localclient_password }}
+{% else %}
 password = 
+{% endif %}
 
 [nzbget]
 username = nzbget
@@ -327,7 +360,16 @@ password =
 port = 5222
 
 [searcher]
+{% if sabnzbd_host is defined and deluged_host is defined %}
+preferred_method = both
+{% elif sabnzbd_host is defined and deluged_host is not defined %}
 preferred_method = nzb
+{% elif sabnzbd_host is not defined and deluged_host is defined %}
+preferred_method = torrent
+{% else %}
+preferred_method = torrent
+{% endif %}
+
 required_words = 
 ignored_words = german, dutch, french, truefrench, danish, swedish, spanish, italian, korean, dubbed, swesub, korsub, dksubs, vain
 preferred_words = BlueRay
@@ -484,7 +526,7 @@ seed_ratio = 1
 [kickasstorrents]
 seed_time = 40
 domain = 
-enabled = 0
+enabled = 1
 seed_ratio = 1
 extra_score = 0
 
@@ -518,7 +560,7 @@ seed_ratio = 1
 [thepiratebay]
 seed_time = 40
 domain = 
-enabled = False
+enabled = 1
 seed_ratio = 1
 extra_score = 0
 
