@@ -12,8 +12,8 @@ INSERT INTO "setting" VALUES(4,'xbmc_enable','on');
 INSERT INTO "setting" VALUES(5,'xbmc_current_server','5');
 {% if sabnzbd_host is defined and sabnzbd_host == ansible_default_ipv4.address and ansible_eth1 is defined and ansible_product_name == 'VirtualBox' %}
 INSERT INTO "setting" VALUES(6,'sabnzbd_host','{{ ansible_eth1.ipv4.address }}');
-{% elif sabnzbd_host is defined and sabnzbd_host == ansible_default_ipv4.address and htpc_hostname is defined %}
-INSERT INTO "setting" VALUES(6,'sabnzbd_host','{{ htpc_hostname }}');
+{% elif sabnzbd_host is defined and sabnzbd_host == ansible_default_ipv4.address and htpc_manager_use_hostnames is defined and htpc_manager_use_hostnames %}
+INSERT INTO "setting" VALUES(6,'sabnzbd_host','{{ ansible_hostname }}');
 {% elif sabnzbd_host is defined and sabnzbd_host != ansible_default_ipv4.address %}
 INSERT INTO "setting" VALUES(6,'sabnzbd_host','{{ sabnzbd_host }}');
 {% else %}
@@ -40,8 +40,8 @@ INSERT INTO "setting" VALUES(12,'sabnzbd_ssl','0');
 INSERT INTO "setting" VALUES(13,'couchpotato_ssl','0');
 {% if couchpotato_host is defined and couchpotato_host == ansible_default_ipv4.address and ansible_eth1 is defined and ansible_product_name == 'VirtualBox' %}
 INSERT INTO "setting" VALUES(14,'couchpotato_host','{{ ansible_eth1.ipv4.address }}');
-{% elif couchpotato_host is defined and couchpotato_host == ansible_default_ipv4.address and htpc_hostname is defined %}
-INSERT INTO "setting" VALUES(14,'couchpotato_host','{{ htpc_hostname }}');
+{% elif couchpotato_host is defined and couchpotato_host == ansible_default_ipv4.address and htpc_manager_use_hostnames is defined and htpc_manager_use_hostnames %}
+INSERT INTO "setting" VALUES(14,'couchpotato_host','{{ ansible_hostname }}');
 {% elif couchpotato_host is defined and couchpotato_host != ansible_default_ipv4.address %}
 INSERT INTO "setting" VALUES(14,'sabnzbd_host','{{ couchpotato_host }}');
 \{% else %}
@@ -82,8 +82,8 @@ INSERT INTO "setting" VALUES(31,'sickbeard_apikey','');
 {% endif %}
 {% if sickbeard_host is defined and sickbeard_host == ansible_default_ipv4.address and ansible_eth1 is defined and ansible_product_name == 'VirtualBox' %}
 INSERT INTO "setting" VALUES(32,'sickbeard_host','{{ ansible_eth1.ipv4.address }}');
-{% elif sickbeard_host is defined and sickbeard_host == ansible_default_ipv4.address and htpc_hostname is defined %}
-INSERT INTO "setting" VALUES(32,'sickbeard_host','{{ htpc_hostname }}');
+{% elif sickbeard_host is defined and sickbeard_host == ansible_default_ipv4.address and htpc_manager_use_hostnames is defined and htpc_manager_use_hostnames %}
+INSERT INTO "setting" VALUES(32,'sickbeard_host','{{ ansible_hostname }}');
 {% elif sickbeard_host is defined and sickbeard_host != ansible_default_ipv4.address %}
 INSERT INTO "setting" VALUES(32,'sickbeard_host','{{ sickbeard_host }}');
 {% else %}
@@ -104,8 +104,8 @@ INSERT INTO "setting" VALUES(44,'deluge_name','Deluge');
 INSERT INTO "setting" VALUES(45,'deluge_ssl','0');
 {% if deluged_host is defined and deluged_host == ansible_default_ipv4.address and ansible_eth1 is defined and ansible_product_name == 'VirtualBox' %}
 INSERT INTO "setting" VALUES(46,'deluge_host','{{ ansible_eth1.ipv4.address }}');
-{% elif deluged_host is defined and deluged_host == ansible_default_ipv4.address and htpc_hostname is defined %}
-INSERT INTO "setting" VALUES(46,'deluge_host','{{ htpc_hostname }}');
+{% elif deluged_host is defined and deluged_host == ansible_default_ipv4.address and htpc_manager_use_hostnames is defined and htpc_manager_use_hostnames %}
+INSERT INTO "setting" VALUES(46,'deluge_host','{{ ansible_hostname }}');
 {% elif deluged_host is defined and deluged_host != ansible_default_ipv4.address %}
 INSERT INTO "setting" VALUES(46,'deluge_host','{{ deluged_host }}');
 {% else %}

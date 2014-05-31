@@ -3,7 +3,7 @@
   sudo: True
 
   vars:
-    htpc_hostname: htpc-server
+    htpc_manager_use_hostnames: True
 
   roles:
     - role: xbmc-client
