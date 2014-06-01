@@ -89,7 +89,11 @@ use_for = nzb
 [deluge]
 username = localclient
 delete_failed = True
+{% if xbmc_media_path is defined and xbmc_default_media_folders is defined %}
+completed_directory = {{ xbmc_media_path }}/{{ xbmc_default_media_folders.movies }}/
+{% else %}
 completed_directory =
+{% endif %}
 manual = 0
 {% if deluged_host is defined %}
 enabled = 1
@@ -106,11 +110,7 @@ host = {{ deluged_host}}:58846
 host = 
 {% endif %}
 delete_files = True
-{% if xbmc_media_path is defined and xbmc_default_media_folders is defined %}
-directory = {{ xbmc_media_path }}/{{ xbmc_default_media_folders.movies }}/
-{% else %}
 directory =
-{% endif %}
 remove_complete = True
 {% if deluged_localclient_password is defined %}
 password = {{ deluged_localclient_password }}
