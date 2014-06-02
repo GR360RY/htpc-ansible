@@ -9,7 +9,7 @@
     - sqlite3
 
 - name: Get HTPC-Manager Code from GitHub
-  git: repo={{ htpc_manager_repo }} dest={{ htpc_manager_path }}
+  git: repo={{ htpc_manager_repo }} dest={{ htpc_manager_path }} version={{ htpc_manager_version }}
 
 - name: Make sure HTPC-Manager directory has correct ownership
   file: path={{ htpc_manager_path }} owner={{ htpc_manager_user }} group={{ htpc_manager_user }} recurse=yes

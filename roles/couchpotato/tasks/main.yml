@@ -8,7 +8,7 @@
     - git
 
 - name: Get Couchpotato Code from GitHub
-  git: repo={{ couchpotato_repo }} dest={{ couchpotato_path }}
+  git: repo={{ couchpotato_repo }} dest={{ couchpotato_path }} version={{ couchpotato_version }}
 
 - name: Make sure Couchpotato directory has correct ownership
   file: path={{ couchpotato_path }} owner={{ couchpotato_user }} group={{ couchpotato_user }} recurse=yes
