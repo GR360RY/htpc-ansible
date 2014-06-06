@@ -30,10 +30,15 @@
   <lookandfeel>
     <soundskin>OFF</soundskin>
   </lookandfeel>
-{% endif %}
-{% if ansible_product_name == 'VirtualBox' %}
   <screensaver>
     <mode></mode>
   </screensaver>
+  <general>
+    <addonautoupdate>false</addonautoupdate>
+    <addonnotifications>false</addonnotifications>
+  </general>
+  <input>
+    <enablemouse default="true">false</enablemouse>
+  </input>
 {% endif %}
 </advancedsettings>

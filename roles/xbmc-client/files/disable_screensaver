@@ -5,6 +5,7 @@ export DISPLAY=:0
 # Disable screensaver
 gsettings set org.gnome.desktop.screensaver logout-enabled false
 gsettings set org.gnome.desktop.screensaver lock-enabled false
+gsettings set org.gnome.desktop.session idle-delay 0
 gsettings set org.gnome.desktop.screensaver idle-activation-enabled false
 gsettings set org.gnome.desktop.screensaver show-notifications false
 gsettings set org.gnome.desktop.screensaver status-message-enabled false
