@@ -2,4 +2,4 @@
 # defaults file for htpc-manager
 
 htpc_manager_path: /opt/htpc-manager
-htpc_manager_version: 2bf51aacd9c9d5b81afe2e29b60ca1b601fa74f7
+htpc_manager_version: HEAD

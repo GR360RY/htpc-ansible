@@ -5,4 +5,4 @@ couchpotato_path: /opt/couchpotato
 couchpotato_apikey: bb138ccd9df84c33af9b310325b0d658
 
 couchpotato_host: "{{ ansible_default_ipv4.address }}"
-couchpotato_version: 7ceb8dc79c65ad697f51607ea773d6a49bd66db0
+couchpotato_version: HEAD
