@@ -61,7 +61,7 @@ All services ( besides Sabnzbd ) are configured with their default ports and set
 
 Each role has its own README file with detailed desription and list of variables used in this role.
 
-* [XBMC Client Custumosations](roles/xbmc-client/README.md)
+* [XBMC Client Customisations](roles/xbmc-client/README.md)
 * [XBMC MySQL Database Customisations](roles/xbmc-mysql/README.md)
 * [NAS Customisations](roles/xbmc-nas/README.md)
 * [Sabnzbd Customisations](roles/sabnzbd/README.md)
