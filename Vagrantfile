@@ -12,6 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Don't boot with headless mode
     vb.gui = true
     vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
+    vb.customize ["modifyvm", :id, "--vram", "128"]
     vb.customize 'post-boot', ["controlvm", :id, "setvideomodehint", "1280", "720", "24"]
   end
 
