@@ -7,11 +7,14 @@ XBMC can be automatically configured in the following modes:
 
 1. Standalone Mode
 2. HTPC Server Mode
-3. Client Mode
+3. Client Only Mode
 
 In "Standalone Mode" XBMC will opperate using local storage and local sqlite database.
 
-In "HTPC Server Mode" XBMC will use mysql database installed on the same host as the xbmc-client or using external database installed on other host. When "Shared" mode is applied XBMC can be configured to use external NFS storage to allow "thin client" mode operation. ( See example 2 )
+In "HTPC Server Mode" XBMC will use mysql database installed on the same host as the xbmc-client or using external database installed on other host. When "HTPC Server" mode is applied XBMC can be configured to use external NFS storage. ( See example 2 )
+
+In "Client Only Mode" XBMC will be configured to use external database and external NAS by updating advancedsettings.xml. Should be installed on thin clients only.
+
 
 List of tasks that will be performed under xbmc-client role:
 
@@ -34,51 +37,78 @@ Role Variables
 List of variables that can be passed to the role with default variable values.
 
 ```yaml
-xbmc_repo: 'ppa:team-xbmc/ppa'      # xbmc apt repository. can be changed to unstable
-xbmc_media_path: /mnt/xbmc          # Location of xbmc media folders.
-xbmc_default_media_folders:         # Default folder names for Movies, TV, Music and etc.
+xbmc_repo: 'ppa:team-xbmc/ppa'    # XBMC Ubuntu ppa.
+xbmc_media_path: /mnt/xbmc        # Location of xbmc media folders.
+
+xbmc_default_media_folders:       # Folder names for Movies, TV, Music and etc.
   movies: Movies
   tv: TV
   music: Music
 
-xbmc_download_folders:              # Default download folders
+xbmc_download_folders:
   downloads: Downloads
   tmp: tmp
 
-xbmc_user_name: xbmc                # User that will run xbmc and related htpc services
-xbmc_user_password: xbmc            # User Password
-xbmc_enable_ubuntu_desktop: True    # Start xbmc as part of Ubuntu desktop
-xbmc_standalone_mode: True          # Standalone box setup. No NAS and xbmc DB sharing.
-xbmc_mysqldb_host: localhost        # Mysql host for shared xbmc database.
-xbmc_mysqldb_user: xbmc             # Mysql user
-xbmc_mysqldb_password: xbmc         # Mysql password
-xbmc_dont_create_folders: False     # Skip creation of Media and Downloads folders
-xbmc_with_download_clinets: False   # Skip creation of Downloads folders.
+xbmc_user_name: xbmc              # User that will run XBMC
+xbmc_user_password: xbmc          # User's Password
+xbmc_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop
+xbmc_standalone_mode: True        # Standalone box setup
 
-xbmc_external_nas:                  # Can be passed to role to use external NFS storage.
+xbmc_dont_create_folders: False   # Don't create Media and Downloads folders
+xbmc_with_download_clinets: False # Don't create downloads and temporary folders.
+
+# When used together with deluge role, make sure deluge runs as xbmc user
+deluged_user: "{{ xbmc_user_name }}"
+
+# When used together with sabnzbd role, make sure sabnzbd runs as xbmc user
+sabnzbd_user: "{{ xbmc_user_name }}"
+
+# When used together with couchpotato role, make sure couchpotato runs as xbmc user
+couchpotato_user: "{{ xbmc_user_name }}"
+
+# When used together with sickbeard role, make sure sickbeard runs as xbmc user
+sickbeard_user: "{{ xbmc_user_name }}"
+
+# When used together with htpc-manager role, make sure htpc-manager runs as xbmc user
+htpc_manager_user: "{{ xbmc_user_name }}"
+
+
+# Uninitialised variables
+
+xbmc_mysqldb_host:                # Defaults initialised in xbmc-mysql role
+xbmc_mysqldb_user:                # Defaults initialised in xbmc-mysql role
+xbmc_mysqldb_password:            # Defaults initialised in xbmc-mysql role
+
+xbmc_external_nas:                # Use xbmc with external NAS
+
+# Default xbmc host IP. Used by other roles.
+xbmc_host: "{{ ansible_default_ipv4.address }}" 
 ```
 
 Dependencies
 ------------
 
-This role is a part of `htpc-ansible` meta role that includes additional set of components required for HTPC automation.
+This role is a part of `htpc-ansible` playbook that includes additional set of components required for HTPC automation.
 
 The following list of roles can be used together with xbmc-client role:
 
-     - htpc-ansible                             # Meta role that includes HTPC components
      - xbmc-mysql
      - xbmc-nas
      - sickbeard
      - couchpotato
      - subnzbd
      - deluge
-     - htpc-manager
+     - htpc-manage
+
+Detailed info can be found following this link:
+
+https://github.com/GR360RY/htpc-ansible
 
 
 Example Playbook
--------------------------
+----------------
 
-Stanalone mode installation on single host with default xbmc user ( xbmc/xbmc )
+Stanalone Mode installation on single host with default xbmc user ( xbmc/xbmc )
 
     - hosts: xbmc-clients
 
@@ -86,17 +116,22 @@ Stanalone mode installation on single host with default xbmc user ( xbmc/xbmc )
         - role: xbmc-client
 
 
-Single Client installation with external xbmc mysql database and external NAS. Default database credentials ( xbmc/xbmc ) are used.
+HTPC Server Mode installation with external xbmc mysql database and external NAS. Automounter will be configured allow direct access to Media files.
 
     - hosts: xbmc-clients
       sudo: True
 
       vars:
+        xbmc_user_name: foo
+        xbmc_user_password: bar
         xbmc_mysqldb_host: 10.0.0.1
+        xbmc_mysqldb_user: xbmc
+        xbmc_mysqldb_password: xbmc
         xbmc_external_nas: 10.0.0.1
         xbmc_media_path: /tank/Media
         xbmc_dont_create_folders: True
         xbmc_standalone_mode: False
+        xbmc_enable_ubuntu_desktop: False
 
       roles:
         - role: xbmc-client

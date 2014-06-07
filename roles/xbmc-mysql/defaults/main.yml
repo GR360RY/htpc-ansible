@@ -3,3 +3,5 @@
 
 xbmc_mysqldb_user: xbmc
 xbmc_mysqldb_password: xbmc
+
+xbmc_mysqldb_host: "{{ ansible_default_ipv4.address }}"

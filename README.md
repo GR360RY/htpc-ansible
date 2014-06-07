@@ -59,8 +59,10 @@ All services ( besides Sabnzbd ) are configured with their default ports and set
 
 ## Customizing the setup
 
-* [XBMC Client Customisations](roles/xbmc-client/README.md)
-* [XBMC MySQL Cusotmisations](roles/xbmc-mysql/README.md)
+Each role has its own README file with detailed desription and list of variables used in this role.
+
+* [XBMC Client Custumosations](roles/xbmc-client/README.md)
+* [XBMC MySQL Database Customisations](roles/xbmc-mysql/README.md)
 * [NAS Customisations](roles/xbmc-nas/README.md)
 * [Sabnzbd Customisations](roles/sabnzbd/README.md)
 * [Deluge Customisations](roles/deluge/README.md)

@@ -1,5 +1,24 @@
 <advancedsettings>
-{% if not xbmc_standalone_mode %}
+{% if not xbmc_standalone_mode and xbmc_mysqldb_host is defined and xbmc_mysqldb_host == ansible_default_ipv4.address %}
+  <videodatabase>
+    <type>mysql</type>
+    <host>localhost</host>
+    <port>3306</port>
+    <user>{{ xbmc_mysqldb_user }}</user>
+    <pass>{{ xbmc_mysqldb_password }}</pass>
+  </videodatabase> 
+  <musicdatabase>
+    <type>mysql</type>
+    <host>localhost</host>
+    <port>3306</port>
+    <user>{{ xbmc_mysqldb_user }}</user>
+    <pass>{{ xbmc_mysqldb_password }}</pass>
+  </musicdatabase>
+  <videolibrary>
+    <importwatchedstate>true</importwatchedstate>
+    <importresumepoint>true</importresumepoint>
+  </videolibrary>
+{% elif if not xbmc_standalone_mode and xbmc_mysqldb_host is defined and xbmc_mysqldb_host != ansible_default_ipv4.address %}
   <videodatabase>
     <type>mysql</type>
     <host>{{ xbmc_mysqldb_host }}</host>

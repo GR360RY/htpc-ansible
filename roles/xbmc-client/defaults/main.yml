@@ -1,11 +1,10 @@
 ---
 # defaults file for xbmc-client
 
-xbmc_repo: 'ppa:team-xbmc/ppa'                  # XBMC Ubuntu ppa. Can be switched to unstable
+xbmc_repo: 'ppa:team-xbmc/ppa'    # XBMC Ubuntu ppa.
+xbmc_media_path: /mnt/xbmc        # Location of xbmc media folders.
 
-xbmc_media_path: /mnt/xbmc                      # Location of xbmc media folders.
-
-xbmc_default_media_folders:                     # Default folder names for Movies, TV, Music and etc.
+xbmc_default_media_folders:       # Folder names for Movies, TV, Music and etc.
   movies: Movies
   tv: TV
   music: Music
@@ -14,16 +13,15 @@ xbmc_download_folders:
   downloads: Downloads
   tmp: tmp
 
-xbmc_user_name: xbmc                            # User that will run xbmc and related htpc services
-xbmc_user_password: xbmc                        # User's Password
-xbmc_enable_ubuntu_desktop: True                # Start xbmc as part of Ubuntu desktop
-xbmc_standalone_mode: True                      # Standalone box setup. No NAS and xbmc DB sharing.
+xbmc_user_name: xbmc              # User that will run XBMC
+xbmc_user_password: xbmc          # User's Password
+xbmc_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop
+xbmc_standalone_mode: True        # Standalone box setup
 
-xbmc_mysqldb_host: localhost                    # Mysql host for shared xbmc database.
-xbmc_mysqldb_user: xbmc                         # Mysql user
-xbmc_mysqldb_password: xbmc                     # Mysql password
+xbmc_dont_create_folders: False   # Don't create Media and Downloads folders
+xbmc_with_download_clinets: False # Don't create downloads and temporary folders.
 
-xbmc_dont_create_folders: False                 # Don't create Media and Downloads folders
-xbmc_with_download_clinets: False               # Don't create downloads and temporary folders.
+# Helper Variables
 
-xbmc_host: "{{ ansible_default_ipv4.address }}" # Default xbmc host IP. Used by other roles.
+# Default xbmc host IP. Used by other roles.
+xbmc_host: "{{ ansible_default_ipv4.address }}" 

@@ -18,28 +18,31 @@ Role Variables
 
 List of variables that can be passed to the role with default variable values.
 
-    xbmc_standalone_mode: False                 # Standalone box setup. No NAS and xbmc DB sharing.
-    xbmc_mysqldb_user: xbmc                     # Mysql user
-    xbmc_mysqldb_password: xbmc                 # Mysql password
+```yaml
+xbmc_mysqldb_host: 
+xbmc_mysqldb_user: xbmc
+xbmc_mysqldb_password: xbmc
 
+# If installed together with XBMC disable standalone mode.
+xbmc_standalone_mode: False        # Standalone box setup
 
-The following variables should be defined in playbook if xbmc-mysql is added without xbmc-client role.
+# The following variables should be defined in playbook if xbmc-mysql is added without xbmc-client role.
 
-    xbmc_media_path:                            # Location of xbmc media folders.
+xbmc_media_path:                  # Location of xbmc media folders.
 
-    xbmc_default_media_folders:                 # Default folder names for Movies, TV, Music and etc.
-      movies:
-      tv:
-      music:
+xbmc_default_media_folders:       # Folder names for Movies, TV, Music and etc.
+  movies: 
+  tv: 
+  music: 
+```
 
 Dependencies
 ------------
 
-This role is a part of `htpc-ansible` meta role that includes additional set of components required for HTPC automation.
+This role is a part of `htpc-ansible` playbook that includes additional set of components required for HTPC automation.
 
 The following list of roles can be used together with xbmc-mysql role:
 
-     - htpc-ansible                             # Meta role that includes HTPC components
      - xbmc-client
      - xbmc-nas
      - sickbeard
@@ -47,6 +50,10 @@ The following list of roles can be used together with xbmc-mysql role:
      - subnzbd
      - deluge
      - htpc-manager
+
+Detailed info can be found following this link:
+
+https://github.com/GR360RY/htpc-ansible
 
 
 Example Playbook
@@ -58,8 +65,8 @@ Install XBMC mysql on separate host.
 
 	  vars:
 	  	xbmc_mysqldb_user: xbmc
-		xbmc_mysqldb_password: xbmc
-		xbmc_media_path: /mnt/xbmc
+		  xbmc_mysqldb_password: xbmc
+		  xbmc_media_path: /mnt/xbmc
 
 	    xbmc_default_media_folders:
 		  movies: Movies
