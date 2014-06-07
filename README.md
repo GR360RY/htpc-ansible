@@ -59,7 +59,14 @@ All services ( besides Sabnzbd ) are configured with their default ports and set
 
 ## Customizing the setup
 
-
+[XBMC Client Customisations](roles/xbmc-client/README.md)
+[XBMC MySQL Cusotmisations](roles/xbmc-mysql/README.md)
+[NAS Customisations](roles/xbmc-nas/README.md)
+[Sabnzbd Customisations](roles/sabnzbd/README.md)
+[Deluge Customisations](roles/deluge/README.md)
+[SickBeard Customisations](roles/sickbeard/README.md)
+[CouchPotato Customisations](roles/couchpotato/README.md)
+[HTPC-Manager Customisations](roles/htpc-manager/README.md)
 
 ## Development and Testing
 
