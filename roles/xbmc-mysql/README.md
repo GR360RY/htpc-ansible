@@ -61,7 +61,7 @@ Example Playbook
 Install XBMC mysql on separate host.
 
     - hosts: mysql-databases
-	    sudo: True
+      sudo: True
 
       vars:
         xbmc_mysqldb_user: xbmc
