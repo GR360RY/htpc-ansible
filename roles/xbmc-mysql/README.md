@@ -63,18 +63,18 @@ Install XBMC mysql on separate host.
     - hosts: mysql-databases
 	    sudo: True
 
-    vars:
-      xbmc_mysqldb_user: xbmc
-      xbmc_mysqldb_password: xbmc
-      xbmc_media_path: /mnt/xbmc
+      vars:
+        xbmc_mysqldb_user: xbmc
+        xbmc_mysqldb_password: xbmc
+        xbmc_media_path: /mnt/xbmc
 
-    xbmc_default_media_folders:
-      movies: Movies
-      tv: TV
-      music: Music
+      xbmc_default_media_folders:
+        movies: Movies
+        tv: TV
+        music: Music
 
-    roles:
-      - role: xbmc-mysql
+      roles:
+        - role: xbmc-mysql
 
 
 Install xbmc-mysql together with xbmc-client and xbmc-nas.
