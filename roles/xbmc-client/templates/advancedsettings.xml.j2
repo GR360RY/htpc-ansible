@@ -18,7 +18,7 @@
     <importwatchedstate>true</importwatchedstate>
     <importresumepoint>true</importresumepoint>
   </videolibrary>
-{% elif if not xbmc_standalone_mode and xbmc_mysqldb_host is defined and xbmc_mysqldb_host != ansible_default_ipv4.address %}
+{% elif not xbmc_standalone_mode and xbmc_mysqldb_host is defined and xbmc_mysqldb_host != ansible_default_ipv4.address %}
   <videodatabase>
     <type>mysql</type>
     <host>{{ xbmc_mysqldb_host }}</host>

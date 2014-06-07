@@ -64,8 +64,8 @@ Install XBMC mysql on separate host.
 	  sudo: True
 
 	  vars:
-	  	xbmc_mysqldb_user: xbmc
-		  xbmc_mysqldb_password: xbmc
+      xbmc_mysqldb_user: xbmc
+      xbmc_mysqldb_password: xbmc
 		  xbmc_media_path: /mnt/xbmc
 
 	    xbmc_default_media_folders:

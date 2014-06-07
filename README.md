@@ -78,7 +78,7 @@ Each role has its own README file with detailed desription and list of variables
 If you want to test out the configuration in VirtualMachine, or contribute to htpc-ansible development,
 download and install [Vagrant](http://www.vagrantup.com/)
 
-Install [Oracle VM VirtualBox Extension Pack](http://download.virtualbox.org/virtualbox/4.3.10/Oracle_VM_VirtualBox_Extension_Pack-4.3.10-93012.vbox-extpack)
+Install [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
 #### Install snapshot plugin for Vagrant
 We will use a [vagrant-multiprovider-snap](https://github.com/scalefactory/vagrant-multiprovider-snap) to roll machine back instead of recreating box from scratch.
