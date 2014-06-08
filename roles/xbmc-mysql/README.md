@@ -19,7 +19,7 @@ Role Variables
 List of variables that can be passed to the role with default variable values.
 
 ```yaml
-xbmc_mysqldb_host: 
+xbmc_mysqldb_host: "{{ ansible_default_ipv4.address }}"
 xbmc_mysqldb_user: xbmc
 xbmc_mysqldb_password: xbmc
 

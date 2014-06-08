@@ -1,7 +1,7 @@
 xbmc-nas
 ===========
 
-
+An ansible role to setup and configure NAS functionality ( NFS and Samba ) for HTPC Server under Debian based distro's.
 
 Requirements
 ------------
@@ -13,6 +13,29 @@ Role Variables
 
 List of variables that can be passed to the role with default variable values.
 
+```yaml
+# Variables shared between this role and xbmc-client role.
+# Default values are defined in xbmc-client role.
+xbmc_media_path:                  # Location of xbmc media folders.
+
+xbmc_default_media_folders:       # Folder names for Movies, TV, Music and etc.
+  movies:
+  tv:
+  music:
+
+xbmc_download_folders:
+  downloads:
+  tmp:
+
+xbmc_user_name:                   # User that will run XBMC
+
+xbmc_with_download_clinets:       # Create default downloads folders
+
+# Variables share between this role, sabnzbd and deluge roles.
+# Defaults are define in each coresponding role.
+sabnzbd_incomplete:
+deluged_incomplete:
+```
 
 
 Dependencies
@@ -28,7 +51,7 @@ The following list of roles can be used together with xbmc-client role:
      - couchpotato
      - subnzbd
      - deluge
-     - htpc-manage
+     - htpc-manager
 
 Detailed info can be found following this link:
 
