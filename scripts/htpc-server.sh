@@ -7,5 +7,5 @@ else
 	echo "\n\033[0;32m >> htpc-ansible is already available\033[0m"
 fi
 cd "$HOME/htpc-ansible"
-echo "\n\033[0;32m >> Install HTPC Server with Bittorent Downloader\033[0m"
+echo "\n\033[0;32m >> Install HTPC Server with Bittorent and Usenet Downloaders\033[0m"
 ansible-playbook -i hosts -c local -K htpc-server.yml

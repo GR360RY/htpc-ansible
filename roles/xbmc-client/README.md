@@ -98,7 +98,7 @@ The following list of roles can be used together with xbmc-client role:
      - couchpotato
      - subnzbd
      - deluge
-     - htpc-manage
+     - htpc-manager
 
 Detailed info can be found following this link:
 

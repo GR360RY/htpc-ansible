@@ -4,13 +4,13 @@ HTPC Server Automation with XBMC, Bittorent and Usenet Software
 ## Overview
 This ansible playbook is designed to quickly deploy home HTPC server, which can perform variety of funcitons. It's based on an Ubuntu 14.04, and can set up several configuration variants. It includes roles, which can be set up on a single machine, or on a different ones, and can be customized through single configuration file, correctly deploying all the software.
 
-- [XBMC - Open Source Home Theatre Software](http://xbmc.org/‎), with optional mysql backend support (can be used to manage single library from multiple XBMC servers at home)
+- [XBMC](http://xbmc.org/‎) - Open Source Home Theatre Software, with optional mysql backend support (can be used to manage single library for multiple XBMC clients at home)
 - NAS configuration with support for sharing the library over NFS and CIFS (AFP to come)
-- [HTPC Manager - combines all your favorite software into one slick interface](http://htpc.io)
-- [Couchpotato - download movies automatically](https://couchpota.to/)
-- [Sick Beard - Internet PVR for your TV Shows](http://sickbeard.com)
-- [SABnzbd - NZB capable binary newsgrabber](http://sabnzbd.org/)
-- [Deluge -  Cross-platform BitTorrent client](http://deluge-torrent.org/)
+- [HTPC Manager](http://htpc.io) - combines all your favorite software into one slick interface
+- [Couchpotato](https://couchpota.to/) - Download movies automatically
+- [Sick Beard](http://sickbeard.com) - Internet PVR for your TV Shows
+- [SABnzbd](http://sabnzbd.org/) - NZB capable binary newsgrabber
+- [Deluge](http://deluge-torrent.org/) -  Cross-platform BitTorrent client
 
 ### Prerequisites
 
@@ -37,7 +37,7 @@ wget --no-check-certificate https://raw.github.com/GR360RY/htpc-ansible/master/s
 	
 __Reboot your machine following the installation.__
 
-## What will be installed and configured ?
+### What will be installed and configured ?
 
 The following list of tasks will be performed during the installation:
 
@@ -59,6 +59,23 @@ All services ( besides Sabnzbd ) are configured with their default ports and set
 
 ## Customizing the setup
 
+__Install Ansible and Git__
+
+    sudo apt-get install software-properties-common
+    sudo apt-add-repository -y ppa:ansible/ansible
+    sudo apt-get update
+    sudo apt-get -y install ansible git
+
+__Clone the repository__
+
+    git clone https://github.com/GR360RY/htpc-ansible.git
+    cd htpc-ansible
+
+__Edit Configuration__
+
+Open `htpc-server.yml` in your favorite editor and update vars section.
+
+
 Each role has its own README file with detailed desription and list of variables used in this role.
 
 * [XBMC Client Customisations](roles/xbmc-client/README.md)
@@ -70,12 +87,12 @@ Each role has its own README file with detailed desription and list of variables
 * [CouchPotato Customisations](roles/couchpotato/README.md)
 * [HTPC-Manager Customisations](roles/htpc-manager/README.md)
 
-## Development and Testing
+## Development and Testing with Vagrant
 
 ### Prerequisites
 
 #### Install Vagrant
-If you want to test out the configuration in VirtualMachine, or contribute to htpc-ansible development,
+If you want to test out the configuration in VirtualMachine or contribute to htpc-ansible development,
 download and install [Vagrant](http://www.vagrantup.com/)
 
 Install [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads)
