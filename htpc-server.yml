@@ -3,8 +3,22 @@
   sudo: True
 
   vars:
-    htpc_manager_use_hostnames: True
 
+    ## Most common modifiable values.
+    ## For a full list of tunable parameters check each role README.md in roles/role-name/README.md  
+
+    # xbmc-client role
+    xbmc_repo: 'ppa:team-xbmc/ppa'        # XBMC Ubuntu ppa.
+    xbmc_media_path: /mnt/xbmc            # Location of xbmc media folders.
+    xbmc_user_name: xbmc                  # User that will run XBMC
+    xbmc_user_password: xbmc              # User's Password
+    xbmc_enable_ubuntu_desktop: True      # Start XBMC as part of Ubuntu desktop
+
+    # htpc-manager role
+    htpc_manager_use_hostnames: True      # If False use IP Addresses.
+
+
+  # Any role can be commented out to disable particular function.
   roles:
     - role: xbmc-client
     - role: xbmc-mysql
