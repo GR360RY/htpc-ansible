@@ -1,5 +1,7 @@
 echo "\n\033[0;32m >> Install Git and Ansible\033[0m"
-sudo /usr/bin/apt-get -y install git ansible git
+sudo apt-get install -y software-properties-common
+sudo apt-add-repository -y ppa:ansible/ansible
+sudo /usr/bin/apt-get -y install git ansible
 if [ ! -d "$HOME/htpc-ansible" ]; then
 	echo "\n\033[0;32m >> Clone htpc-ansible repository\033[0m"
 	git clone git://github.com/GR360RY/htpc-ansible.git "$HOME/htpc-ansible"
