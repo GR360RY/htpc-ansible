@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: htpc-server
   sudo: True
 
   vars:
