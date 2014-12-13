@@ -74,9 +74,8 @@ __Clone the repository__
 __Edit Configuration__
 
 Open `htpc-server.yml` in your favorite editor and update vars section.
-
-
-Each role has its own README file with detailed desription and list of variables used in this role.
+Most commonly changed variables are available in the htpc-server.yml file.
+All variables with detailed desription are located in each role README.md file:
 
 * [XBMC Client Customisations](roles/xbmc-client/README.md)
 * [XBMC MySQL Database Customisations](roles/xbmc-mysql/README.md)
@@ -86,6 +85,11 @@ Each role has its own README file with detailed desription and list of variables
 * [SickBeard Customisations](roles/sickbeard/README.md)
 * [CouchPotato Customisations](roles/couchpotato/README.md)
 * [HTPC-Manager Customisations](roles/htpc-manager/README.md)
+
+Run Ansible Playbook from your localhost:
+
+    ansible-playbook -i hosts -c local -K htpc-server.yml
+
 
 ## Development and Testing with Vagrant
 
