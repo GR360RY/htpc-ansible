@@ -2,7 +2,7 @@
 # defaults file for sickbeard
 
 sickbeard_repo: https://github.com/echel0n/SickRage.git
-sickbeard_branch: develop
+sickbeard_branch: master
 
 sickbeard_api_key: 9d9af7ab6548948fcdc2db864ecd2588
 usenet_crawler_api_key: 9d9af7ab6548948fcdc2db864ecd2588
