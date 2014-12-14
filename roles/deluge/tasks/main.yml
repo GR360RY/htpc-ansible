@@ -1,6 +1,9 @@
 ---
 # tasks file for deluge
 
+- name: Add Deluge PPA
+  apt_repository: repo=ppa:deluge-team/ppa state=present
+
 - name: Install Deluge Daemon
   apt: name={{ item }} state=latest update_cache=yes cache_valid_time=3600
   with_items:
