@@ -1,0 +1,36 @@
+---
+# tasks file for tvheadend
+
+- name: Install TVheadend requirements
+  apt: name={{ item }} state=installed
+  with_items:
+    - debconf
+    - debconf-utils
+    - linux-firmware-nonfree
+  tags:
+    - tvheadend
+
+- name: Add TVheadend repository gpg key
+  apt_key: url=http://apt.tvheadend.org/repo.gpg.key keyring=/etc/apt/trusted.gpg.d/tvheadend.gpg state=present
+  tags:
+    - tvheadend
+
+- name: Add Tvheadend repository for Ubuntu
+  apt_repository: repo='deb http://apt.tvheadend.org/unstable trusty main' state=present update_cache=yes
+  tags:
+    - tvheadend
+
+- name: Set Tvheadend User
+  debconf: name=tvheadend question=tvheadend/admin_username vtype=string value=admin
+  tags:
+    - tvheadend
+
+- name: Set Tvheadend Password
+  debconf: name=tvheadend question=tvheadend/admin_password vtype=password value=admin
+  tags:
+    - tvheadend
+
+- name: Install Tvheadend
+  apt: name=tvheadend state=installed
+  tags:
+    - tvheadend

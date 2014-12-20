@@ -28,3 +28,4 @@
     - role: sickbeard
     - role: couchpotato
     - role: htpc-manager
+    - role: tvheadend
