@@ -34,7 +34,7 @@ CONFIG_PATH=${DELUGED_CONFIG_PATH-/var/lib/deluged/config}
 LOG_FILE=${DELUGED_LOG_FILE-/var/log/deluged/daemon.log}
 DAEMON_ARGS="-d -c $CONFIG_PATH -l $LOG_FILE -L info"
 USER=${DELUGED_USER-debian-deluged}
-MASK=0027
+MASK=0022
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
