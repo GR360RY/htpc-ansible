@@ -122,7 +122,13 @@ CREATE TABLE xbmc_servers (
     password TEXT,
     mac TEXT
 );
-INSERT INTO "xbmc_servers" VALUES(5,'HTPC Server','localhost',8080,'xbmc','','');
+{% if xbmc_host is defined and xbmc_host == ansible_default_ipv4.address and ansible_eth1 is defined and ansible_product_name == 'VirtualBox' %}
+INSERT INTO "xbmc_servers" VALUES(5,'HTPC Server','{{ ansible_eth1.ipv4.address }}',8080,'xbmc','','');
+{% elif xbmc_host is defined and xbmc_host == ansible_default_ipv4.address and htpc_manager_use_hostnames is defined and htpc_manager_use_hostnames %}
+INSERT INTO "xbmc_servers" VALUES(5,'HTPC Server','{{ ansible_hostname }}',8080,'xbmc','','');
+{% else %}
+INSERT INTO "xbmc_servers" VALUES(5,'HTPC Server','{{ ansible_default_ipv4 }}',8080,'xbmc','','');
+{% endif %}
 DELETE FROM sqlite_sequence;
 INSERT INTO "sqlite_sequence" VALUES('setting',41);
 INSERT INTO "sqlite_sequence" VALUES('xbmc_servers',5);
