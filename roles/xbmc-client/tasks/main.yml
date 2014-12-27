@@ -33,7 +33,7 @@
   apt_repository: repo={{ xbmc_repo }} state=present
 
 - name: Make sure XBMC is installed
-  apt: name=xbmc state=latest update_cache=yes
+  apt: name=xbmc='2:13.2~git20140817.2155-final-0trusty' update_cache=yes
 
 - name: Make sure XBMC folders are available
   file: path={{ item }} state=directory owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0755
