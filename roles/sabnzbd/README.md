@@ -65,11 +65,11 @@ Example Playbook
 
     # Single or multiple news servers can be defined.
     newsgroups_servers:
-      news.someserver.com
+      - name: news.someserver.com
         username: foo
         password: bar
         connections: 10
-      eu.news.someserver.com
+      - name: eu.news.someserver.com
         username: foo
         password: bar
         connections: 10
