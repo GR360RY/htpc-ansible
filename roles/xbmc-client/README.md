@@ -92,13 +92,14 @@ This role is a part of `htpc-ansible` playbook that includes additional set of c
 
 The following list of roles can be used together with xbmc-client role:
 
-     - xbmc-mysql
-     - xbmc-nas
-     - sickbeard
-     - couchpotato
-     - subnzbd
-     - deluge
-     - htpc-manager
+- xbmc-mysql
+- xbmc-nas
+- sickbeard
+- couchpotato
+- subnzbd
+- deluge
+- htpc-manager
+- tvheadend
 
 Detailed info can be found following this link:
 
@@ -118,6 +119,7 @@ Stanalone Mode installation on single host with default xbmc user ( xbmc/xbmc )
 
 HTPC Server Mode installation with external xbmc mysql database and external NAS. Automounter will be configured allow direct access to Media files.
 
+```
     - hosts: xbmc-clients
       sudo: True
 
@@ -135,6 +137,7 @@ HTPC Server Mode installation with external xbmc mysql database and external NAS
 
       roles:
         - role: xbmc-client
+```
 
 
 License

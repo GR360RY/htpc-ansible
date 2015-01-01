@@ -4,17 +4,24 @@
 
   vars:
 
-    ## Most common modifiable values.
+    ## Most commonly modifiable values.
     ## For a full list of tunable parameters check each role README.md in roles/role-name/README.md  
 
-    # xbmc-client role
+    # xbmc-client
     xbmc_repo: 'ppa:team-xbmc/ppa'        # XBMC Ubuntu ppa.
     xbmc_media_path: /mnt/xbmc            # Location of xbmc media folders.
     xbmc_user_name: xbmc                  # User that will run XBMC
     xbmc_user_password: xbmc              # User's Password
     xbmc_enable_ubuntu_desktop: True      # Start XBMC as part of Ubuntu desktop
 
-    # htpc-manager role
+    # sabnzbd 
+    newsgroups_servers:
+      - name: news.example.com
+        username: foo
+        password: bar
+        connections: 10
+
+    # htpc-manager 
     htpc_manager_use_hostnames: True      # If False use IP Addresses.
 
 
