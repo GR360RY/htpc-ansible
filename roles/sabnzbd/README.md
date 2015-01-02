@@ -13,14 +13,22 @@ Role Variables
 
 List of variables that can be passed to the role with default variable values.
 
-```
+``` 
 sabnzbd_port: 9000
 sab_apikey: c48afc846972e295826bb05d2e84dd59
+
 
 # Default Sabnzbd host IP or hostname. Used by other roles.
 sabnzbd_host: "{{ ansible_default_ipv4.address }}"
 
+sabnzbd_download_dir: /opt/sabnzbd/Downloads
+sabnzbd_incomplete_dir: /opt/sabnzbd/sabnzbd_incomplete
+
 # Uninitialised variables
+
+# User that will run the service and will own downloded files (required)
+sabnzbd_user:
+
 newsgroups_servers:
   - name:
     username:
@@ -60,8 +68,7 @@ Example Playbook
   sudo: True
 
   vars:
-    sabnzbd_port: 9000
-    sab_apikey: c48afc846972e295826bb05d2e84dd59
+    sabnzbd_user: johnd  
 
     # Single or multiple news servers can be defined.
     newsgroups_servers:
