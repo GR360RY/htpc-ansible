@@ -1,0 +1,204 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quick Installation &mdash; htpc-ansible 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="htpc-ansible 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Customising the Setup" href="customisation.html"/>
+        <link rel="prev" title="Requirements" href="requirements.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> htpc-ansible</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#software-roles">Software Roles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Quick Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-will-be-installed-and-configured">What will be installed and configured ?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="customisation.html">Customising the Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev_and_test.html">Development and Testing</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">htpc-ansible</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Quick Installation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/quick_install.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="quick-installation">
+<h1>Quick Installation<a class="headerlink" href="#quick-installation" title="Permalink to this headline">¶</a></h1>
+<p>Login to your Ubuntu 14.04 machine using gui or console.
+Open terminal and run the below command:</p>
+<div class="highlight-python"><div class="highlight"><pre>wget --no-check-certificate https://raw.github.com/GR360RY/htpc-ansible/master/scripts/htpc-server.sh -O - | sh
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Reboot your machine following the installation.</p>
+</div>
+<div class="section" id="what-will-be-installed-and-configured">
+<h2>What will be installed and configured ?<a class="headerlink" href="#what-will-be-installed-and-configured" title="Permalink to this headline">¶</a></h2>
+<p>The following list of tasks will be performed during the installation:</p>
+<ul class="simple">
+<li>Install sshd service for remote access.</li>
+<li>Add &#8216;xbmc&#8217; user identified by &#8216;xbmc&#8217; password.</li>
+<li>Create Movies, TV and Downloads folders under /mnt/xbmc</li>
+<li>Install latest XBMC version.</li>
+<li>Configure xbmc user to autologin automatically and start XBMC software.</li>
+<li>Enable Web Access to XBMC.</li>
+<li>Create XBMC mysql database and configure it to use correct Movies and TV Shows paths.</li>
+<li>Automatically configure scrappers for Movies and TV Sources</li>
+<li>Share folders under /mnt/xbmc over CIFS ( for Windows Machines ) and over NFS ( for Linux based Machines )</li>
+<li>Install Deluge Daemon (Bittorent) or/and Sabnzbd(usenet). ( Sabnzbd will run on port 9000 )</li>
+<li>Install SickBeard and Couchpotato for grabbing TV Shows and Movies.</li>
+<li>Install htpc-manager and configure all of the above service in htpc-manager.</li>
+<li>Setup apache as reverse proxy to allow access to htpc-manager on port 80.</li>
+</ul>
+<p>All services ( besides Sabnzbd ) are configured with their default ports and settings, unless playbook has been modified.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="customisation.html" class="btn btn-neutral float-right" title="Customising the Setup"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="requirements.html" class="btn btn-neutral" title="Requirements"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Gregory Shulov.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
