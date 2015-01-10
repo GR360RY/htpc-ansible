@@ -12,7 +12,7 @@
 # 6. Separate Downloads and tmp folders creation and use only deluge or/and sabnzbd roles are defined
 
 - name: Make sure SSH server is installed for remote access
-  apt: name=ssh state=installed update_cache=yes cache_valid_time=3600
+  apt: name=ssh state=installed update_cache=yes cache_valid_time=3600 force=yes
 
 - name: Make sure SSH is started on boot
   service: name=ssh state=started enabled=yes
@@ -80,7 +80,7 @@
 - name: Add script to disable screensaver
   copy: src=disable_screensaver dest=/usr/bin/disable_screensaver owner=root group=root mode=0755
 
-- name: Disable screensaver both in Unity and Xserver on xbmb user login
+- name: Disable screensaver both in Unity and Xserver on xbmc user login
   copy: src=disable_screensaver.desktop dest=~{{ xbmc_user_name }}/.config/autostart/disable_screensaver.desktop owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0664
 
 - name: Install Autofs

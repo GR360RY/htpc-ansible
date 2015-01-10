@@ -132,5 +132,5 @@ vagrant snap rollback
 ```
 
 #### Testing and configuring WEB services
-Vagrant box creates private network, with xbmc server available at <b>172.30.30.30</b>.
-All the web services can be tested and configured through this address.
+Vagrant box is configured to have bridged eth1 interface.
+All the web services can be tested and configured through [http://htpc-vm/](http://htpc-vm/)

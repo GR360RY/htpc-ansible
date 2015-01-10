@@ -5,9 +5,9 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "GR360RY/trusty64-desktop-minimal"
-  config.vm.network "private_network", ip: "172.30.30.30"
-  config.vm.hostname = "htpc-server-vm"
+  config.vm.box = "box-cutter/ubuntu1404-desktop"
+  config.vm.network "public_network"
+  config.vm.hostname = "htpc-vm"
   config.vm.provider "virtualbox" do |vb|
     # Don't boot with headless mode
     vb.gui = true
@@ -15,6 +15,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--vram", "128"]
     vb.customize 'post-boot', ["controlvm", :id, "setvideomodehint", "1280", "720", "24"]
   end
+
+  # Fix missing default gateway
+  config.vm.provision :shell, path: "scripts/fix_default_gw.sh"
 
   config.vm.provision :ansible do |ansible|
     ansible.playbook = "htpc-server.yml"

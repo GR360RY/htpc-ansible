@@ -8,14 +8,14 @@ Install Vagrant
 ~~~~~~~~~~~~~~~
 
 If you want to test out the configuration in VirtualMachine or contribute to htpc-ansible development,
-download and install [Vagrant](http://www.vagrantup.com/)
+download and install `Vagrant<http://www.vagrantup.com/>`_.
 
-Install [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+Install `Oracle VirtualBox<https://www.virtualbox.org/wiki/Downloads>`_.
 
 Install snapshot plugin for Vagrant
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We will use a [vagrant-multiprovider-snap](https://github.com/scalefactory/vagrant-multiprovider-snap) to roll machine back instead of recreating box from scratch::
+We will use a `vagrant-multiprovider-snap<https://github.com/scalefactory/vagrant-multiprovider-snap>`_ to roll machine back instead of recreating box from scratch::
 
 	vagrant plugin install vagrant-multiprovider-snap
 
@@ -45,10 +45,5 @@ In case you want to redeploy from scratch - simply revert the snapshot back to t
 Testing and configuring WEB services
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Vagrant box creates private network, with xbmc server available at **172.30.30.30**.
-All the web services can be tested and configured through this address.
-
-.. seealso::
-
-	test
-
+Vagrant box is configured to have bridged eth1 interface.
+All the web services can be tested and configured through http://htpc-vm/
