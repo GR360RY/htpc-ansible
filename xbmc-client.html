@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>xbmc-client &mdash; htpc-ansible 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="htpc-ansible 0.1 documentation" href="index.html"/>
+        <link rel="up" title="Roles Index" href="roles.html"/>
+        <link rel="next" title="xbmc-mysql" href="xbmc-mysql.html"/>
+        <link rel="prev" title="Roles Index" href="roles.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> htpc-ansible</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#software-roles">Software Roles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quick_install.html">Quick Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quick_install.html#what-will-be-installed-and-configured">What will be installed and configured ?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="customisation.html">Customising the Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="customisation.html#install-prerequisites">Install Prerequisites</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="roles.html">Roles Index</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">xbmc-client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbmc-mysql.html">xbmc-mysql</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbmc-nas.html">xbmc-nas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="htpc-manager.html">htpc-manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="couchpotato.html">couchpotato</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sickbeard.html">sickbeard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sabnzbd.html">sabnzbd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deluge.html">deluge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tvheadend.html">tvheadend</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev_and_test.html">Development and Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev_and_test.html#prerequisites">Prerequisites</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">htpc-ansible</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="roles.html">Roles Index</a> &raquo;</li>
+      
+    <li>xbmc-client</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/xbmc-client.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="xbmc-client">
+<h1>xbmc-client<a class="headerlink" href="#xbmc-client" title="Permalink to this headline">¶</a></h1>
+<p>An ansible role to setup and configure XBMC under Debian based distro&#8217;s.</p>
+<p>XBMC can be automatically configured in the following modes:</p>
+<ol class="arabic simple">
+<li>Standalone Mode</li>
+<li>HTPC Server Mode</li>
+<li>Client Only Mode</li>
+</ol>
+<p>In &#8220;Standalone Mode&#8221; XBMC will opperate using local storage and local sqlite database.</p>
+<p>In &#8220;HTPC Server Mode&#8221; XBMC will use mysql database installed on the same host as the xbmc-client or using external database installed on other host. When &#8220;HTPC Server&#8221; mode is applied XBMC can be configured to use external NFS storage. ( See example 2 )</p>
+<p>In &#8220;Client Only Mode&#8221; XBMC will be configured to use external database and external NAS by updating advancedsettings.xml. Should be installed on thin clients only.</p>
+<p>List of tasks that will be performed under xbmc-client role:</p>
+<ol class="arabic simple">
+<li>Install ssh server to allow remote management.</li>
+<li>Setup XBMC user.</li>
+<li>Configure LightDM to autlogin XBMC user and start XBMC automatically.</li>
+<li>Enable XBMC Internal Web Server.</li>
+</ol>
+<p>XBMC will be automatically started in &#8220;Full Screen&#8221; mode together with standard desktop environement or as separate LightDM session.</p>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>This role requires Ansible 1.6 or higher. Platform requirements are listed in the metadata file.</p>
+</div>
+<div class="section" id="role-variables">
+<h2>Role Variables<a class="headerlink" href="#role-variables" title="Permalink to this headline">¶</a></h2>
+<p>List of variables that can be passed to the role with default variable values:</p>
+<div class="highlight-python"><div class="highlight"><pre>xbmc_repo: &#39;ppa:team-xbmc/ppa&#39;    # XBMC Ubuntu ppa.
+xbmc_media_path: /mnt/xbmc        # Location of xbmc media folders.
+
+xbmc_default_media_folders:       # Folder names for Movies, TV, Music and etc.
+  movies: Movies
+  tv: TV
+  music: Music
+
+xbmc_download_folders:
+  downloads: Downloads
+  tmp: tmp
+
+xbmc_user_name: xbmc              # User that will run XBMC.
+xbmc_user_password: xbmc          # User&#39;s Password.
+xbmc_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop.
+xbmc_standalone_mode: True        # Standalone box setup.
+
+xbmc_dont_create_folders: False   # Don&#39;t create Media and Downloads folders.
+xbmc_with_download_clinets: False # Don&#39;t create downloads and temporary folders.
+
+# When used together with deluge role, make sure deluge runs as xbmc user.
+deluged_user: &quot;{{ xbmc_user_name }}&quot;
+
+# When used together with sabnzbd role, make sure sabnzbd runs as xbmc user.
+sabnzbd_user: &quot;{{ xbmc_user_name }}&quot;
+
+# When used together with couchpotato role, make sure couchpotato runs as xbmc user.
+couchpotato_user: &quot;{{ xbmc_user_name }}&quot;
+
+# When used together with sickbeard role, make sure sickbeard runs as xbmc user.
+sickbeard_user: &quot;{{ xbmc_user_name }}&quot;
+
+# When used together with htpc-manager role, make sure htpc-manager runs as xbmc user.
+htpc_manager_user: &quot;{{ xbmc_user_name }}&quot;
+
+
+# Uninitialised variables
+
+xbmc_mysqldb_host:                # Defaults initialised in xbmc-mysql role
+xbmc_mysqldb_user:                # Defaults initialised in xbmc-mysql role
+xbmc_mysqldb_password:            # Defaults initialised in xbmc-mysql role
+
+xbmc_external_nas:                # Use xbmc with external NAS
+
+# Default xbmc host IP. Used by other roles.
+xbmc_host: &quot;{{ ansible_default_ipv4.address }}&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p>This role is a part of <cite>htpc-ansible</cite> playbook that includes additional set of components required for HTPC automation.</p>
+<p>The following list of roles can be used together with xbmc-client role:</p>
+<ul class="simple">
+<li>xbmc-mysql</li>
+<li>xbmc-nas</li>
+<li>sickbeard</li>
+<li>couchpotato</li>
+<li>subnzbd</li>
+<li>deluge</li>
+<li>htpc-manager</li>
+<li>tvheadend</li>
+</ul>
+<p>Detailed info can be found following this link:</p>
+<p><a class="reference external" href="https://github.com/GR360RY/htpc-ansible">https://github.com/GR360RY/htpc-ansible</a></p>
+</div>
+<div class="section" id="example-playbook">
+<h2>Example Playbook<a class="headerlink" href="#example-playbook" title="Permalink to this headline">¶</a></h2>
+<p>Stanalone Mode installation on single host with default xbmc user ( xbmc/xbmc ):</p>
+<div class="highlight-python"><div class="highlight"><pre>- hosts: xbmc-clients
+
+  roles:
+    - role: xbmc-client
+</pre></div>
+</div>
+<p>HTPC Server Mode installation with external xbmc mysql database and external NAS. Automounter will be configured allow direct access to Media files:</p>
+<div class="highlight-python"><div class="highlight"><pre>- hosts: xbmc-clients
+  sudo: True
+
+  vars:
+    xbmc_user_name: foo
+    xbmc_user_password: bar
+    xbmc_mysqldb_host: 10.0.0.1
+    xbmc_mysqldb_user: xbmc
+    xbmc_mysqldb_password: xbmc
+    xbmc_external_nas: 10.0.0.1
+    xbmc_media_path: /tank/Media
+    xbmc_dont_create_folders: True
+    xbmc_standalone_mode: False
+    xbmc_enable_ubuntu_desktop: False
+
+  roles:
+    - role: xbmc-client
+</pre></div>
+</div>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>BSD</p>
+</div>
+<div class="section" id="author-information">
+<h2>Author Information<a class="headerlink" href="#author-information" title="Permalink to this headline">¶</a></h2>
+<p>Gregory Shulov</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="xbmc-mysql.html" class="btn btn-neutral float-right" title="xbmc-mysql"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="roles.html" class="btn btn-neutral" title="Roles Index"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Gregory Shulov.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

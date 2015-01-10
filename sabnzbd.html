@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>HTPC-Ansible Documentation &mdash; htpc-ansible 0.1 documentation</title>
+  <title>sabnzbd &mdash; htpc-ansible 0.1 documentation</title>
   
 
   
@@ -28,8 +28,10 @@
   
 
   
-    <link rel="top" title="htpc-ansible 0.1 documentation" href="#"/>
-        <link rel="next" title="Introduction" href="intro.html"/> 
+    <link rel="top" title="htpc-ansible 0.1 documentation" href="index.html"/>
+        <link rel="up" title="Roles Index" href="roles.html"/>
+        <link rel="next" title="deluge" href="deluge.html"/>
+        <link rel="prev" title="sickbeard" href="sickbeard.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -43,7 +45,7 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="#" class="fa fa-home"> htpc-ansible</a>
+        <a href="index.html" class="fa fa-home"> htpc-ansible</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -56,7 +58,7 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul>
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="intro.html#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="intro.html#software-roles">Software Roles</a></li>
@@ -70,14 +72,14 @@
 <li class="toctree-l2"><a class="reference internal" href="customisation.html#install-prerequisites">Install Prerequisites</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="roles.html">Roles Index</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="roles.html">Roles Index</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="xbmc-client.html">xbmc-client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="xbmc-mysql.html">xbmc-mysql</a></li>
 <li class="toctree-l2"><a class="reference internal" href="xbmc-nas.html">xbmc-nas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="htpc-manager.html">htpc-manager</a></li>
 <li class="toctree-l2"><a class="reference internal" href="couchpotato.html">couchpotato</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sickbeard.html">sickbeard</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sabnzbd.html">sabnzbd</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">sabnzbd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="deluge.html">deluge</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tvheadend.html">tvheadend</a></li>
 </ul>
@@ -98,7 +100,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="#">htpc-ansible</a>
+        <a href="index.html">htpc-ansible</a>
       </nav>
 
 
@@ -107,12 +109,14 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="#">Docs</a> &raquo;</li>
+    <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>HTPC-Ansible Documentation</li>
+          <li><a href="roles.html">Roles Index</a> &raquo;</li>
+      
+    <li>sabnzbd</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+          <a href="_sources/sabnzbd.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -120,16 +124,87 @@
 </div>
           <div role="main">
             
-  <div class="section" id="htpc-ansible-documentation">
-<h1>HTPC-Ansible Documentation<a class="headerlink" href="#htpc-ansible-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quick_install.html">Quick Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="customisation.html">Customising the Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="roles.html">Roles Index</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dev_and_test.html">Development and Testing</a></li>
+  <div class="section" id="sabnzbd">
+<h1>sabnzbd<a class="headerlink" href="#sabnzbd" title="Permalink to this headline">¶</a></h1>
+<p>An ansible role to setup and configure Sabnzbd under Debian based distro&#8217;s.</p>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>This role requires Ansible 1.6 or higher. Platform requirements are listed in the metadata file.</p>
+</div>
+<div class="section" id="role-variables">
+<h2>Role Variables<a class="headerlink" href="#role-variables" title="Permalink to this headline">¶</a></h2>
+<p>List of variables that can be passed to the role with default variable values:</p>
+<div class="highlight-python"><div class="highlight"><pre>sabnzbd_port: 9000
+sab_apikey: c48afc846972e295826bb05d2e84dd59
+
+
+# Default Sabnzbd host IP or hostname. Used by other roles.
+sabnzbd_host: &quot;{{ ansible_default_ipv4.address }}&quot;
+
+sabnzbd_download_dir: /opt/sabnzbd/Downloads
+sabnzbd_incomplete_dir: /opt/sabnzbd/sabnzbd_incomplete
+
+# Uninitialised variables
+
+# User that will run the service and will own downloded files (required)
+sabnzbd_user:
+
+newsgroups_servers:
+  - name:
+    username:
+    password:
+    connections:
+</pre></div>
+</div>
+</div>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p>This role is a part of <cite>htpc-ansible</cite> playbook that includes additional set of components required for HTPC automation.</p>
+<p>The following list of roles can be used together with sabnzbd role:</p>
+<ul class="simple">
+<li>xbmc-client</li>
+<li>xbmc-mysql</li>
+<li>sickbeard</li>
+<li>couchpotato</li>
+<li>subnzbd</li>
+<li>deluge</li>
+<li>htpc-manager</li>
+<li>tvheadend</li>
 </ul>
+<p>Detailed info can be found following this link:</p>
+<p><a class="reference external" href="https://github.com/GR360RY/htpc-ansible">https://github.com/GR360RY/htpc-ansible</a></p>
+</div>
+<div class="section" id="example-playbook">
+<h2>Example Playbook<a class="headerlink" href="#example-playbook" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre>- hosts: all
+  sudo: True
+
+  vars:
+    sabnzbd_user: johnd
+
+    # Single or multiple news servers can be defined.
+    newsgroups_servers:
+      - name: news.someserver.com
+        username: foo
+        password: bar
+        connections: 10
+      - name: eu.news.someserver.com
+        username: foo
+        password: bar
+        connections: 10
+
+  roles:
+    - role: sabnzbd
+</pre></div>
+</div>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>BSD</p>
+</div>
+<div class="section" id="author-information">
+<h2>Author Information<a class="headerlink" href="#author-information" title="Permalink to this headline">¶</a></h2>
+<p>Gregory Shulov</p>
 </div>
 </div>
 
@@ -139,8 +214,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="intro.html" class="btn btn-neutral float-right" title="Introduction"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="deluge.html" class="btn btn-neutral float-right" title="deluge"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
+      
+        <a href="sickbeard.html" class="btn btn-neutral" title="sickbeard"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

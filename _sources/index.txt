@@ -5,7 +5,7 @@ HTPC-Ansible Documentation
    :maxdepth: 1
 
    intro
-   requirements
    quick_install
    customisation
+   roles
    dev_and_test

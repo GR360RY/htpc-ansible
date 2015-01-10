@@ -1,0 +1,1 @@
+.. include:: ../roles/xbmc-nas/README.rst

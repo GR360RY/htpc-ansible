@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>HTPC-Ansible Documentation &mdash; htpc-ansible 0.1 documentation</title>
+  <title>xbmc-nas &mdash; htpc-ansible 0.1 documentation</title>
   
 
   
@@ -28,8 +28,10 @@
   
 
   
-    <link rel="top" title="htpc-ansible 0.1 documentation" href="#"/>
-        <link rel="next" title="Introduction" href="intro.html"/> 
+    <link rel="top" title="htpc-ansible 0.1 documentation" href="index.html"/>
+        <link rel="up" title="Roles Index" href="roles.html"/>
+        <link rel="next" title="htpc-manager" href="htpc-manager.html"/>
+        <link rel="prev" title="xbmc-mysql" href="xbmc-mysql.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -43,7 +45,7 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="#" class="fa fa-home"> htpc-ansible</a>
+        <a href="index.html" class="fa fa-home"> htpc-ansible</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -56,7 +58,7 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul>
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="intro.html#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="intro.html#software-roles">Software Roles</a></li>
@@ -70,10 +72,10 @@
 <li class="toctree-l2"><a class="reference internal" href="customisation.html#install-prerequisites">Install Prerequisites</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="roles.html">Roles Index</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="roles.html">Roles Index</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="xbmc-client.html">xbmc-client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="xbmc-mysql.html">xbmc-mysql</a></li>
-<li class="toctree-l2"><a class="reference internal" href="xbmc-nas.html">xbmc-nas</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">xbmc-nas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="htpc-manager.html">htpc-manager</a></li>
 <li class="toctree-l2"><a class="reference internal" href="couchpotato.html">couchpotato</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sickbeard.html">sickbeard</a></li>
@@ -98,7 +100,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="#">htpc-ansible</a>
+        <a href="index.html">htpc-ansible</a>
       </nav>
 
 
@@ -107,12 +109,14 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="#">Docs</a> &raquo;</li>
+    <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>HTPC-Ansible Documentation</li>
+          <li><a href="roles.html">Roles Index</a> &raquo;</li>
+      
+    <li>xbmc-nas</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+          <a href="_sources/xbmc-nas.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -120,16 +124,66 @@
 </div>
           <div role="main">
             
-  <div class="section" id="htpc-ansible-documentation">
-<h1>HTPC-Ansible Documentation<a class="headerlink" href="#htpc-ansible-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quick_install.html">Quick Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="customisation.html">Customising the Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="roles.html">Roles Index</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dev_and_test.html">Development and Testing</a></li>
-</ul>
+  <div class="section" id="xbmc-nas">
+<h1>xbmc-nas<a class="headerlink" href="#xbmc-nas" title="Permalink to this headline">¶</a></h1>
+<p>An ansible role to setup and configure NAS functionality ( NFS and Samba ) for HTPC Server under Debian based distro&#8217;s.</p>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>This role requires Ansible 1.6 or higher. Platform requirements are listed in the metadata file.</p>
+</div>
+<div class="section" id="role-variables">
+<h2>Role Variables<a class="headerlink" href="#role-variables" title="Permalink to this headline">¶</a></h2>
+<p>List of variables that can be passed to the role with default variable values:</p>
+<div class="highlight-python"><div class="highlight"><pre># Variables shared between this role and xbmc-client role.
+# Default values are defined in xbmc-client role.
+xbmc_media_path:                  # Location of xbmc media folders.
+
+xbmc_default_media_folders:       # Folder names for Movies, TV, Music and etc.
+  movies:
+  tv:
+  music:
+
+xbmc_download_folders:
+  downloads:
+  tmp:
+
+xbmc_user_name:                   # User that will run XBMC
+
+xbmc_with_download_clinets:       # Create default downloads folders
+
+# Variables share between this role, sabnzbd and deluge roles.
+# Defaults are define in each coresponding role.
+sabnzbd_incomplete:
+deluged_incomplete:
+</pre></div>
+</div>
+</div>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p>This role is a part of <cite>htpc-ansible</cite> playbook that includes additional set of components required for HTPC automation.</p>
+<p>The following list of roles can be used together with xbmc-client role:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">-</span> <span class="n">xbmc</span><span class="o">-</span><span class="n">client</span>
+<span class="o">-</span> <span class="n">xbmc</span><span class="o">-</span><span class="n">mysql</span>
+<span class="o">-</span> <span class="n">sickbeard</span>
+<span class="o">-</span> <span class="n">couchpotato</span>
+<span class="o">-</span> <span class="n">subnzbd</span>
+<span class="o">-</span> <span class="n">deluge</span>
+<span class="o">-</span> <span class="n">htpc</span><span class="o">-</span><span class="n">manager</span>
+</pre></div>
+</div>
+<p>Detailed info can be found following this link:</p>
+<p><a class="reference external" href="https://github.com/GR360RY/htpc-ansible">https://github.com/GR360RY/htpc-ansible</a></p>
+</div>
+<div class="section" id="example-playbook">
+<h2>Example Playbook<a class="headerlink" href="#example-playbook" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>BSD</p>
+</div>
+<div class="section" id="author-information">
+<h2>Author Information<a class="headerlink" href="#author-information" title="Permalink to this headline">¶</a></h2>
+<p>Gregory Shulov</p>
 </div>
 </div>
 
@@ -139,8 +193,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="intro.html" class="btn btn-neutral float-right" title="Introduction"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="htpc-manager.html" class="btn btn-neutral float-right" title="htpc-manager"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
+      
+        <a href="xbmc-mysql.html" class="btn btn-neutral" title="xbmc-mysql"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
