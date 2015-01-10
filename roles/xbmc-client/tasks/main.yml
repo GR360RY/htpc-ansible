@@ -29,6 +29,12 @@
 - name: Make sure XBMC user is created
   user: name={{ xbmc_user_name }} password={{ xbmc_generated_password.stdout }} state=present createhome=yes shell=/bin/bash groups=adm,cdrom,sudo,dip,plugdev,lpadmin,sambashare
 
+- name: Create xbmc user .cache/unity directory
+  file: path="~{{ xbmc_user_name }}/.cache/unity/" state=directory owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0755
+
+- name: Disable First Login pop-up screen
+  file: path="~{{ xbmc_user_name }}/.cache/unity/first_run.stamp" state=touch owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0755
+
 - name: Add XBMC repository
   apt_repository: repo={{ xbmc_repo }} state=present
 
