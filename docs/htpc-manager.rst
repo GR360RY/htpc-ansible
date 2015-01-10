@@ -1,0 +1,1 @@
+.. include:: ../roles/htpc-manager/README.rst

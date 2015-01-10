@@ -11,7 +11,7 @@ Open terminal and run the below command::
     Reboot your machine following the installation.
 
 What will be installed and configured ?
-```````````````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following list of tasks will be performed during the installation:
 

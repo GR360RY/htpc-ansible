@@ -1,0 +1,1 @@
+.. include:: ../roles/couchpotato/README.rst
