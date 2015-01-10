@@ -127,12 +127,12 @@
 <div class="section" id="install-vagrant">
 <h3>Install Vagrant<a class="headerlink" href="#install-vagrant" title="Permalink to this headline">¶</a></h3>
 <p>If you want to test out the configuration in VirtualMachine or contribute to htpc-ansible development,
-download and install [Vagrant](<a class="reference external" href="http://www.vagrantup.com/">http://www.vagrantup.com/</a>)</p>
-<p>Install [Oracle VirtualBox](<a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a>)</p>
+download and install <a class="reference external" href="http://www.vagrantup.com/">Vagrant</a>.</p>
+<p>Install <a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>.</p>
 </div>
 <div class="section" id="install-snapshot-plugin-for-vagrant">
 <h3>Install snapshot plugin for Vagrant<a class="headerlink" href="#install-snapshot-plugin-for-vagrant" title="Permalink to this headline">¶</a></h3>
-<p>We will use a [vagrant-multiprovider-snap](<a class="reference external" href="https://github.com/scalefactory/vagrant-multiprovider-snap">https://github.com/scalefactory/vagrant-multiprovider-snap</a>) to roll machine back instead of recreating box from scratch:</p>
+<p>We will use a <a class="reference external" href="https://github.com/scalefactory/vagrant-multiprovider-snap">vagrant-multiprovider-snap</a> to roll machine back instead of recreating box from scratch:</p>
 <div class="highlight-python"><div class="highlight"><pre>vagrant plugin install vagrant-multiprovider-snap
 </pre></div>
 </div>
@@ -160,12 +160,8 @@ In case you want to redeploy from scratch - simply revert the snapshot back to t
 </div>
 <div class="section" id="testing-and-configuring-web-services">
 <h3>Testing and configuring WEB services<a class="headerlink" href="#testing-and-configuring-web-services" title="Permalink to this headline">¶</a></h3>
-<p>Vagrant box creates private network, with xbmc server available at <strong>172.30.30.30</strong>.
-All the web services can be tested and configured through this address.</p>
-<div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last">test</p>
-</div>
+<p>Vagrant box is configured to have bridged eth1 interface.
+All the web services can be tested and configured through <a class="reference external" href="http://htpc-vm/">http://htpc-vm/</a></p>
 </div>
 </div>
 </div>
