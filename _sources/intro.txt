@@ -3,6 +3,12 @@ Introduction
 
 This ansible playbook is designed to quickly deploy home HTPC server, which can perform a variety of funcitons. It's based on an Ubuntu 14.04, and can set up several configuration variants. It includes roles, which can be set up on a single machine or on a multiple ones and can be customized through single configuration file, correctly deploying all the software.
 
+Requirements
+------------
+
+#. Machine designated for an HTPC with Ubuntu 14.04 Desktop installed.
+#. Correctly working name resolution on home network or "Static IP" configured on Ubuntu.
+
 Software Roles
 --------------
 
@@ -22,4 +28,4 @@ The following roles are currently available as part of htpc-ansible:
 
 .. seealso::
 
-   :doc:`customisation`
+   :doc:`roles`

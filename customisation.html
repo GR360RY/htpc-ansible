@@ -29,7 +29,7 @@
 
   
     <link rel="top" title="htpc-ansible 0.1 documentation" href="index.html"/>
-        <link rel="next" title="Development and Testing" href="dev_and_test.html"/>
+        <link rel="next" title="Roles Index" href="roles.html"/>
         <link rel="prev" title="Quick Installation" href="quick_install.html"/> 
 
   
@@ -59,16 +59,34 @@
         
             <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="intro.html#software-roles">Software Roles</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_install.html">Quick Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="quick_install.html#what-will-be-installed-and-configured">What will be installed and configured ?</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Customising the Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dev_and_test.html">Development and Testing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Customising the Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install-prerequisites">Install Prerequisites</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="roles.html">Roles Index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="xbmc-client.html">xbmc-client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbmc-mysql.html">xbmc-mysql</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbmc-nas.html">xbmc-nas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="htpc-manager.html">htpc-manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="couchpotato.html">couchpotato</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sickbeard.html">sickbeard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sabnzbd.html">sabnzbd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deluge.html">deluge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tvheadend.html">tvheadend</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev_and_test.html">Development and Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev_and_test.html#prerequisites">Prerequisites</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -105,6 +123,37 @@
             
   <div class="section" id="customising-the-setup">
 <h1>Customising the Setup<a class="headerlink" href="#customising-the-setup" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="install-prerequisites">
+<h2>Install Prerequisites<a class="headerlink" href="#install-prerequisites" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="install-ansible-and-git">
+<h3>Install Ansible and Git<a class="headerlink" href="#install-ansible-and-git" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install software-properties-common
+sudo apt-add-repository -y ppa:ansible/ansible
+sudo apt-get update
+sudo apt-get -y install ansible git
+</pre></div>
+</div>
+</div>
+<div class="section" id="clone-the-repository">
+<h3>Clone the repository<a class="headerlink" href="#clone-the-repository" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>git clone https://github.com/GR360RY/htpc-ansible.git
+cd htpc-ansible
+</pre></div>
+</div>
+</div>
+<div class="section" id="edit-configuration">
+<h3>Edit Configuration::<a class="headerlink" href="#edit-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Open <tt class="docutils literal"><span class="pre">htpc-server.yml</span></tt> in your favorite editor and update vars section.
+Most commonly changed variables are available in the htpc-server.yml file.
+All variables with detailed desription are located in each role <tt class="docutils literal"><span class="pre">README.md</span></tt> file:</p>
+</div>
+<div class="section" id="run-ansible-playbook-from-your-localhost">
+<h3>Run Ansible Playbook from your localhost<a class="headerlink" href="#run-ansible-playbook-from-your-localhost" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>ansible-playbook -i hosts -c local -K htpc-server.yml
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -113,7 +162,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dev_and_test.html" class="btn btn-neutral float-right" title="Development and Testing"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="roles.html" class="btn btn-neutral float-right" title="Roles Index"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="quick_install.html" class="btn btn-neutral" title="Quick Installation"><span class="fa fa-arrow-circle-left"></span> Previous</a>

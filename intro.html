@@ -29,7 +29,7 @@
 
   
     <link rel="top" title="htpc-ansible 0.1 documentation" href="index.html"/>
-        <link rel="next" title="Requirements" href="requirements.html"/>
+        <link rel="next" title="Quick Installation" href="quick_install.html"/>
         <link rel="prev" title="HTPC-Ansible Documentation" href="index.html"/> 
 
   
@@ -59,16 +59,34 @@
         
             <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#software-roles">Software Roles</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_install.html">Quick Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="quick_install.html#what-will-be-installed-and-configured">What will be installed and configured ?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="customisation.html">Customising the Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dev_and_test.html">Development and Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customisation.html">Customising the Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="customisation.html#install-prerequisites">Install Prerequisites</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="roles.html">Roles Index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="xbmc-client.html">xbmc-client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbmc-mysql.html">xbmc-mysql</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbmc-nas.html">xbmc-nas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="htpc-manager.html">htpc-manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="couchpotato.html">couchpotato</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sickbeard.html">sickbeard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sabnzbd.html">sabnzbd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deluge.html">deluge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tvheadend.html">tvheadend</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev_and_test.html">Development and Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev_and_test.html#prerequisites">Prerequisites</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -106,6 +124,13 @@
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <p>This ansible playbook is designed to quickly deploy home HTPC server, which can perform a variety of funcitons. It&#8217;s based on an Ubuntu 14.04, and can set up several configuration variants. It includes roles, which can be set up on a single machine or on a multiple ones and can be customized through single configuration file, correctly deploying all the software.</p>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Machine designated for an HTPC with Ubuntu 14.04 Desktop installed.</li>
+<li>Correctly working name resolution on home network or &#8220;Static IP&#8221; configured on Ubuntu.</li>
+</ol>
+</div>
 <div class="section" id="software-roles">
 <h2>Software Roles<a class="headerlink" href="#software-roles" title="Permalink to this headline">¶</a></h2>
 <p>HTPC-Ansible incoroporates verious roles, where each role represents software package or service. All roles can be installed individually or together with other roles based on the required functionallity. Adding or removing roles will configure related services accordingly.</p>
@@ -123,7 +148,7 @@
 </ul>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="customisation.html"><em>Customising the Setup</em></a></p>
+<p class="last"><a class="reference internal" href="roles.html"><em>Roles Index</em></a></p>
 </div>
 </div>
 </div>
@@ -134,7 +159,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="requirements.html" class="btn btn-neutral float-right" title="Requirements"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="quick_install.html" class="btn btn-neutral float-right" title="Quick Installation"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="HTPC-Ansible Documentation"><span class="fa fa-arrow-circle-left"></span> Previous</a>
