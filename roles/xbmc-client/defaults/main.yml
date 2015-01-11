@@ -2,16 +2,12 @@
 # defaults file for xbmc-client
 
 xbmc_repo: 'ppa:team-xbmc/ppa'    # XBMC Ubuntu ppa.
-xbmc_media_path: /mnt/xbmc        # Location of xbmc media folders.
 
-xbmc_default_media_folders:       # Folder names for Movies, TV, Music and etc.
-  movies: Movies
-  tv: TV
-  music: Music
+media_path: /mnt/media            # Location of xbmc media folders.
 
-xbmc_download_folders:
-  downloads: Downloads
-  tmp: tmp
+movies_folder: movies
+tv_folder: tv
+music_folder: music
 
 xbmc_user_name: xbmc              # User that will run XBMC
 xbmc_user_password: xbmc          # User's Password
@@ -24,4 +20,4 @@ xbmc_with_download_clinets: False # Don't create downloads and temporary folders
 # Helper Variables
 
 # Default xbmc host IP. Used by other roles.
-xbmc_host: "{{ ansible_default_ipv4.address }}" 
+xbmc_host: "{{ ansible_default_ipv4.address }}"

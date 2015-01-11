@@ -111,11 +111,8 @@
   when: xbmc_external_nas is defined
 
 - name: Create sub Media Folders
-  file: path="{{ xbmc_media_path }}/{{ item.value }}" state=directory owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0755
-  with_dict: xbmc_default_media_folders
-  when: not xbmc_dont_create_folders
-
-- name: Create XBMC Download Folders
-  file: path="{{ xbmc_media_path }}/{{ item.value }}" state=directory owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0755
-  with_dict: xbmc_download_folders
-  when: not xbmc_dont_create_folders
+  file: path={{ item }} state=directory owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0755
+  with_items:
+    - "{{media_path}}/{{ movies_folder }}"
+    - "{{media_path}}/{{ tv_folder }}"
+    - "{{media_path}}/{{ music_folder }}"

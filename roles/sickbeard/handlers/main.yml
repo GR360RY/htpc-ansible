@@ -1,17 +1,2 @@
 ---
 # handlers file for sickbeard
-
-- name: sickbeard updated
-  service: name=sickbeard state=stopped
-  changed_when: True
-  notify:
-    - upload sickbeard config
-
-- name: upload sickbeard config
-  template: src=config.ini.j2 dest=/opt/sickbeard/config.ini owner={{ sickbeard_user }} group={{ sickbeard_user }}
-  changed_when: True
-  notify:
-    - start sickbeard
-
-- name: start sickbeard
-  service: name=sickbeard state=started

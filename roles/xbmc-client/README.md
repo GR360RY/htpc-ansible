@@ -38,7 +38,7 @@ List of variables that can be passed to the role with default variable values.
 
 ```yaml
 xbmc_repo: 'ppa:team-xbmc/ppa'    # XBMC Ubuntu ppa.
-xbmc_media_path: /mnt/xbmc        # Location of xbmc media folders.
+media_path: /mnt/xbmc        # Location of xbmc media folders.
 
 xbmc_default_media_folders:       # Folder names for Movies, TV, Music and etc.
   movies: Movies
@@ -130,7 +130,7 @@ HTPC Server Mode installation with external xbmc mysql database and external NAS
         xbmc_mysqldb_user: xbmc
         xbmc_mysqldb_password: xbmc
         xbmc_external_nas: 10.0.0.1
-        xbmc_media_path: /tank/Media
+        media_path: /tank/Media
         xbmc_dont_create_folders: True
         xbmc_standalone_mode: False
         xbmc_enable_ubuntu_desktop: False

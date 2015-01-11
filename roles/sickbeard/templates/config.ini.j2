@@ -48,16 +48,24 @@ status_default = 5
 flatten_folders_default = 0
 indexer_default = 0
 indexer_timeout = 10
-provider_order = kickasstorrents publichd thepiratebay speedcd iptorrents tvtorrents ezrss nextgen torrentday torrentleech sceneaccess btn hdbits hdtorrents
+{% if sabnzbd_host is defined %}
+provider_order = usenet_crawler kickasstorrents publichd speedcd iptorrents tvtorrents ezrss nextgen torrentday torrentleech sceneaccess btn hdbits hdtorrents
+{% else %}
+provider_order = kickasstorrents publichd speedcd iptorrents tvtorrents ezrss nextgen torrentday torrentleech sceneaccess btn hdbits hdtorrents
+{% endif %}
 version_notify = 1
 auto_update = 0
 naming_strip_year = 0
-naming_pattern = Season %0S/%SN - S%0SE%0E - %EN
+naming_pattern = Season %0S/%S.N.S%0SE%0E.%Q.N-%RG
 naming_custom_abd = 0
 naming_abd_pattern = %Y/%0M/%SN - %A.D - %EN
 naming_custom_sports = 0
-naming_sports_pattern = Season %0S/%SN - S%0SE%0E - %EN
+naming_sports_pattern = %Y/%0M/%S.N.%A.D.%E.N-%RG
+naming_custom_anime = 0
+naming_anime_pattern = Season %0S/%SN - S%0SE%0E - %EN
 naming_multi_ep = 1
+naming_anime_multi_ep = 1
+naming_anime = 3
 launch_browser = 1
 update_shows_on_start = 0
 sort_article = 0
@@ -71,22 +79,24 @@ metadata_wdtv = 0|0|0|0|0|0|0|0|0|0
 metadata_tivo = 0|0|0|0|0|0|0|0|0|0
 metadata_mede8er = 0|0|0|0|0|0|0|0|0|0
 cache_dir = cache
-root_dirs = 0|{{ xbmc_media_path }}/{{ xbmc_default_media_folders.tv }}
-tv_download_dir = {{ xbmc_media_path }}/{{ xbmc_download_folders.downloads }}
-keep_processed_dir = 1
-process_method = hardlink
+root_dirs = 0|{{ media_path }}/{{ tv_folder }}
+tv_download_dir = ""
+keep_processed_dir = 0
+process_method = move
 move_associated_files = 0
-process_automatically = 1
+postpone_if_sync_files = 0
+nfo_rename = 1
+process_automatically = 0
 unpack = 0
-rename_episodes = 0
+rename_episodes = 1
 airdate_episodes = 0
 create_missing_show_dirs = 1
 add_shows_wo_dir = 0
 extra_scripts = ""
 git_path = ""
 ignore_words = "german,french,core2hd,dutch,swedish,reenc,MrLss"
+require_words = ""
 calendar_unprotected = 0
-clear_cache = n2384f93jd03232
 [Blackhole]
 nzb_dir = ""
 torrent_dir = ""
@@ -230,7 +240,11 @@ womble_s_index_search_mode = eponly
 womble_s_index_search_fallback = 0
 womble_s_index_backlog_only = 0
 [USENET_CRAWLER]
+{% if sabnzbd_host is defined %}
+usenet_crawler = 1
+{% else %}
 usenet_crawler = 0
+{% endif %}
 usenet_crawler_search_mode = eponly
 usenet_crawler_search_fallback = 0
 usenet_crawler_backlog_only = 0
@@ -286,11 +300,11 @@ torrent_host = http://{{ deluged_host }}:{{ deluged_port }}/
 {% else %}
 torrent_host = ""
 {% endif %}
-torrent_path = ""
+torrent_path = "{{ downloads_path }}"
 torrent_seed_time = 0
 torrent_paused = 0
 torrent_high_bandwidth = 0
-torrent_label = ""
+torrent_label = tv
 torrent_verify_cert = 0
 [XBMC]
 {% if xbmc_host is defined %}
@@ -437,9 +451,9 @@ email_password = ""
 email_from = ""
 email_list = ""
 [Newznab]
-{#
-newznab_data = "NZBs.org|https://nzbs.org/||5030,5040,5060,5070,5090|0|eponly|0"
-#}
+{% if sabnzbd_host is defined %}
+newznab_data = "Sick Beard Index|http://lolo.sickbeard.com/|0|5030,5040|0|eponly|0|1|1!!!NZBs.org|https://nzbs.org/||5030,5040|0|eponly|0|1|1!!!Usenet-Crawler|https://www.usenet-crawler.com/|{{ usenet_crawler_api_key }}||1|eponly|0|1|1"
+{% endif %}
 [TorrentRss]
 torrentrss_data = ""
 [GUI]

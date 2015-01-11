@@ -8,7 +8,11 @@ CREATE TABLE setting (
 INSERT INTO "setting" VALUES(1,'xbmc_name','XBMC');
 INSERT INTO "setting" VALUES(2,'xbmc_enable_pvr','0');
 INSERT INTO "setting" VALUES(3,'xbmc_hide_watched','0');
+{% if xbmc_host is defined %}
 INSERT INTO "setting" VALUES(4,'xbmc_enable','on');
+{% else %}
+INSERT INTO "setting" VALUES(4,'xbmc_enable','0');
+{% endif %}
 INSERT INTO "setting" VALUES(5,'xbmc_current_server','5');
 {% if sabnzbd_host is defined and sabnzbd_host == ansible_default_ipv4.address and htpc_manager_use_hostnames is defined and htpc_manager_use_hostnames %}
 INSERT INTO "setting" VALUES(6,'sabnzbd_host','{{ ansible_hostname }}');
@@ -103,7 +107,11 @@ INSERT INTO "setting" VALUES(46,'deluge_host','{{ deluged_host }}');
 {% else %}
 INSERT INTO "setting" VALUES(46,'deluge_host','{{ ansible_default_ipv4.address }}');
 {% endif %}
+{% if deluged_host is defined %}
 INSERT INTO "setting" VALUES(47,'deluge_enable','on');
+{% else %}
+INSERT INTO "setting" VALUES(47,'deluge_enable','0');
+{% endif %}
 INSERT INTO "setting" VALUES(48,'deluge_password','deluge');
 CREATE TABLE xbmc_servers (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

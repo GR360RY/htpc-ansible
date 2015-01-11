@@ -1,5 +1,5 @@
 ---
 # vars file for deluge
 
-# Variables also used in xbmc-client role
-xbmc_with_download_clinets: True
+# Make sure nzbtomedia script will be owned by deluged_user
+nzbtomedia_user: "{{ deluged_user }}"

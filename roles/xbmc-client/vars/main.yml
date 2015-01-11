@@ -6,8 +6,6 @@ deluged_user: "{{ xbmc_user_name }}"
 
 # When used together with sabnzbd role, make sure sabnzbd runs as xbmc user.
 sabnzbd_user: "{{ xbmc_user_name }}"
-sabnzbd_download_dir: "{{ xbmc_media_path }}/{{ xbmc_download_folders.downloads }}"
-sabnzbd_incomplete_dir: "{{ xbmc_media_path }}/{{ xbmc_download_folders.tmp }}/sabnzbd_incomplete"
 
 # When used together with couchpotato role, make sure couchpotato runs as xbmc user
 couchpotato_user: "{{ xbmc_user_name }}"
