@@ -23,6 +23,7 @@ galaxy_info:
   #  - all
   #  - 5
   #  - 6
+  #  - 7
   #- name: GenericUNIX
   #  versions:
   #  - all
@@ -35,6 +36,10 @@ galaxy_info:
   #  - 18
   #  - 19
   #  - 20
+  #- name: SmartOS
+  #  versions:
+  #  - all
+  #  - any
   #- name: opensuse
   #  versions:
   #  - all
@@ -115,8 +120,7 @@ galaxy_info:
   #- packaging
   #- system
   #- web
-dependencies:
-  - { role: nzbtomedia }
+dependencies: []
   # List your role dependencies here, one per line. Only
   # dependencies available via galaxy should be listed here.
   # Be sure to remove the '[]' above if you add dependencies

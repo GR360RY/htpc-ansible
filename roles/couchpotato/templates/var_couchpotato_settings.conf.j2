@@ -1,5 +1,5 @@
 [core]
-api_key = bb138ccd9df84c33af9b310325b0d658
+api_key = {{ couchpotato_apikey }}
 username = 
 ssl_key = 
 ssl_cert = 
@@ -31,46 +31,37 @@ ignored_genres =
 [manage]
 startup_scan = True
 cleanup = True
-enabled = False
-library = 
+enabled = 1
+library = {{ media_path }}/{{ movies_folder }}/
+library_refresh_interval = 0
 
 [renamer]
 nfo_name = <filename>.orig.<ext>
-{% if xbmc_media_path is defined and xbmc_download_folders is defined %}
-from = {{ xbmc_media_path }}/{{ xbmc_download_folders.downloads }}/
-{% else %}
-from = 
-{% endif %}
-force_every = 2
-move_leftover = False
-{% if xbmc_media_path is defined and xbmc_default_media_folders is defined %}
-to = {{ xbmc_media_path }}/{{ xbmc_default_media_folders.movies }}/
-{% else %}
-to = 
-{% endif %}
-file_name =
-{#
-{% if xbmc_media_path is defined and xbmc_download_folders is defined %}
+from = {{ downloads_path }}
+force_every = 0
+move_leftover = 1
+to = {{ media_path }}/{{ movies_folder }}/
+file_name = <original>.<ext>
 enabled = 1
-{% else %}
-enabled = 0
-{% endif %}
-#}
-enabled = 0
-next_on_failed = True
+next_on_failed = 0
 unrar = False
 rename_nfo = 0
 cleanup = 1
 separator =
 folder_name = <original_folder>
-run_every = 1
+run_every = 0
 foldersep =
 file_action = link
 ntfs_permission = False
+default_file_action = move
+check_space = True
+unrar_path =
+unrar_modify_date = False
 
 [subtitle]
 languages = 
 enabled = False
+force = False
 
 [trailer]
 quality = 720p
@@ -80,7 +71,7 @@ name = <filename>-trailer
 [download_providers]
 
 [blackhole]
-directory = /home/xbmc
+directory =
 manual = 0
 enabled = 0
 create_subdir = 0
@@ -89,22 +80,18 @@ use_for = nzb
 [deluge]
 username = localclient
 delete_failed = True
-{% if xbmc_media_path is defined and xbmc_default_media_folders is defined %}
-completed_directory = {{ xbmc_media_path }}/{{ xbmc_default_media_folders.movies }}/
-{% else %}
 completed_directory =
-{% endif %}
 manual = 0
 {% if deluged_host is defined %}
 enabled = 1
 {% else %}
 enabled = 0
 {% endif %}
-label =
+label = movie
 paused = False
 {% if deluged_host is defined and deluged_host == ansible_default_ipv4.address %}
 host = localhost:58846
-{% elif deluged_host is defined and sabnzbd_host != ansible_default_ipv4.address %}
+{% elif deluged_host is defined and deluged_host != ansible_default_ipv4.address %}
 host = {{ deluged_host}}:58846
 {% else %}
 host = 
@@ -157,7 +144,7 @@ remove_complete = False
 password = 
 
 [sabnzbd]
-category = Movies
+category = movie
 delete_failed = True
 manual = False
 {% if sabnzbd_host is defined %}
@@ -451,10 +438,17 @@ extra_score = 0
 [newznab]
 use = 0,0,0,0,0,0,1
 extra_score = 0,0,0,0,0,0,
+{% if sabnzbd_host is defined %}
 enabled = True
 host = nzb.su,dognzb.cr,nzbs.org,https://index.nzbgeek.info,https://smackdownonyou.com,https://www.nzbfinder.ws,https://www.usenet-crawler.com/
 custom_tag = ,,,,,,
 api_key = ,,,,,,{{ usenet_crawler_api_key }}
+{% else %}
+enabled = 0
+host = nzb.su,dognzb.cr,nzbs.org,https://index.nzbgeek.info,https://smackdownonyou.com,https://www.nzbfinder.ws,https://www.usenet-crawler.com/
+custom_tag = ,,,,,,
+api_key = ,,,,,,
+{% endif %}
 
 [nzbclub]
 enabled = 
@@ -505,6 +499,7 @@ extra_score = 0
 passkey = 
 enabled = False
 seed_ratio = 1
+internal_only = False
 
 [ilovetorrents]
 username = 
@@ -526,8 +521,12 @@ seed_ratio = 1
 [kickasstorrents]
 seed_time = 40
 domain = 
-enabled = 1
-seed_ratio = 1
+{% if deluged_host is defined %}
+enabled = True
+{% else %}
+enabled = 0
+{% endif %}
+seed_ratio = 0
 extra_score = 0
 
 [passthepopcorn]
@@ -542,6 +541,7 @@ prefer_golden = 1
 require_approval = 0
 password = 
 seed_ratio = 1
+prefer_freeleech = 1
 
 [publichd]
 seed_time = 40
@@ -560,8 +560,12 @@ seed_ratio = 1
 [thepiratebay]
 seed_time = 40
 domain = 
+{% if deluged_host is defined %}
+enabled = True
+{% else %}
 enabled = 0
-seed_ratio = 1
+{% endif %}
+seed_ratio = 0
 extra_score = 0
 
 [torrentbytes]
@@ -614,3 +618,53 @@ enabled = 0
 seed_ratio = 1
 extra_score = 0
 
+[hadouken]
+host = localhost:7890
+api_key = 
+enabled = 0
+label = 
+
+[putio]
+delete_file = 0
+callback_host = 
+download_dir = 
+manual = 0
+enabled = 0
+oauth_token = 
+download = 0
+folder = 0
+
+[qbittorrent]
+username = 
+manual = 0
+enabled = 0
+paused = False
+host = http://localhost:8080/
+delete_files = True
+remove_complete = False
+password = 
+
+[torrentz]
+verified_only = True
+extra_score = 0
+minimal_seeds = 1
+enabled = 0
+seed_time = 40
+seed_ratio = 1
+
+[torrent]
+minimum_seeders = 1
+
+[charts]
+hide_wanted = False
+hide_library = False
+max_items = 5
+
+[popularmovies]
+automation_enabled = False
+
+[mediabrowser]
+meta_enabled = False
+
+[sonyps3]
+meta_enabled = False

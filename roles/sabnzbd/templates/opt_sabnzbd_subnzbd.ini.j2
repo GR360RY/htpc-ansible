@@ -88,12 +88,12 @@ fail_hopeless = 0
 movie_extra_folder = 0
 unpack_check = 1
 no_ipv6 = 0
-download_dir = {{ sabnzbd_incomplete_dir }}
+download_dir = {{ sabnzbd_incomplete }}
 size_limit = 0
 enable_par_cleanup = 1
-safe_postproc = 1
+safe_postproc = 0
 cache_dir = cache
-complete_dir = {{ sabnzbd_download_dir }}
+complete_dir = {{ downloads_path }}
 replace_illegal = 1
 nomedia_marker = ""
 max_art_opt = 0
@@ -120,9 +120,9 @@ send_group = 0
 refresh_rate = 0
 prio_sort_list = ,
 movie_categories = movies,
-script_dir = ""
+script_dir = {{ nzbtomedia_path }}
 email_pwd = ""
-empty_postproc = 0
+empty_postproc = 1
 ignore_wrong_unrar = 0
 nice = ""
 email_dir = ""
@@ -182,6 +182,8 @@ password = {{ server.password }}
 optional = 0
 port = 119
 retention = 0
+{% endfor %}
+{% endif %}
 [categories]
 [[*]]
 priority = 0
@@ -190,5 +192,21 @@ name = *
 script = None
 newzbin = ""
 dir = ""
-{% endfor %}
+{% if couchpotato_host is defined %}
+[[movie]]
+priority = -100
+pp = ""
+name = movie
+script = nzbToCouchPotato.py
+newzbin = Movies*
+dir =
+{% endif %}
+{% if sickbeard_host is defined %}
+[[tv]]
+priority = -100
+pp = ""
+name =
+script = nzbToSickBeard.py
+newzbin = TV*
+dir =
 {% endif %}

@@ -27,7 +27,7 @@ List of variables that can be passed to the role with default variable values::
 
     # The following variables should be defined in playbook if xbmc-mysql is added without xbmc-client role.
 
-    xbmc_media_path:                  # Location of xbmc media folders.
+    media_path:                  # Location of xbmc media folders.
 
     xbmc_default_media_folders:       # Folder names for Movies, TV, Music and etc.
       movies: 
@@ -64,7 +64,7 @@ Install XBMC mysql on separate host::
       vars:
         xbmc_mysqldb_user: xbmc
         xbmc_mysqldb_password: xbmc
-        xbmc_media_path: /mnt/xbmc
+        media_path: /mnt/xbmc
 
       xbmc_default_media_folders:
         movies: Movies

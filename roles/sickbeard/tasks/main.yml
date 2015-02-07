@@ -20,14 +20,26 @@
 - name: Update SickBeard Daemon Configuration
   template: src=etc_default_sickbeard.j2 dest=/etc/default/sickbeard owner=root group=root mode=0644
 
-# SickBeard Config cannot be updated when the service is running - running config is saved on stop.
-# SickBeard should be stopped first config reapplied following by sickbeard start.
-# The logic resolved using self notifing handlers
+- name: Create Sickbeard Media folders
+  file: path={{ item }} state=directory recurse=yes owner={{ sickbeard_user }} group={{ sickbeard_user }} mode=0775
+  with_items:
+    - "{{ media_path }}"
+    - "{{ media_path }}/{{ tv_folder }}"
+
+# SickBeard Config cannot be updated when the service is running - active running config is saved on stop.
+# SickBeard should be stopped first and config reapplied following by sickbeard start.
 
 - name: Update sickbeard config.ini
   template: src=config.ini.j2 dest=/opt/sickbeard/config.ini owner={{ sickbeard_user }} group={{ sickbeard_user }}
-  notify:
-    - sickbeard updated
+  register: sickbeard_updated
 
-- name: Make sure SickBeard starts on boot
+- name: Stop Sickbeard before update
+  service: name=sickbeard state=stopped
+  when: sickbeard_updated.changed
+
+- name: Update sickbeard config.ini
+  template: src=config.ini.j2 dest=/opt/sickbeard/config.ini owner={{ sickbeard_user }} group={{ sickbeard_user }}
+  when: sickbeard_updated.changed
+
+- name: Enable and Start SickBeard
   service: name=sickbeard state=started enabled=yes

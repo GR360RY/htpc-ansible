@@ -20,11 +20,12 @@
   # TODO: Fix Downloads directory configuration to absolute path using prior defined variables.
   # TODO: Automatically Download Movies, TV and the rest of the media into separate directories
 
-- name: Create Sabnzbd Downloads Folders
-  file: path={{ item }} state=directory owner={{ sabnzbd_user }} group={{ sabnzbd_user }} mode=0755
+- name: Create Sabnzbd downloads folders
+  file: path={{ item }} state=directory recurse=yes owner={{ sabnzbd_user }} group={{ sabnzbd_user }} mode=0775
   with_items:
-    - "{{ sabnzbd_download_dir }}"
-    - "{{ sabnzbd_incomplete_dir }}"
+    - "{{ media_path }}"
+    - "{{ downloads_path }}"
+    - "{{ sabnzbd_incomplete }}"
 
 - name: Update Sabnzbd configuration
   template: src=opt_sabnzbd_subnzbd.ini.j2 dest=/opt/sabnzbd/sabnzbd.ini owner={{ sabnzbd_user }} group={{ sabnzbd_user }} mode=0644

@@ -1,3 +1,5 @@
 ---
 # vars file for sabnzbd
 
+# Make sure nzbtomedia script will be owned by sabnzbd_user
+nzbtomedia_user: "{{ sabnzbd_user }}"

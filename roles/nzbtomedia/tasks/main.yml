@@ -1,0 +1,22 @@
+---
+# tasks file for nzbtomedia
+
+- name: Add ffmpeg ppa
+  apt_repository: repo='ppa:mc3man/trusty-media' state=present update_cache=yes
+
+- name: Install requirements for nzbtomedia
+  apt: name={{ item }} state=installed
+  with_items:
+    - git
+    - p7zip
+    - ffmpeg
+
+- name: Get latest nzbToMedia from github
+  git: repo=https://github.com/clinton-hall/nzbToMedia.git dest={{ nzbtomedia_path }}
+
+- name: Modify nzbToMedia file ownership
+  file: path={{ nzbtomedia_path }} owner={{ nzbtomedia_user }} recurse=yes
+
+- name: Upload nzbToMedia configuration template
+  template: src=autoProcessMedia.cfg.j2 dest="{{ nzbtomedia_path }}/autoProcessMedia.cfg" owner={{ nzbtomedia_user }}
+

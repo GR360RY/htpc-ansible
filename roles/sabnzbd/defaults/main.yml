@@ -1,10 +1,14 @@
 ---
 # defaults file for sabnzbd
 
+sabnzbd_user: root
+
 sabnzbd_port: 9000
 sab_apikey: c48afc846972e295826bb05d2e84dd59
 
-sabnzbd_download_dir: /opt/sabnzbd/Downloads
-sabnzbd_incomplete_dir: /opt/sabnzbd/sabnzbd_incomplete
+# Default download locations:
+media_path: /mnt/media
+downloads_path: "{{ media_path }}/downloads"
+sabnzbd_incomplete: "{{ downloads_path }}/incomplete/sabnzbd"
 
 sabnzbd_host: "{{ ansible_default_ipv4.address }}"

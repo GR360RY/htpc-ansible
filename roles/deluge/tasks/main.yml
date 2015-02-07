@@ -11,6 +11,9 @@
     - deluge-web
     - deluge-console
 
+- name: Make sure deluge group is available
+  group: name={{ deluged_user }} state=present
+
 - name: Make sure deluge user is available
   user: name={{ deluged_user }} group={{ deluged_user }} state=present
 
@@ -29,9 +32,34 @@
 - name: Update Deluge Daemon default config
   template: src=etc_default_deluged dest=/etc/default/deluged owner=root group=root
 
-- name: Update Deluge download folders location
-  template: src=core.conf dest={{ deluged_path }}/config/core.conf owner={{ deluged_user }} group={{ deluged_user }} mode=0640
-  when: xbmc_media_path is defined
+- name: Update Deluged core.conf
+  template: src=core.conf.j2 dest={{ deluged_path }}/config/core.conf owner={{ deluged_user }} group={{ deluged_user }} mode=0640
+  register: deluged_core_update
+
+- name: Stop deluged daemon before reapplying core.conf update
+  service: name=deluged state=stopped
+  when: deluged_core_update.changed
+
+- name: Reapply deluged core.conf update
+  template: src=core.conf.j2 dest={{ deluged_path }}/config/core.conf owner={{ deluged_user }} group={{ deluged_user }} mode=0640
+  when: deluged_core_update.changed
+
+- name: Create Deluge downloads folders
+  file: path={{ item }} state=directory owner={{ deluged_user }} mode=0775
+  with_items:
+    - "{{ downloads_path }}"
+    - "{{ deluged_incomplete }}"
+
+- name: Create process folder for nzbtomedia processing
+  file: path={{ item }} state=directory owner={{ deluged_user }} mode=0775
+  with_items:
+    - "{{ process_path }}"
+
+- name: Configure Label plugin
+  template: src=label.conf.j2 dest="{{ deluged_path }}/config/label.conf" owner={{ deluged_user }} group={{ deluged_user }} mode=0640
+
+- name: Update Execute plugin config
+  template: src=execute.conf.j2 dest="{{ deluged_path }}/config/execute.conf" owner={{ deluged_user }} group={{ deluged_user }} mode=0640
 
 - name: Update Deluge credentials
   lineinfile: dest={{ deluged_path }}/config/auth regexp='^localclient' line='localclient:{{ deluged_localclient_password }}:10' owner={{ deluged_user }} group={{ deluged_user }} mode=0600 create=yes
@@ -39,5 +67,5 @@
 - name: Make sure Deluge Daemon is running and enabled on boot
   service: name=deluged state=started enabled=yes
 
-- name: Make sure Deluge Daemon is running and enabled on boot
+- name: Make sure Deluge Web is running and enabled on boot
   service: name=deluge-web state=started enabled=yes

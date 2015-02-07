@@ -15,7 +15,7 @@ List of variables that can be passed to the role with default variable values::
 
     # Variables shared between this role and xbmc-client role.
     # Default values are defined in xbmc-client role.
-    xbmc_media_path:                  # Location of xbmc media folders.
+    media_path:                  # Location of xbmc media folders.
 
     xbmc_default_media_folders:       # Folder names for Movies, TV, Music and etc.
       movies:
