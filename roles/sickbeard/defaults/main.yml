@@ -1,5 +1,6 @@
 ---
 # defaults file for sickbeard
+sickbeard_enabled: True
 
 sickbeard_repo: https://github.com/echel0n/SickRage.git
 sickbeard_branch: master

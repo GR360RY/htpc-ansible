@@ -1,5 +1,6 @@
 ---
 # defaults file for couchpotato
+couchpotato_enabled: True
 
 couchpotato_path: /opt/couchpotato
 couchpotato_apikey: bb138ccd9df84c33af9b310325b0d658

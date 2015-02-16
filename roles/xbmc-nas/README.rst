@@ -26,9 +26,8 @@ List of variables that can be passed to the role with default variable values::
       downloads:
       tmp:
 
-    xbmc_user_name:                   # User that will run XBMC
-
-    xbmc_with_download_clinets:       # Create default downloads folders
+    htpc_username:                    # User that will run XBMC
+    
 
     # Variables share between this role, sabnzbd and deluge roles.
     # Defaults are define in each coresponding role.

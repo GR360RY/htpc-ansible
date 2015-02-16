@@ -1,5 +1,6 @@
 ---
 # defaults file for xbmc-mysql
+xbmc_mysql_enabled: True
 
 xbmc_mysqldb_host: "{{ ansible_default_ipv4.address }}"
 xbmc_mysqldb_user: xbmc

@@ -49,28 +49,25 @@ xbmc_download_folders:
   downloads: Downloads
   tmp: tmp
 
-xbmc_user_name: xbmc              # User that will run XBMC
-xbmc_user_password: xbmc          # User's Password
+htpc_username: xbmc               # User that will run XBMC
+htpc_user_password: xbmc          # User's Password
 xbmc_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop
 xbmc_standalone_mode: True        # Standalone box setup
 
-xbmc_dont_create_folders: False   # Don't create Media and Downloads folders
-xbmc_with_download_clinets: False # Don't create downloads and temporary folders.
-
 # When used together with deluge role, make sure deluge runs as xbmc user
-deluged_user: "{{ xbmc_user_name }}"
+deluged_user: "{{ htpc_username }}"
 
 # When used together with sabnzbd role, make sure sabnzbd runs as xbmc user
-sabnzbd_user: "{{ xbmc_user_name }}"
+sabnzbd_user: "{{ htpc_username }}"
 
 # When used together with couchpotato role, make sure couchpotato runs as xbmc user
-couchpotato_user: "{{ xbmc_user_name }}"
+couchpotato_user: "{{ htpc_username }}"
 
 # When used together with sickbeard role, make sure sickbeard runs as xbmc user
-sickbeard_user: "{{ xbmc_user_name }}"
+sickbeard_user: "{{ htpc_username }}"
 
 # When used together with htpc-manager role, make sure htpc-manager runs as xbmc user
-htpc_manager_user: "{{ xbmc_user_name }}"
+htpc_manager_user: "{{ htpc_username }}"
 
 
 # Uninitialised variables
@@ -124,14 +121,13 @@ HTPC Server Mode installation with external xbmc mysql database and external NAS
       sudo: True
 
       vars:
-        xbmc_user_name: foo
-        xbmc_user_password: bar
+        htpc_username: foo
+        htpc_user_password: bar
         xbmc_mysqldb_host: 10.0.0.1
         xbmc_mysqldb_user: xbmc
         xbmc_mysqldb_password: xbmc
         xbmc_external_nas: 10.0.0.1
         media_path: /tank/Media
-        xbmc_dont_create_folders: True
         xbmc_standalone_mode: False
         xbmc_enable_ubuntu_desktop: False
 

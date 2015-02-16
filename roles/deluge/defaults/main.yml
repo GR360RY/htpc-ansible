@@ -1,5 +1,6 @@
 ---
 # defaults file for deluge
+deluge_enabled: True
 
 # Deluge Daemon Path
 deluged_path: /opt/deluged

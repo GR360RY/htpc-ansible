@@ -1,5 +1,6 @@
 ---
 # defaults file for sabnzbd
+sabnzbd_enabled: True
 
 sabnzbd_user: root
 

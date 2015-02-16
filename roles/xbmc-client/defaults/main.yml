@@ -1,5 +1,6 @@
 ---
 # defaults file for xbmc-client
+xbmc_client_enabled: True
 
 xbmc_repo: 'ppa:team-xbmc/ppa'    # XBMC Ubuntu ppa.
 
@@ -9,13 +10,10 @@ movies_folder: movies
 tv_folder: tv
 music_folder: music
 
-xbmc_user_name: xbmc              # User that will run XBMC
-xbmc_user_password: xbmc          # User's Password
+htpc_username: xbmc               # User that will run XBMC
+htpc_user_password: xbmc          # User's Password
 xbmc_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop
 xbmc_standalone_mode: True        # Standalone box setup
-
-xbmc_dont_create_folders: False   # Don't create Media and Downloads folders
-xbmc_with_download_clinets: False # Don't create downloads and temporary folders.
 
 # Helper Variables
 
