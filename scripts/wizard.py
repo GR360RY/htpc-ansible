@@ -1,12 +1,16 @@
 #!/usr/bin/env python
 
+from os import path
 from yaml import dump, load
 from prompter import prompt, yesno
 
-defaults_vars_file = '../defaults.yml'
-custom_vars_file = '../custom.yml'
-questions_file = 'questions.yml'
-quickinstall_file = 'quickinstall.yml'
+script_path = path.dirname(path.realpath(__file__))
+
+defaults_vars_file = path.join(script_path,'../defaults.yml')
+custom_vars_file = path.join(script_path,'../custom.yml')
+questions_file = path.join(script_path,'questions.yml')
+quickinstall_file = path.join(script_path,'quickinstall.yml')
+
 
 def load_yaml(path):
     try:
@@ -30,7 +34,6 @@ def ask_question(question, vars_dict):
 
 
 def get_answers():
-    from os import path
     questions = load_yaml(questions_file)
     default_vars_dict = load_yaml(defaults_vars_file)
     
@@ -54,11 +57,13 @@ def get_answers():
         elif question_type == 'yesno' and not result:
             result_dict[question_var_name] = not default_vars_dict[question_var_name]
 
-    try:
-        with open(custom_vars_file, 'w') as file:
-            file.write(dump(result_dict, default_flow_style=False))
-    except:
-        pass
+    # Save custom custome configuration file if different from default
+    if result_dict:
+        try:
+            with open(custom_vars_file, 'w') as file:
+                file.write(dump(result_dict, default_flow_style=False))
+        except:
+            pass
 
 # def run_ansible():
 #     pass

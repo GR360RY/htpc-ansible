@@ -1,5 +1,9 @@
-1. Fix advancedsettings.xml in xbmc-client and to "enable" style role. Drop standalone mode variable
+1. Fix advancedsettings.xml in xbmc-client to "enable" style ansible role. Drop standalone mode variable
 2. (Done) Couchpotato doesn't update the movie database. Test "Always Do A Full Scan"
 3. (Done) Enable "force_clean = 1" in autoProcessMedia.cfg
 4. Add file source/sources ( default will be /mnt/media ) to xbmc to simplify file access.
-5. Show recent music in htpc-manager dash when headphone app is installed
+5. Show recent music in htpc-manager dash.
+6. Add sound to VirtualBox vagrant.
+7. Fix Virtualbox download link ( box-cutter is not working )
+8. Couchpotato - disable scanner on startup ( Creates unknown.ignore and exists.ignore. Probably Couchpotato Bug ) in "downloads" subfolders.
+9. (Done) Prevent couchpotato to start browser to startup.
