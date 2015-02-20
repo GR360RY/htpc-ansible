@@ -9,6 +9,7 @@ media_path: /mnt/media            # Location of xbmc media folders.
 movies_folder: movies
 tv_folder: tv
 music_folder: music
+pictures_folder: pictures
 
 htpc_username: xbmc               # User that will run XBMC
 htpc_user_password: xbmc          # User's Password

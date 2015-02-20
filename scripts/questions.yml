@@ -13,6 +13,11 @@
   prompt_line: 'Install NAS services ?'
   type: 'yesno'
 
+- var_name: deluge_enabled
+  text: 'Install Deluge'
+  prompt_line: 'Install Deluge'
+  type: 'yesno'
+
 - var_name: sabnzbd_enabled
   text: 'Install Sabnzbd'
   prompt_line: 'Install Sabnzbd'
@@ -24,9 +29,9 @@
   #     question: 'Some question'
   #     type: 'free_text'
 
-- var_name: deluge_enabled
-  text: 'Install Deluge'
-  prompt_line: 'Install Deluge'
+- var_name: sickbeard_enabled
+  text: 'Install Sickbeard'
+  prompt_line: 'Install Sickbeard'
   type: 'yesno'
 
 - var_name: couchpotato_enabled
@@ -34,9 +39,9 @@
   prompt_line: 'Install Couchpotato'
   type: 'yesno'
 
-- var_name: sickbeard_enabled
-  text: 'Install Sickbeard'
-  prompt_line: 'Install Sickbeard'
+- var_name: htpc_manager_enabled
+  text: 'Install HTPC-Manager'
+  prompt_line: 'Install HTPC-Manager'
   type: 'yesno'
 
 - var_name: tvheadend_enabled
@@ -64,6 +69,11 @@
 - var_name: music_folder
   text: 'Music Folder'
   prompt_line: 'Music Folder'
+  type: 'free_text'
+
+- var_name: pictures_folder
+  text: 'Pictures Folder'
+  prompt_line: 'Pictures Folder'
   type: 'free_text'
 
 - var_name: htpc_username

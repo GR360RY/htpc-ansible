@@ -18,6 +18,7 @@
     - "{{media_path}}/{{ movies_folder }}"
     - "{{media_path}}/{{ tv_folder }}"
     - "{{media_path}}/{{ music_folder }}"
+    - "{{media_path}}/{{ pictures_folder }}"
 
 - name: Make sure NFS server is started on boot
   service: name=nfs-kernel-server state=started enabled=yes
