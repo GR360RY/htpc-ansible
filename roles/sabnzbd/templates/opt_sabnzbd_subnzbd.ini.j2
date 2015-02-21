@@ -192,7 +192,7 @@ name = *
 script = None
 newzbin = ""
 dir = ""
-{% if couchpotato_host is defined %}
+{% if couchpotato_enabled is defined and couchpotato_enabled %}
 [[movie]]
 priority = -100
 pp = ""
@@ -201,7 +201,7 @@ script = nzbToCouchPotato.py
 newzbin = Movies*
 dir =
 {% endif %}
-{% if sickbeard_host is defined %}
+{% if sickbeard_enabled is defined and sickbeard_enabled %}
 [[tv]]
 priority = -100
 pp = ""

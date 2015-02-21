@@ -1,0 +1,89 @@
+- var_name: xbmc_client_enabled
+  text: 'Install XBMC/Kodi ?'
+  prompt_line: 'Install XBMC/Kodi ?'
+  type: 'yesno'
+
+- var_name: xbmc_mysql_enabled
+  text: 'Install Mysql for sharing XBMC/Kodi Media Library ?'
+  prompt_line: 'Install XBMC/Kodi mysql backend?'
+  type: 'yesno'
+
+- var_name: xbmc_nas_enabled
+  text: 'Install NFS, CIFS and AFP for sharing media ?'
+  prompt_line: 'Install NAS services ?'
+  type: 'yesno'
+
+- var_name: deluge_enabled
+  text: 'Install Deluge'
+  prompt_line: 'Install Deluge'
+  type: 'yesno'
+
+- var_name: sabnzbd_enabled
+  text: 'Install Sabnzbd'
+  prompt_line: 'Install Sabnzbd'
+  type: 'yesno'
+  # sub_questions:
+  #   - var_name: xbmc_password
+  #     text: |+
+  #       Linux user that will run all the services
+  #     question: 'Some question'
+  #     type: 'free_text'
+
+- var_name: sickbeard_enabled
+  text: 'Install Sickbeard'
+  prompt_line: 'Install Sickbeard'
+  type: 'yesno'
+
+- var_name: couchpotato_enabled
+  text: 'Install Couchpotato'
+  prompt_line: 'Install Couchpotato'
+  type: 'yesno'
+
+- var_name: htpc_manager_enabled
+  text: 'Install HTPC-Manager'
+  prompt_line: 'Install HTPC-Manager'
+  type: 'yesno'
+
+- var_name: tvheadend_enabled
+  text: 'Install TVheadend'
+  prompt_line: 'Install TVheadend'
+  type: 'yesno'
+
+- var_name: media_path
+  text: |+
+    The ROOT path for Media ( Movies, TV, Music and etc) and
+    Downloads Folders. Can be on Internal or External drive.
+  prompt_line: 'Media path'
+  type: 'free_text'
+
+- var_name: movies_folder
+  text: 'Movies Folder'
+  prompt_line: 'Movies Folder'
+  type: 'free_text'
+
+- var_name: tv_folder
+  text: 'TV Folder'
+  prompt_line: 'TV Folder'
+  type: 'free_text'
+
+- var_name: music_folder
+  text: 'Music Folder'
+  prompt_line: 'Music Folder'
+  type: 'free_text'
+
+- var_name: pictures_folder
+  text: 'Pictures Folder'
+  prompt_line: 'Pictures Folder'
+  type: 'free_text'
+
+- var_name: htpc_username
+  text: |+
+    Linux user that will run all the services
+  prompt_line: 'HTPC User'
+  type: 'free_text'
+
+- var_name: htpc_user_password
+  text: |+
+    Linux user password
+  prompt_line: 'HTPC User password'
+  type: 'free_text'

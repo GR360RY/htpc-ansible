@@ -10,14 +10,15 @@
     - update nfs exports
 
 - name: Make sure NFS directories are avialble
-  file: path={{ media_path }} state=directory owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0755
+  file: path={{ media_path }} state=directory owner={{ htpc_username }} group={{ htpc_username }} mode=0755
 
 - name: Create sub Media Folders
-  file: path={{ item }} state=directory owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0755
+  file: path={{ item }} state=directory owner={{ htpc_username }} group={{ htpc_username }} mode=0755
   with_items:
     - "{{media_path}}/{{ movies_folder }}"
     - "{{media_path}}/{{ tv_folder }}"
     - "{{media_path}}/{{ music_folder }}"
+    - "{{media_path}}/{{ pictures_folder }}"
 
 - name: Make sure NFS server is started on boot
   service: name=nfs-kernel-server state=started enabled=yes

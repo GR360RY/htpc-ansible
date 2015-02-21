@@ -22,18 +22,18 @@
   apt: name=libsdl1.2debian state=latest update_cache=yes
 
 - name: Generate XBMC user password
-  command: /usr/bin/openssl passwd -salt random_salt -1 {{ xbmc_user_password }}
+  command: /usr/bin/openssl passwd -salt random_salt -1 {{ htpc_user_password }}
   register: xbmc_generated_password
   changed_when: False
 
 - name: Make sure XBMC user is created
-  user: name={{ xbmc_user_name }} password={{ xbmc_generated_password.stdout }} state=present createhome=yes shell=/bin/bash groups=adm,cdrom,sudo,dip,plugdev,lpadmin,sambashare
+  user: name={{ htpc_username }} password={{ xbmc_generated_password.stdout }} state=present createhome=yes shell=/bin/bash groups=adm,cdrom,sudo,dip,plugdev,lpadmin,sambashare
 
 - name: Create xbmc user .cache/unity directory
-  file: path="~{{ xbmc_user_name }}/.cache/unity/" state=directory owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0755
+  file: path="~{{ htpc_username }}/.cache/unity/" state=directory owner={{ htpc_username }} group={{ htpc_username }} mode=0755
 
 - name: Disable First Login pop-up screen
-  file: path="~{{ xbmc_user_name }}/.cache/unity/first_run.stamp" state=touch owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0755
+  file: path="~{{ htpc_username }}/.cache/unity/first_run.stamp" state=touch owner={{ htpc_username }} group={{ htpc_username }} mode=0755
 
 - name: Add XBMC repository
   apt_repository: repo={{ xbmc_repo }} state=present
@@ -42,27 +42,27 @@
   apt: name=xbmc='2:13.2~git20140817.2155-final-0trusty' update_cache=yes
 
 - name: Make sure XBMC folders are available
-  file: path={{ item }} state=directory owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0755
+  file: path={{ item }} state=directory owner={{ htpc_username }} group={{ htpc_username }} mode=0755
   with_items:
-    - "~{{ xbmc_user_name }}/.xbmc/"
-    - "~{{ xbmc_user_name }}/.xbmc/userdata"
+    - "~{{ htpc_username }}/.xbmc/"
+    - "~{{ htpc_username }}/.xbmc/userdata"
 
 - name: Update sources location
-  template: src=sources.xml.j2 dest="~{{ xbmc_user_name }}/.xbmc/userdata/sources.xml" owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0755
+  template: src=sources.xml.j2 dest="~{{ htpc_username }}/.xbmc/userdata/sources.xml" owner={{ htpc_username }} group={{ htpc_username }} mode=0755
 
 - name: Update advancedsettings.xml
-  template: src=advancedsettings.xml.j2 dest=~{{ xbmc_user_name }}/.xbmc/userdata/advancedsettings.xml owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0644
+  template: src=advancedsettings.xml.j2 dest=~{{ htpc_username }}/.xbmc/userdata/advancedsettings.xml owner={{ htpc_username }} group={{ htpc_username }} mode=0644
 
 - name: Setup Autologin for account running XBMC
   template: src=etc_lightdm_lightdm.conf.j2 dest=/etc/lightdm/lightdm.conf owner=root group=root mode=0664
 
-- name: Get XBMC User ID
-  command: /usr/bin/id -u {{ xbmc_user_name }}
-  register: xbmc_user_id
+- name: Get HTPC User ID
+  command: /usr/bin/id -u {{ htpc_username }}
+  register: htpc_user_id
   changed_when: False
 
-- name: Get DBUS PATH for XBMC user in AccountService
-  shell: dbus-send --print-reply=literal --system --dest=org.freedesktop.Accounts /org/freedesktop/Accounts org.freedesktop.Accounts.FindUserById int64:{{ xbmc_user_id.stdout }}
+- name: Get DBUS PATH for HTPC user in AccountService
+  shell: dbus-send --print-reply=literal --system --dest=org.freedesktop.Accounts /org/freedesktop/Accounts org.freedesktop.Accounts.FindUserById int64:{{ htpc_user_id.stdout }}
   register: xbmc_dbus_path
   changed_when: False
 
@@ -75,19 +75,19 @@
   when: xbmc_enable_ubuntu_desktop
 
 - name: Make sure ~/.config/autostart directory is available
-  file: state=directory dest={{ item }} owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0700
+  file: state=directory dest={{ item }} owner={{ htpc_username }} group={{ htpc_username }} mode=0700
   with_items:
-    - "~{{ xbmc_user_name }}/.config/"
-    - "~{{ xbmc_user_name }}/.config/autostart/"
+    - "~{{ htpc_username }}/.config/"
+    - "~{{ htpc_username }}/.config/autostart/"
 
 - name: Startup XBMC automatically on login in full screen mode
-  template: src=xbmc.desktop.j2 dest=~{{ xbmc_user_name }}/.config/autostart/xbmc.desktop owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0664
+  template: src=xbmc.desktop.j2 dest=~{{ htpc_username }}/.config/autostart/xbmc.desktop owner={{ htpc_username }} group={{ htpc_username }} mode=0664
 
 - name: Add script to disable screensaver
   copy: src=disable_screensaver dest=/usr/bin/disable_screensaver owner=root group=root mode=0755
 
 - name: Disable screensaver both in Unity and Xserver on xbmc user login
-  copy: src=disable_screensaver.desktop dest=~{{ xbmc_user_name }}/.config/autostart/disable_screensaver.desktop owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0664
+  copy: src=disable_screensaver.desktop dest=~{{ htpc_username }}/.config/autostart/disable_screensaver.desktop owner={{ htpc_username }} group={{ htpc_username }} mode=0664
 
 - name: Install Autofs
   apt: name=autofs state=installed
@@ -111,8 +111,10 @@
   when: xbmc_external_nas is defined
 
 - name: Create sub Media Folders
-  file: path={{ item }} state=directory owner={{ xbmc_user_name }} group={{ xbmc_user_name }} mode=0755
+  file: path={{ item }} state=directory owner={{ htpc_username }} group={{ htpc_username }} mode=0755
   with_items:
     - "{{media_path}}/{{ movies_folder }}"
     - "{{media_path}}/{{ tv_folder }}"
     - "{{media_path}}/{{ music_folder }}"
+    - "{{media_path}}/{{ pictures_folder }}"
+

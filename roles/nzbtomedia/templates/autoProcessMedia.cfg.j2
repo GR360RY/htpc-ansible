@@ -13,7 +13,7 @@
     # GitHUB branch for repo
     git_branch =
     # Enable/Disable forceful cleaning of leftover files following postprocess 
-    force_clean = 0
+    force_clean = 1
     # Enable/Disable logging debug messages to nzbtomedia.log
     log_debug = 0
     # Enable/Disable logging database messages to nzbtomedia.log
@@ -42,7 +42,7 @@
     #### autoProcessing for Movies
     #### movie - category that gets called for post-processing with CPS
     [[movie]]
-{% if couchpotato_host is defined %}
+{% if couchpotato_enabled is defined and couchpotato_enabled %}
         enabled = 1
         apikey = {{ couchpotato_apikey }}
         host = localhost
@@ -75,7 +75,7 @@
     #### autoProcessing for TV Series
     #### tv - category that gets called for post-processing with SB
     [[tv]]
-{% if sickbeard_host is defined %}
+{% if sickbeard_enabled is defined and sickbeard_enabled %}
         enabled = 1
 {% else %}
         enabled = 0
@@ -215,7 +215,7 @@
     ###### clientAgent - Supported clients: sabnzbd, nzbget
     clientAgent = sabnzbd
     ###### SabNZBD (You must edit this if your using nzbToMedia.py with SabNZBD)
-{% if sabnzbd_host is defined %}
+{% if sabnzbd_enabled is defined and sabnzbd_enabled %}
     sabnzbd_host = localhost
     sabnzbd_port = {{ sabnzbd_port }}
     sabnzbd_apikey = {{ sab_apikey }}
@@ -231,7 +231,7 @@
 
 [Torrent]
     ###### clientAgent - Supported clients: utorrent, transmission, deluge, rtorrent, vuze, other
-{% if deluged_host is defined %}
+{% if deluge_enabled is defined and deluge_enabled %}
     clientAgent = deluge
 {% else %}
     clientAgent = other
@@ -239,13 +239,13 @@
     ###### useLink - Set to hard for physical links, sym for symbolic links, move to move, and no to not use links (copy)
     useLink = hard
     ###### outputDirectory - Default output directory (categories will be appended as sub directory to outputDirectory)
-{% if deluged_host is defined %}
+{% if deluge_enabled is defined and deluge_enabled %}
     outputDirectory = {{ process_path }}
 {% else %}
     outputDirectory =
 {% endif %}
     ###### Enter the default path to your default download directory (non-category downloads). this directory is protected by safe_mode. 
-{% if deluged_host is defined %}
+{% if deluge_enabled is defined and deluge_enabled %}
     default_downloadDirectory = {{ downloads_path }}
 {% else %}
     default_downloadDirectory =
@@ -266,7 +266,7 @@
     #### Deluge (You must edit this if your using TorrentToMedia.py with deluge. Note that the host/port is for the deluge daemon, not the webui)
     DelugeHost = localhost
     DelugePort = 58846
-{% if deluged_host is defined %}
+{% if deluge_enabled is defined and deluge_enabled %}
     DelugeUSR = localclient
     DelugePWD = {{ deluged_localclient_password }}
 {% else %}

@@ -5,12 +5,14 @@ HTPC Server Automation with XBMC, Bittorent and Usenet Software
 This ansible playbook is designed to quickly deploy home HTPC server, which can perform variety of funcitons. It's based on an Ubuntu 14.04, and can set up several configuration variants. It includes roles, which can be set up on a single machine, or on a different ones, and can be customized through single configuration file, correctly deploying all the software.
 
 - [XBMC](http://xbmc.org/‎) - Open Source Home Theatre Software, with optional mysql backend support (can be used to manage single library for multiple XBMC clients at home)
-- NAS configuration with support for sharing the library over NFS and CIFS (AFP to come)
+- NAS configuration with support for sharing the library over NFS and CIFS
 - [HTPC Manager](http://htpc.io) - combines all your favorite software into one slick interface
 - [Couchpotato](https://couchpota.to/) - Download movies automatically
 - [Sick Beard](http://sickbeard.com) - Internet PVR for your TV Shows
 - [SABnzbd](http://sabnzbd.org/) - NZB capable binary newsgrabber
-- [Deluge](http://deluge-torrent.org/) -  Cross-platform BitTorrent client
+- [Deluge](http://deluge-torrent.org/) - Cross-platform BitTorrent client
+- [nzbToMedia](https://github.com/clinton-hall/nzbToMedia) - postprocessing for CouchPotatoServer and SickBeard and etc.
+- [Tvheadend](https://tvheadend.org/) - TV streaming server for Linux 
 
 ### Prerequisites
 
@@ -20,19 +22,11 @@ This ansible playbook is designed to quickly deploy home HTPC server, which can 
 ## Quick installation
 
 Login to your Ubuntu 14.04 machine using gui or console.
-Open terminal and run __one__ of the below commands:
 
-Install HTPC Server with Bittorent Downloader ( Deluge )
+Open terminal and run:
+
 ```
-wget --no-check-certificate https://raw.github.com/GR360RY/htpc-ansible/master/scripts/htpc-server-torrents.sh -O - | sh
-```
-Install HTPC Server with Usenet Downloader ( Sabnzbd )
-```
-wget --no-check-certificate https://raw.github.com/GR360RY/htpc-ansible/master/scripts/htpc-server-usenet.sh -O - | sh
-```
-Install HTPC Server with both Bittorent and Usenet Downloaders
-```
-wget --no-check-certificate https://raw.github.com/GR360RY/htpc-ansible/master/scripts/htpc-server.sh -O - | sh
+wget --no-check-certificate https://raw.github.com/GR360RY/htpc-ansible/master/scripts/quickinstall.sh -O - | sh
 ```
 	
 __Reboot your machine following the installation.__
@@ -43,13 +37,13 @@ The following list of tasks will be performed during the installation:
 
 * Install sshd service for remote access.
 * Add 'xbmc' user identified by 'xbmc' password.
-* Create Movies, TV and Downloads folders under /mnt/xbmc
+* Create movies, tv, music, pictures and downloads folders under /mnt/media
 * Install latest XBMC version.
 * Configure xbmc user to autologin automatically and start XBMC software.
 * Enable Web Access to XBMC.
 * Create XBMC mysql database and configure it to use correct Movies and TV Shows paths.
 * Automatically configure scrappers for Movies and TV Sources
-* Share folders under /mnt/xbmc over CIFS ( for Windows Machines ) and over NFS ( for Linux based Machines )
+* Share folders under /mnt/media over CIFS ( for Windows Machines ) and over NFS ( for Linux based Machines )
 * Install Deluge Daemon (Bittorent) or/and Sabnzbd(usenet). ( Sabnzbd will run on port 9000 )
 * Install SickBeard and Couchpotato for grabbing TV Shows and Movies. 
 * Install htpc-manager and configure all of the above service in htpc-manager.

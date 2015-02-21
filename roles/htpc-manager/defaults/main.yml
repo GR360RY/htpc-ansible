@@ -1,5 +1,6 @@
 ---
 # defaults file for htpc-manager
+htpc_manager_enabled: True
 
 htpc_manager_path: /opt/htpc-manager
 htpc_manager_version: HEAD

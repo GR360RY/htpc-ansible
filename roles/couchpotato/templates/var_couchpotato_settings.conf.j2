@@ -8,7 +8,7 @@ permission_folder = 0755
 development = 0
 url_base = 
 debug = 0
-launch_browser = True
+launch_browser = 0
 password = 
 port = 5050
 permission_file = 0755
@@ -29,7 +29,7 @@ year = 2011
 ignored_genres = 
 
 [manage]
-startup_scan = True
+startup_scan = 0
 cleanup = True
 enabled = 1
 library = {{ media_path }}/{{ movies_folder }}/
@@ -82,16 +82,16 @@ username = localclient
 delete_failed = True
 completed_directory =
 manual = 0
-{% if deluged_host is defined %}
+{% if deluge_enabled is defined and deluge_enabled %}
 enabled = 1
 {% else %}
 enabled = 0
 {% endif %}
 label = movie
 paused = False
-{% if deluged_host is defined and deluged_host == ansible_default_ipv4.address %}
+{% if deluge_enabled is defined and deluge_enabled and deluged_host == ansible_default_ipv4.address %}
 host = localhost:58846
-{% elif deluged_host is defined and deluged_host != ansible_default_ipv4.address %}
+{% elif deluge_enabled is defined and deluge_enabled and deluged_host != ansible_default_ipv4.address %}
 host = {{ deluged_host}}:58846
 {% else %}
 host = 
@@ -99,7 +99,7 @@ host =
 delete_files = True
 directory =
 remove_complete = True
-{% if deluged_localclient_password is defined %}
+{% if deluge_enabled is defined and deluge_enabled and deluged_localclient_password is defined %}
 password = {{ deluged_localclient_password }}
 {% else %}
 password = 
@@ -147,16 +147,16 @@ password =
 category = movie
 delete_failed = True
 manual = False
-{% if sabnzbd_host is defined %}
+{% if sabnzbd_enabled is defined and sabnzbd_enabled %}
 enabled = 1
 {% else %}
 enabled = 0
 {% endif %}
 priority = 0
 ssl = 0
-{% if sabnzbd_host is defined and sabnzbd_host == ansible_default_ipv4.address %}
+{% if sabnzbd_enabled is defined and sabnzbd_enabled and sabnzbd_host == ansible_default_ipv4.address %}
 host = localhost:{{ sabnzbd_port }}
-{% elif sabnzbd_host is defined and sabnzbd_host != ansible_default_ipv4.address %}
+{% elif sabnzbd_enabled is defined and sabnzbd_enabled and sabnzbd_host != ansible_default_ipv4.address %}
 sab_host = {{ sabnzbd_host }}:{{ sabnzbd_port }}
 {% else %}
 host =
@@ -312,17 +312,17 @@ direct_message = 0
 [xbmc]
 username = xbmc
 on_snatch = 0
-force_full_scan = 0
+force_full_scan = 1
 only_first = 1
-{% if xbmc_host is defined %}
+{% if xbmc_client_enabled is defined and xbmc_client_enabled %}
 enabled = 1
 {% else %}
 enabled = 0
 {% endif %}
 remote_dir_scan = 0
-{% if xbmc_host is defined and xbmc_host == ansible_default_ipv4.address %}
+{% if xbmc_client_enabled is defined and xbmc_client_enabled and xbmc_host == ansible_default_ipv4.address %}
 host = localhost:8080
-{% elif xbmc_host is defined and xbmc_host != ansible_default_ipv4.address %}
+{% elif xbmc_client_enabled is defined and xbmc_client_enabled and xbmc_host != ansible_default_ipv4.address %}
 host = {{ xbmc_host }}:8080
 {% else %}
 host =
@@ -347,12 +347,12 @@ password =
 port = 5222
 
 [searcher]
-{% if sabnzbd_host is defined and deluged_host is defined %}
+{% if sabnzbd_enabled is defined and sabnzbd_enabled and deluge_enabled is defined and deluge_enabled %}
 preferred_method = both
-{% elif sabnzbd_host is defined and deluged_host is not defined %}
+{% elif sabnzbd_enabled is defined and sabnzbd_enabled and deluge_enabled is not defined %}
 preferred_method = nzb
-{% elif sabnzbd_host is not defined and deluged_host is defined %}
-preferred_method = torrent
+{% elif sabnzbd_enabled is defined and sabnzbd_enabled and deluge_enabled is defined and not deluge_enabled %}
+preferred_method = nzb
 {% else %}
 preferred_method = torrent
 {% endif %}
@@ -438,7 +438,7 @@ extra_score = 0
 [newznab]
 use = 0,0,0,0,0,0,1
 extra_score = 0,0,0,0,0,0,
-{% if sabnzbd_host is defined %}
+{% if sabnzbd_enabled is defined and sabnzbd_enabled %}
 enabled = True
 host = nzb.su,dognzb.cr,nzbs.org,https://index.nzbgeek.info,https://smackdownonyou.com,https://www.nzbfinder.ws,https://www.usenet-crawler.com/
 custom_tag = ,,,,,,
@@ -521,7 +521,7 @@ seed_ratio = 1
 [kickasstorrents]
 seed_time = 40
 domain = 
-{% if deluged_host is defined %}
+{% if deluge_enabled is defined and deluge_enabled %}
 enabled = True
 {% else %}
 enabled = 0
@@ -560,7 +560,7 @@ seed_ratio = 1
 [thepiratebay]
 seed_time = 40
 domain = 
-{% if deluged_host is defined %}
+{% if deluge_enabled is defined and deluge_enabled %}
 enabled = True
 {% else %}
 enabled = 0

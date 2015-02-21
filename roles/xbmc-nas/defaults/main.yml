@@ -1,2 +1,3 @@
 ---
 # defaults file for xbmc-nas
+xbmc_nas_enabled: True

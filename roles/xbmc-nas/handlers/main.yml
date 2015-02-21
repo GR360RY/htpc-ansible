@@ -6,7 +6,7 @@
 
 - name: create samba users
   sudo: yes
-  shell: (echo "{{ xbmc_user_password }}"; echo "{{ xbmc_user_password }}") | smbpasswd -s -a {{ xbmc_user_name }}
+  shell: (echo "{{ htpc_user_password }}"; echo "{{ htpc_user_password }}") | smbpasswd -s -a {{ htpc_username }}
 
 - name: restart samba
   service: name={{ item }} state=restarted

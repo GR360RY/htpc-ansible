@@ -1,0 +1,23 @@
+# Default Variables Files.
+
+media_path: /mnt/media       # Location of xbmc media folders.
+
+movies_folder: movies
+tv_folder: tv
+music_folder: music
+pictures_folder: pictures
+
+htpc_username: xbmc          # User that will run XBMC
+htpc_user_password: xbmc     # User's Password
+
+# Enable/Disable Roles
+xbmc_client_enabled: True
+xbmc_mysql_enabled: True
+xbmc_nas_enabled: True
+deluge_enabled: True
+sabnzbd_enabled: False
+sickbeard_enabled: True
+couchpotato_enabled: True
+sickbeard_enabled: True
+htpc_manager_enabled: True
+tvheadend_enabled: False

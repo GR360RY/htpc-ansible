@@ -20,12 +20,12 @@ enable_https = 0
 https_cert = server.crt
 https_key = server.key
 handle_reverse_proxy = 0
-{% if sabnzbd_host is defined %}
+{% if sabnzbd_enabled is defined and sabnzbd_enabled %}
 use_nzbs = 1
 {% else %}
 use_nzbs = 0
 {% endif %}
-{% if deluged_host is defined %}
+{% if deluge_enabled is defined and deluge_enabled %}
 use_torrents = 1
 {% else %}
 use_torrents = 0
@@ -48,7 +48,7 @@ status_default = 5
 flatten_folders_default = 0
 indexer_default = 0
 indexer_timeout = 10
-{% if sabnzbd_host is defined %}
+{% if sabnzbd_enabled is defined and sabnzbd_enabled %}
 provider_order = usenet_crawler kickasstorrents publichd speedcd iptorrents tvtorrents ezrss nextgen torrentday torrentleech sceneaccess btn hdbits hdtorrents
 {% else %}
 provider_order = kickasstorrents publichd speedcd iptorrents tvtorrents ezrss nextgen torrentday torrentleech sceneaccess btn hdbits hdtorrents
@@ -240,7 +240,7 @@ womble_s_index_search_mode = eponly
 womble_s_index_search_fallback = 0
 womble_s_index_backlog_only = 0
 [USENET_CRAWLER]
-{% if sabnzbd_host is defined %}
+{% if sabnzbd_enabled is defined and sabnzbd_enabled %}
 usenet_crawler = 1
 {% else %}
 usenet_crawler = 0
@@ -277,9 +277,9 @@ sab_apikey = {{ sab_apikey }}
 sab_apikey = ""
 {% endif %}
 sab_category = tv
-{% if sabnzbd_host is defined and sabnzbd_host == ansible_default_ipv4.address %}
+{% if sabnzbd_enabled is defined and sabnzbd_enabled and sabnzbd_host == ansible_default_ipv4.address %}
 sab_host = http://localhost:{{ sabnzbd_port }}/
-{% elif sabnzbd_host is defined and sabnzbd_host != ansible_default_ipv4.address %}
+{% elif sabnzbd_enabled is defined and sabnzbd_enabled and sabnzbd_host != ansible_default_ipv4.address %}
 sab_host = http://{{ sabnzbd_host }}:{{ sabnzbd_port }}/
 {% else %}
 sab_host = ""
@@ -293,9 +293,9 @@ nzbget_use_https = 0
 [TORRENT]
 torrent_username = ""
 torrent_password = deluge
-{% if deluged_host is defined and deluged_host == ansible_default_ipv4.address %}
+{% if deluge_enabled is defined and deluge_enabled and deluged_host == ansible_default_ipv4.address %}
 torrent_host = http://localhost:{{ deluged_port }}/
-{% elif deluged_host is defined and deluged_host != ansible_default_ipv4.address %}
+{% elif deluge_enabled is defined and deluge_enabled and deluged_host != ansible_default_ipv4.address %}
 torrent_host = http://{{ deluged_host }}:{{ deluged_port }}/
 {% else %}
 torrent_host = ""
@@ -307,7 +307,7 @@ torrent_high_bandwidth = 0
 torrent_label = tv
 torrent_verify_cert = 0
 [XBMC]
-{% if xbmc_host is defined %}
+{% if xbmc_client_enabled is defined and xbmc_client_enabled %}
 use_xbmc = 1
 {% else %}
 use_xbmc = 0
@@ -319,9 +319,9 @@ xbmc_notify_onsubtitledownload = 0
 xbmc_update_library = 1
 xbmc_update_full = 1
 xbmc_update_onlyfirst = 1
-{% if xbmc_host is defined and xbmc_host == ansible_default_ipv4.address %}
+{% if xbmc_client_enabled is defined and xbmc_client_enabled and xbmc_host == ansible_default_ipv4.address %}
 xbmc_host = localhost:8080
-{% elif xbmc_host is defined and xbmc_host != ansible_default_ipv4.address %}
+{% elif xbmc_client_enabled is defined and xbmc_client_enabled and xbmc_host != ansible_default_ipv4.address %}
 xbmc_host = {{ xbmc_host }}:8080
 {% else %}
 xbmc_host = ""
@@ -451,7 +451,7 @@ email_password = ""
 email_from = ""
 email_list = ""
 [Newznab]
-{% if sabnzbd_host is defined %}
+{% if sabnzbd_enabled is defined and sabnzbd_enabled %}
 newznab_data = "Sick Beard Index|http://lolo.sickbeard.com/|0|5030,5040|0|eponly|0|1|1!!!NZBs.org|https://nzbs.org/||5030,5040|0|eponly|0|1|1!!!Usenet-Crawler|https://www.usenet-crawler.com/|{{ usenet_crawler_api_key }}||1|eponly|0|1|1"
 {% endif %}
 [TorrentRss]

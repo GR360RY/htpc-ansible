@@ -1,5 +1,5 @@
 <advancedsettings>
-{% if not xbmc_standalone_mode and xbmc_mysqldb_host is defined and xbmc_mysqldb_host == ansible_default_ipv4.address %}
+{% if xbmc_mysql_enabled is defined and xbmc_mysql_enabled and xbmc_mysqldb_host == ansible_default_ipv4.address %}
   <videodatabase>
     <type>mysql</type>
     <host>localhost</host>
@@ -18,7 +18,7 @@
     <importwatchedstate>true</importwatchedstate>
     <importresumepoint>true</importresumepoint>
   </videolibrary>
-{% elif not xbmc_standalone_mode and xbmc_mysqldb_host is defined and xbmc_mysqldb_host != ansible_default_ipv4.address %}
+{% elif xbmc_mysql_enabled is defined and xbmc_mysql_enabled and xbmc_mysqldb_host != ansible_default_ipv4.address %}
   <videodatabase>
     <type>mysql</type>
     <host>{{ xbmc_mysqldb_host }}</host>
@@ -45,6 +45,9 @@
     <moviesdefault>metadata.themoviedb.org</moviesdefault>
     <tvshowsdefault>metadata.tvdb.com</tvshowsdefault>
   </scrapers>
+  <musiclibrary>
+    <updateonstartup>true</updateonstartup>
+  </musiclibrary>
 {% if ansible_product_name == 'VirtualBox' %}
   <lookandfeel>
     <soundskin>OFF</soundskin>
