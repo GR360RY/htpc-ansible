@@ -52,7 +52,6 @@ xbmc_download_folders:
 htpc_username: xbmc               # User that will run XBMC
 htpc_user_password: xbmc          # User's Password
 xbmc_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop
-xbmc_standalone_mode: True        # Standalone box setup
 
 # When used together with deluge role, make sure deluge runs as xbmc user
 deluged_user: "{{ htpc_username }}"
