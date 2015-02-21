@@ -8,3 +8,4 @@
 8. Couchpotato - disable scanner on startup ( Creates unknown.ignore and exists.ignore. Probably Couchpotato Bug ) in "downloads" subfolders.
 9. (Done) Prevent couchpotato to start browser to startup.
 10. Generate Music Database similar to the video one. Music is not being scanned on start whithout the database. Can be overriden by running "Scann into library"
+11. wizard.py doesn't save variables correctly ( Critical )

@@ -34,6 +34,18 @@
   mysql_db: name=MyVideos78 state=import target=/tmp/MyVideos.sql
   when: database_list.stdout.find('MyVideos') == -1
 
+- name: Upload Music Database Template
+  template: src=MyMusic.sql dest=/tmp/MyMusic.sql
+  when: database_list.stdout.find('MyMusic') == -1
+
+- name: Create empty Music Database
+  mysql_db: name=MyMusic46 state=present
+  when: database_list.stdout.find('MyMusic') == -1
+
+- name: Import Initial Music Database
+  mysql_db: name=MyMusic46 state=import target=/tmp/MyMusic.sql
+  when: database_list.stdout.find('MyMusic') == -1
+
 - name: Make sure MySQL is listening on all interfaces
   lineinfile: dest=/etc/mysql/my.cnf regexp="^bind-address" line='bind-address            = 0.0.0.0' state=present
   notify:
