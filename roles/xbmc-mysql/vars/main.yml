@@ -1,4 +1,2 @@
 ---
 # vars file for xbmc-mysql
-
-xbmc_standalone_mode: False
