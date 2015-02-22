@@ -1,35 +1,28 @@
 ---
 # tasks file for xbmc-client
 
-# TODO:
-# 
-# 1. Change play to use by default current user and not xbmc
-# 2. Add check for currently configured LightDM session.
-#    Skip "Set Default Lightdm session to XBMC" task if defined correctly.
-# 3. Add option to work with external nas
-# 4. Add option to define xbmc uid to match uid of external nas file owner
-# 5. Add option to choose default scraper ( also ) update mysql db template
-# 6. Separate Downloads and tmp folders creation and use only deluge or/and sabnzbd roles are defined
+- name: Run apt-get update
+  apt: update_cache=yes cache_valid_time=3600
 
 - name: Make sure SSH server is installed for remote access
-  apt: name=ssh state=installed update_cache=yes cache_valid_time=3600 force=yes
+  apt: name=ssh state=installed
 
 - name: Make sure SSH is started on boot
   service: name=ssh state=started enabled=yes
 
 # ( Ubuntu BUG 1280665 )
 - name: Make sure libsdl1.2 is updated to the latest version
-  apt: name=libsdl1.2debian state=latest update_cache=yes
+  apt: name=libsdl1.2debian state=latest update_cache=yes cache_valid_time=3600
 
-- name: Generate XBMC user password
+- name: Generate HTPC user password
   command: /usr/bin/openssl passwd -salt random_salt -1 {{ htpc_user_password }}
   register: xbmc_generated_password
   changed_when: False
 
-- name: Make sure XBMC user is created
+- name: Make sure HTPC user is created
   user: name={{ htpc_username }} password={{ xbmc_generated_password.stdout }} state=present createhome=yes shell=/bin/bash groups=adm,cdrom,sudo,dip,plugdev,lpadmin,sambashare
 
-- name: Create xbmc user .cache/unity directory
+- name: Create HTPC user .cache/unity directory
   file: path="~{{ htpc_username }}/.cache/unity/" state=directory owner={{ htpc_username }} group={{ htpc_username }} mode=0755
 
 - name: Disable First Login pop-up screen
@@ -53,7 +46,7 @@
 - name: Update advancedsettings.xml
   template: src=advancedsettings.xml.j2 dest=~{{ htpc_username }}/.xbmc/userdata/advancedsettings.xml owner={{ htpc_username }} group={{ htpc_username }} mode=0644
 
-- name: Setup Autologin for account running XBMC
+- name: Setup Autologin for HTPC User
   template: src=etc_lightdm_lightdm.conf.j2 dest=/etc/lightdm/lightdm.conf owner=root group=root mode=0664
 
 - name: Get HTPC User ID
@@ -86,7 +79,7 @@
 - name: Add script to disable screensaver
   copy: src=disable_screensaver dest=/usr/bin/disable_screensaver owner=root group=root mode=0755
 
-- name: Disable screensaver both in Unity and Xserver on xbmc user login
+- name: Disable screensaver both in Unity and Xserver on HTPC user login
   copy: src=disable_screensaver.desktop dest=~{{ htpc_username }}/.config/autostart/disable_screensaver.desktop owner={{ htpc_username }} group={{ htpc_username }} mode=0664
 
 - name: Install Autofs
