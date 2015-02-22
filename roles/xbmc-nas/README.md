@@ -14,25 +14,10 @@ Role Variables
 List of variables that can be passed to the role with default variable values.
 
 ```yaml
-# Variables shared between this role and xbmc-client role.
-# Default values are defined in xbmc-client role.
 media_path:                  # Location of xbmc media folders.
 
-xbmc_default_media_folders:       # Folder names for Movies, TV, Music and etc.
-  movies:
-  tv:
-  music:
-
-xbmc_download_folders:
-  downloads:
-  tmp:
-
-htpc_username:                    # User that will run XBMC
-
-# Variables share between this role, sabnzbd and deluge roles.
-# Defaults are define in each coresponding role.
-sabnzbd_incomplete:
-deluged_incomplete:
+htpc_username:               # HTPC User that will own the media_path
+htpc_user_password:          # HTPC User Password
 ```
 
 
@@ -54,11 +39,6 @@ The following list of roles can be used together with xbmc-client role:
 Detailed info can be found following this link:
 
 https://github.com/GR360RY/htpc-ansible
-
-
-Example Playbook
--------------------------
-
 
 
 License
