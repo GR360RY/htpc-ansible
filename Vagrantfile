@@ -5,7 +5,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "box-cutter/ubuntu1404-desktop"
+  config.vm.box = "boxcutter/ubuntu1404-desktop"
   config.vm.network "public_network"
   config.vm.hostname = "htpc-vm"
   config.vm.provider "virtualbox" do |vb|
