@@ -347,11 +347,7 @@ password =
 port = 5222
 
 [searcher]
-{% if sabnzbd_enabled is defined and sabnzbd_enabled and deluge_enabled is defined and deluge_enabled %}
-preferred_method = both
-{% elif sabnzbd_enabled is defined and sabnzbd_enabled and deluge_enabled is not defined %}
-preferred_method = nzb
-{% elif sabnzbd_enabled is defined and sabnzbd_enabled and deluge_enabled is defined and not deluge_enabled %}
+{% if sabnzbd_enabled is defined and sabnzbd_enabled %}
 preferred_method = nzb
 {% else %}
 preferred_method = torrent
