@@ -13,6 +13,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.gui = true
     vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
     vb.customize ["modifyvm", :id, "--vram", "128"]
+    vb.customize ["modifyvm", :id, "--ioapic", "On"]
+    vb.customize ["modifyvm", :id, "--audio", "coreaudio"]
+    vb.customize ["modifyvm", :id, "--audiocontroller", "ac97"]
     vb.customize 'post-boot', ["controlvm", :id, "setvideomodehint", "1280", "720", "24"]
   end
 
