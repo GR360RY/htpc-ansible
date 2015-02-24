@@ -1,5 +1,5 @@
 echo -e "\n\033[0;32m >> Install Requirements\033[0m"
-sudo apt-get -y update 2>&1>/dev/null
+sudo apt-get -y update 2>&1 >/dev/null
 sudo /usr/bin/apt-get -y install git python-pip
 sudo /usr/bin/pip install -U ansible prompter
 
@@ -11,6 +11,6 @@ else
 fi
 cd "$HOME/htpc-ansible"
 echo -e "\n\033[0;32m >> Run Wizard\033[0m"
-./scripts/wizard.py
+python scripts/wizard.py <&1
 echo -e "\n\033[0;32m >> Installing ...\033[0m"
 ansible-playbook -i hosts -c local -K htpc-server.yml
