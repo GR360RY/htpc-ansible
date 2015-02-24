@@ -152,7 +152,7 @@
 <h2>Role Variables<a class="headerlink" href="#role-variables" title="Permalink to this headline">¶</a></h2>
 <p>List of variables that can be passed to the role with default variable values:</p>
 <div class="highlight-python"><div class="highlight"><pre>xbmc_repo: &#39;ppa:team-xbmc/ppa&#39;    # XBMC Ubuntu ppa.
-xbmc_media_path: /mnt/xbmc        # Location of xbmc media folders.
+media_path: /mnt/xbmc        # Location of xbmc media folders.
 
 xbmc_default_media_folders:       # Folder names for Movies, TV, Music and etc.
   movies: Movies
@@ -163,28 +163,25 @@ xbmc_download_folders:
   downloads: Downloads
   tmp: tmp
 
-xbmc_user_name: xbmc              # User that will run XBMC.
-xbmc_user_password: xbmc          # User&#39;s Password.
+htpc_username: xbmc              # User that will run XBMC.
+htpc_user_password: xbmc          # User&#39;s Password.
 xbmc_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop.
-xbmc_standalone_mode: True        # Standalone box setup.
 
-xbmc_dont_create_folders: False   # Don&#39;t create Media and Downloads folders.
-xbmc_with_download_clinets: False # Don&#39;t create downloads and temporary folders.
 
 # When used together with deluge role, make sure deluge runs as xbmc user.
-deluged_user: &quot;{{ xbmc_user_name }}&quot;
+deluged_user: &quot;{{ htpc_username }}&quot;
 
 # When used together with sabnzbd role, make sure sabnzbd runs as xbmc user.
-sabnzbd_user: &quot;{{ xbmc_user_name }}&quot;
+sabnzbd_user: &quot;{{ htpc_username }}&quot;
 
 # When used together with couchpotato role, make sure couchpotato runs as xbmc user.
-couchpotato_user: &quot;{{ xbmc_user_name }}&quot;
+couchpotato_user: &quot;{{ htpc_username }}&quot;
 
 # When used together with sickbeard role, make sure sickbeard runs as xbmc user.
-sickbeard_user: &quot;{{ xbmc_user_name }}&quot;
+sickbeard_user: &quot;{{ htpc_username }}&quot;
 
 # When used together with htpc-manager role, make sure htpc-manager runs as xbmc user.
-htpc_manager_user: &quot;{{ xbmc_user_name }}&quot;
+htpc_manager_user: &quot;{{ htpc_username }}&quot;
 
 
 # Uninitialised variables
@@ -231,14 +228,13 @@ xbmc_host: &quot;{{ ansible_default_ipv4.address }}&quot;
   sudo: True
 
   vars:
-    xbmc_user_name: foo
-    xbmc_user_password: bar
+    htpc_username: foo
+    htpc_user_password: bar
     xbmc_mysqldb_host: 10.0.0.1
     xbmc_mysqldb_user: xbmc
     xbmc_mysqldb_password: xbmc
     xbmc_external_nas: 10.0.0.1
-    xbmc_media_path: /tank/Media
-    xbmc_dont_create_folders: True
+    media_path: /tank/Media
     xbmc_standalone_mode: False
     xbmc_enable_ubuntu_desktop: False
 
