@@ -4,7 +4,7 @@ Quick Installation
 Login to your Ubuntu 14.04 machine using gui or console.
 Open terminal and run the below command::
 
-    wget --no-check-certificate https://raw.github.com/GR360RY/htpc-ansible/master/scripts/htpc-server.sh -O - | sh
+    wget --no-check-certificate https://raw.github.com/GR360RY/htpc-ansible/master/scripts/quickinstall.sh -O - | sh
 
 .. note::
 
