@@ -19,8 +19,8 @@ Role Variables
 List of variables that can be passed to the role with default variable values::
 
     xbmc_mysqldb_host: "{{ ansible_default_ipv4.address }}"
-    xbmc_mysqldb_user: xbmc
-    xbmc_mysqldb_password: xbmc
+    kodi_mysqldb_user: xbmc
+    kodi_mysqldb_password: xbmc
 
     # If installed together with XBMC disable standalone mode.
     xbmc_standalone_mode: False        # Standalone box setup
@@ -62,8 +62,8 @@ Install XBMC mysql on separate host::
       sudo: True
 
       vars:
-        xbmc_mysqldb_user: xbmc
-        xbmc_mysqldb_password: xbmc
+        kodi_mysqldb_user: xbmc
+        kodi_mysqldb_password: xbmc
         media_path: /mnt/xbmc
 
       xbmc_default_media_folders:

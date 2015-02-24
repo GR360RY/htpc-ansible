@@ -72,8 +72,8 @@ List of variables that can be passed to the role with default variable values::
     # Uninitialised variables
 
     xbmc_mysqldb_host:                # Defaults initialised in xbmc-mysql role
-    xbmc_mysqldb_user:                # Defaults initialised in xbmc-mysql role
-    xbmc_mysqldb_password:            # Defaults initialised in xbmc-mysql role
+    kodi_mysqldb_user:                # Defaults initialised in xbmc-mysql role
+    kodi_mysqldb_password:            # Defaults initialised in xbmc-mysql role
 
     xbmc_external_nas:                # Use xbmc with external NAS
 
@@ -122,8 +122,8 @@ HTPC Server Mode installation with external xbmc mysql database and external NAS
         htpc_username: foo
         htpc_user_password: bar
         xbmc_mysqldb_host: 10.0.0.1
-        xbmc_mysqldb_user: xbmc
-        xbmc_mysqldb_password: xbmc
+        kodi_mysqldb_user: xbmc
+        kodi_mysqldb_password: xbmc
         xbmc_external_nas: 10.0.0.1
         media_path: /tank/Media
         xbmc_standalone_mode: False

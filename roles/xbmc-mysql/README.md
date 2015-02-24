@@ -13,9 +13,9 @@ Role Variables
 --------------
 
 ```yaml
-xbmc_mysqldb_host: "{{ ansible_default_ipv4.address }}"
-xbmc_mysqldb_user: xbmc
-xbmc_mysqldb_password: xbmc
+kodi_mysqldb_host: "{{ ansible_default_ipv4.address }}"
+kodi_mysqldb_user: xbmc
+kodi_mysqldb_password: xbmc
 
 
 media_path:                 # Location of xbmc media folders.
@@ -53,8 +53,8 @@ Example Playbook
 - hosts: htpc-server
 
   vars:
-    xbmc_mysqldb_user: xbmc
-    xbmc_mysqldb_password: xbmc
+    kodi_mysqldb_user: xbmc
+    kodi_mysqldb_password: xbmc
     media_path: /mnt/xbmc
 
     movies_folder: movies

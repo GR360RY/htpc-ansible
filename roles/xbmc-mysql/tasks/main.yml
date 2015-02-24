@@ -12,7 +12,7 @@
     - python-mysqldb
 
 - name: Create MySQL xbmc user for accessing shared databases
-  mysql_user: name={{ xbmc_mysqldb_user }} password={{ xbmc_mysqldb_password }} host={{ item }} priv=*.*:ALL state=present
+  mysql_user: name={{ kodi_mysqldb_user }} password={{ kodi_mysqldb_password }} host={{ item }} priv=*.*:ALL state=present
   with_items:
     - 'localhost'
     - '%'
@@ -23,27 +23,27 @@
   changed_when: False
 
 - name: Upload Videos Database Template
-  template: src=MyVideos.sql dest=/tmp/MyVideos.sql
+  template: src=MyVideos90.sql dest=/tmp/MyVideos90.sql
   when: database_list.stdout.find('MyVideos') == -1
 
 - name: Create empty Videos Database
-  mysql_db: name=MyVideos78 state=present
+  mysql_db: name=MyVideos90 state=present
   when: database_list.stdout.find('MyVideos') == -1
 
 - name: Import Initial Videos Database
-  mysql_db: name=MyVideos78 state=import target=/tmp/MyVideos.sql
+  mysql_db: name=MyVideos90 state=import target=/tmp/MyVideos90.sql
   when: database_list.stdout.find('MyVideos') == -1
 
 - name: Upload Music Database Template
-  template: src=MyMusic.sql dest=/tmp/MyMusic.sql
+  template: src=MyMusic48.sql dest=/tmp/MyMusic48.sql
   when: database_list.stdout.find('MyMusic') == -1
 
 - name: Create empty Music Database
-  mysql_db: name=MyMusic46 state=present
+  mysql_db: name=MyMusic48 state=present
   when: database_list.stdout.find('MyMusic') == -1
 
 - name: Import Initial Music Database
-  mysql_db: name=MyMusic46 state=import target=/tmp/MyMusic.sql
+  mysql_db: name=MyMusic48 state=import target=/tmp/MyMusic48.sql
   when: database_list.stdout.find('MyMusic') == -1
 
 - name: Make sure MySQL is listening on all interfaces

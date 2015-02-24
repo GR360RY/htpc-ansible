@@ -1,7 +1,7 @@
 ---
 # defaults file for xbmc-mysql
-xbmc_mysql_enabled: True
+kodi_mysql_enabled: True
 
-xbmc_mysqldb_host: "{{ ansible_default_ipv4.address }}"
-xbmc_mysqldb_user: xbmc
-xbmc_mysqldb_password: xbmc
+kodi_mysqldb_host: "{{ ansible_default_ipv4.address }}"
+kodi_mysqldb_user: xbmc
+kodi_mysqldb_password: xbmc
