@@ -2,7 +2,7 @@
 # defaults file for xbmc-client
 xbmc_client_enabled: True
 
-xbmc_repo: 'ppa:team-xbmc/ppa'    # XBMC Ubuntu ppa.
+kodi_repo: 'ppa:team-xbmc/ppa'    # XBMC Ubuntu ppa.
 
 media_path: /mnt/media            # Location of xbmc media folders.
 

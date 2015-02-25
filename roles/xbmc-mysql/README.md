@@ -1,7 +1,7 @@
 xbmc-mysql
 ===========
 
-An ansible role to setup and configure XBMC/Kodi Mysql Database under Debian based distro's. This role creates empty Music and Videos Databases with preconfigured media paths.
+An ansible role to setup and configure Kodi Mysql Database under Debian based distro's. This role creates empty Music and Videos Databases with preconfigured media paths.
 
 
 Requirements
@@ -14,8 +14,8 @@ Role Variables
 
 ```yaml
 kodi_mysqldb_host: "{{ ansible_default_ipv4.address }}"
-kodi_mysqldb_user: xbmc
-kodi_mysqldb_password: xbmc
+kodi_mysqldb_user: kodi
+kodi_mysqldb_password: kodi
 
 
 media_path:                 # Location of xbmc media folders.

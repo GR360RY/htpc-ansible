@@ -1,11 +1,11 @@
 - var_name: xbmc_client_enabled
-  text: 'Install XBMC/Kodi ?'
-  prompt_line: 'Install XBMC/Kodi ?'
+  text: 'Install Kodi ?'
+  prompt_line: 'Install Kodi ?'
   type: 'yesno'
 
 - var_name: xbmc_mysql_enabled
-  text: 'Install Mysql for sharing XBMC/Kodi Media Library ?'
-  prompt_line: 'Install XBMC/Kodi mysql backend?'
+  text: 'Install Mysql for sharing Kodi Media Library ?'
+  prompt_line: 'Install Kodi mysql backend?'
   type: 'yesno'
 
 - var_name: xbmc_nas_enabled

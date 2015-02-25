@@ -36,7 +36,7 @@ Role Variables
 
 List of variables that can be passed to the role with default variable values::
 
-    xbmc_repo: 'ppa:team-xbmc/ppa'    # XBMC Ubuntu ppa.
+    kodi_repo: 'ppa:team-xbmc/ppa'    # XBMC Ubuntu ppa.
     media_path: /mnt/xbmc        # Location of xbmc media folders.
 
     xbmc_default_media_folders:       # Folder names for Movies, TV, Music and etc.

@@ -1,5 +1,5 @@
 ---
-# tasks file for xbmc-client
+# tasks file for kodi-client
 
 - name: Run apt-get update
   apt: update_cache=yes cache_valid_time=3600
@@ -9,10 +9,6 @@
 
 - name: Make sure SSH is started on boot
   service: name=ssh state=started enabled=yes
-
-# ( Ubuntu BUG 1280665 )
-- name: Make sure libsdl1.2 is updated to the latest version
-  apt: name=libsdl1.2debian state=latest update_cache=yes cache_valid_time=3600
 
 - name: Generate HTPC user password
   command: /usr/bin/openssl passwd -salt random_salt -1 {{ htpc_user_password }}
@@ -28,23 +24,23 @@
 - name: Disable First Login pop-up screen
   file: path="~{{ htpc_username }}/.cache/unity/first_run.stamp" state=touch owner={{ htpc_username }} group={{ htpc_username }} mode=0755
 
-- name: Add XBMC repository
-  apt_repository: repo={{ xbmc_repo }} state=present
+- name: Add Kodi repository
+  apt_repository: repo={{ kodi_repo }} state=present
 
-- name: Make sure XBMC is installed
-  apt: name=xbmc='2:13.2~git20140817.2155-final-0trusty' update_cache=yes
+- name: Make sure Kodi is installed
+  apt: name='kodi' update_cache=yes
 
-- name: Make sure XBMC folders are available
+- name: Make sure Kodi Confug folders are available
   file: path={{ item }} state=directory owner={{ htpc_username }} group={{ htpc_username }} mode=0755
   with_items:
-    - "~{{ htpc_username }}/.xbmc/"
-    - "~{{ htpc_username }}/.xbmc/userdata"
+    - "~{{ htpc_username }}/.kodi/"
+    - "~{{ htpc_username }}/.kodi/userdata"
 
 - name: Update sources location
-  template: src=sources.xml.j2 dest="~{{ htpc_username }}/.xbmc/userdata/sources.xml" owner={{ htpc_username }} group={{ htpc_username }} mode=0755
+  template: src=sources.xml.j2 dest="~{{ htpc_username }}/.kodi/userdata/sources.xml" owner={{ htpc_username }} group={{ htpc_username }} mode=0755
 
 - name: Update advancedsettings.xml
-  template: src=advancedsettings.xml.j2 dest=~{{ htpc_username }}/.xbmc/userdata/advancedsettings.xml owner={{ htpc_username }} group={{ htpc_username }} mode=0644
+  template: src=advancedsettings.xml.j2 dest=~{{ htpc_username }}/.kodi/userdata/advancedsettings.xml owner={{ htpc_username }} group={{ htpc_username }} mode=0644
 
 - name: Setup Autologin for HTPC User
   template: src=etc_lightdm_lightdm.conf.j2 dest=/etc/lightdm/lightdm.conf owner=root group=root mode=0664
@@ -73,8 +69,8 @@
     - "~{{ htpc_username }}/.config/"
     - "~{{ htpc_username }}/.config/autostart/"
 
-- name: Startup XBMC automatically on login in full screen mode
-  template: src=xbmc.desktop.j2 dest=~{{ htpc_username }}/.config/autostart/xbmc.desktop owner={{ htpc_username }} group={{ htpc_username }} mode=0664
+- name: Startup Kodi automatically on login in full screen mode
+  template: src=kodi.desktop.j2 dest=~{{ htpc_username }}/.config/autostart/kodi.desktop owner={{ htpc_username }} group={{ htpc_username }} mode=0664
 
 - name: Add script to disable screensaver
   copy: src=disable_screensaver dest=/usr/bin/disable_screensaver owner=root group=root mode=0755

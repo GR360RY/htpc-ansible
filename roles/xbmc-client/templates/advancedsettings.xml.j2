@@ -18,7 +18,7 @@
     <importwatchedstate>true</importwatchedstate>
     <importresumepoint>true</importresumepoint>
   </videolibrary>
-{% elif kodi_mysql_enabled is defined and kodi_mysql_enabled and != ansible_default_ipv4.address %}
+{% elif kodi_mysqldb_host is defined and kodi_mysqldb_host != ansible_default_ipv4.address %}
   <videodatabase>
     <type>mysql</type>
     <host>{{ xbmc_mysqldb_host }}</host>
@@ -59,8 +59,5 @@
     <addonautoupdate>false</addonautoupdate>
     <addonnotifications>false</addonnotifications>
   </general>
-  <input>
-    <enablemouse default="true">false</enablemouse>
-  </input>
 {% endif %}
 </advancedsettings>
