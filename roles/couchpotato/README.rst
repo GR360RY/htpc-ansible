@@ -20,9 +20,9 @@ Dependencies
 
 This role is a part of `htpc-ansible` playbook that includes additional set of components required for HTPC automation.
 
-The following list of roles can be used together with xbmc-client role:
+The following list of roles can be used together with kodi-client role:
     
-     - xbmc-client
+     - kodi-client
      - xbmc-mysql
      - sickbeard
      - couchpotato

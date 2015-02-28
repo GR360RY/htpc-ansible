@@ -4,7 +4,7 @@ Roles Index
 .. toctree::
    :maxdepth: 1
 
-   xbmc-client
+   kodi-client
    xbmc-mysql
    xbmc-nas
    htpc-manager

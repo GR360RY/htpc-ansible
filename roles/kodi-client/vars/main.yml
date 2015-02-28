@@ -1,5 +1,5 @@
 ---
-# vars file for xbmc-client
+# vars file for kodi-client
 
 # When used together with deluge role, make sure deluge runs as xbmc user
 deluged_user: "{{ htpc_username }}"

@@ -25,7 +25,7 @@ List of variables that can be passed to the role with default variable values::
     # If installed together with XBMC disable standalone mode.
     xbmc_standalone_mode: False        # Standalone box setup
 
-    # The following variables should be defined in playbook if xbmc-mysql is added without xbmc-client role.
+    # The following variables should be defined in playbook if xbmc-mysql is added without kodi-client role.
 
     media_path:                  # Location of xbmc media folders.
 
@@ -41,7 +41,7 @@ This role is a part of `htpc-ansible` playbook that includes additional set of c
 
 The following list of roles can be used together with xbmc-mysql role:
 
-     - xbmc-client
+     - kodi-client
      - xbmc-nas
      - sickbeard
      - couchpotato
@@ -75,13 +75,13 @@ Install XBMC mysql on separate host::
         - role: xbmc-mysql
 
 
-Install xbmc-mysql together with xbmc-client and xbmc-nas::
+Install xbmc-mysql together with kodi-client and xbmc-nas::
 
     - hosts: htpc-server
       sudo: True
 
       roles:
-        - role: xbmc-client
+        - role: kodi-client
         - role: xbmc-mysql
         - role: xbmc-nas
 

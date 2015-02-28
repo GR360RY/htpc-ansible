@@ -1,5 +1,5 @@
 ---
-# handlers file for xbmc-client
+# handlers file for kodi-client
 
 - name: restart lightdm
   service: name=lightdm state=restarted

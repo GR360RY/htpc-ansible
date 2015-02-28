@@ -12,7 +12,7 @@
       failed_when: false
 
   roles:
-    - { role: xbmc-client, when: xbmc_client_enabled }
+    - { role: kodi-client, when: kodi_client_enabled }
     - { role: xbmc-mysql, when: xbmc_mysql_enabled }
     - { role: xbmc-nas, when: xbmc_nas_enabled }
     - { role: deluge, when: deluge_enabled }

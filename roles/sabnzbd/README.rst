@@ -41,7 +41,7 @@ This role is a part of `htpc-ansible` playbook that includes additional set of c
 
 The following list of roles can be used together with sabnzbd role:
     
-- xbmc-client
+- kodi-client
 - xbmc-mysql
 - sickbeard
 - couchpotato

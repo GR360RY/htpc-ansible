@@ -1,1 +1,1 @@
-.. include:: ../roles/xbmc-client/README.rst
+.. include:: ../roles/kodi-client/README.rst

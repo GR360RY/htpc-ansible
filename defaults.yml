@@ -11,7 +11,7 @@ htpc_username: kodi          # User that will run Kodi
 htpc_user_password: kodi     # User's Password
 
 # Enable/Disable Roles
-xbmc_client_enabled: True
+kodi_client_enabled: True
 xbmc_mysql_enabled: True
 xbmc_nas_enabled: True
 deluge_enabled: True

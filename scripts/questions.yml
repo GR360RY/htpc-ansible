@@ -1,4 +1,4 @@
-- var_name: xbmc_client_enabled
+- var_name: kodi_client_enabled
   text: 'Install Kodi ?'
   prompt_line: 'Install Kodi ?'
   type: 'yesno'

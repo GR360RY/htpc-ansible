@@ -8,7 +8,7 @@ CREATE TABLE setting (
 INSERT INTO "setting" VALUES(1,'xbmc_name','XBMC');
 INSERT INTO "setting" VALUES(2,'xbmc_enable_pvr','0');
 INSERT INTO "setting" VALUES(3,'xbmc_hide_watched','0');
-{% if xbmc_client_enabled is defined and xbmc_client_enabled %}
+{% if kodi_client_enabled is defined and kodi_client_enabled %}
 INSERT INTO "setting" VALUES(4,'xbmc_enable','on');
 {% else %}
 INSERT INTO "setting" VALUES(4,'xbmc_enable','0');
@@ -124,9 +124,9 @@ CREATE TABLE xbmc_servers (
     password TEXT,
     mac TEXT
 );
-{% if xbmc_client_enabled is defined and xbmc_client_enabled and xbmc_host == ansible_default_ipv4.address and htpc_manager_use_hostnames %}
+{% if kodi_client_enabled is defined and kodi_client_enabled and kodi_host == ansible_default_ipv4.address and htpc_manager_use_hostnames %}
 INSERT INTO "xbmc_servers" VALUES(5,'{{ ansible_hostname }}','{{ ansible_hostname }}',8080,'xbmc','','');
-{% elif xbmc_client_enabled is defined and xbmc_client_enabled and xbmc_host == ansible_default_ipv4.address and not htpc_manager_use_hostnames %}
+{% elif kodi_client_enabled is defined and kodi_client_enabled and kodi_host == ansible_default_ipv4.address and not htpc_manager_use_hostnames %}
 INSERT INTO "xbmc_servers" VALUES(5,'{{ ansible_hostname }}','{{ ansible_default_ipv4.address }}',8080,'xbmc','','');
 {% else %}
 INSERT INTO "xbmc_servers" VALUES(5,'{{ ansible_hostname }}','',8080,'xbmc','','');

@@ -13,8 +13,8 @@ Role Variables
 
 List of variables that can be passed to the role with default variable values::
 
-    # Variables shared between this role and xbmc-client role.
-    # Default values are defined in xbmc-client role.
+    # Variables shared between this role and kodi-client role.
+    # Default values are defined in kodi-client role.
     media_path:                  # Location of xbmc media folders.
 
     xbmc_default_media_folders:       # Folder names for Movies, TV, Music and etc.
@@ -39,9 +39,9 @@ Dependencies
 
 This role is a part of `htpc-ansible` playbook that includes additional set of components required for HTPC automation.
 
-The following list of roles can be used together with xbmc-client role::
+The following list of roles can be used together with kodi-client role::
     
-     - xbmc-client
+     - kodi-client
      - xbmc-mysql
      - sickbeard
      - couchpotato

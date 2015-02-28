@@ -314,16 +314,16 @@ username = xbmc
 on_snatch = 0
 force_full_scan = 1
 only_first = 1
-{% if xbmc_client_enabled is defined and xbmc_client_enabled %}
+{% if kodi_client_enabled is defined and kodi_client_enabled %}
 enabled = 1
 {% else %}
 enabled = 0
 {% endif %}
 remote_dir_scan = 0
-{% if xbmc_client_enabled is defined and xbmc_client_enabled and xbmc_host == ansible_default_ipv4.address %}
+{% if kodi_client_enabled is defined and kodi_client_enabled and kodi_host == ansible_default_ipv4.address %}
 host = localhost:8080
-{% elif xbmc_client_enabled is defined and xbmc_client_enabled and xbmc_host != ansible_default_ipv4.address %}
-host = {{ xbmc_host }}:8080
+{% elif kodi_client_enabled is defined and kodi_client_enabled and kodi_host != ansible_default_ipv4.address %}
+host = {{ kodi_host }}:8080
 {% else %}
 host =
 {% endif %}

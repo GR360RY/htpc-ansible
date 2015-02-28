@@ -12,11 +12,11 @@
 
 - name: Generate HTPC user password
   command: /usr/bin/openssl passwd -salt random_salt -1 {{ htpc_user_password }}
-  register: xbmc_generated_password
+  register: htpc_user_generated_password
   changed_when: False
 
 - name: Make sure HTPC user is created
-  user: name={{ htpc_username }} password={{ xbmc_generated_password.stdout }} state=present createhome=yes shell=/bin/bash groups=adm,cdrom,sudo,dip,plugdev,lpadmin,sambashare
+  user: name={{ htpc_username }} password={{ htpc_user_generated_password.stdout }} state=present createhome=yes shell=/bin/bash groups=adm,cdrom,sudo,dip,plugdev,lpadmin,sambashare
 
 - name: Create HTPC user .cache/unity directory
   file: path="~{{ htpc_username }}/.cache/unity/" state=directory owner={{ htpc_username }} group={{ htpc_username }} mode=0755
@@ -55,13 +55,13 @@
   register: xbmc_dbus_path
   changed_when: False
 
-- name: Set Default Lightdm session to XBMC
+- name: Set Default Lightdm session to Kodi
   shell: dbus-send --print-reply --system --dest=org.freedesktop.Accounts {{ xbmc_dbus_path.stdout }} org.freedesktop.Accounts.User.SetXSession string:'XBMC'
-  when: not xbmc_enable_ubuntu_desktop
+  when: not kodi_enable_ubuntu_desktop
 
 - name: Set Default Lightdm session to Ubuntu
   shell: dbus-send --print-reply --system --dest=org.freedesktop.Accounts {{ xbmc_dbus_path.stdout }} org.freedesktop.Accounts.User.SetXSession string:'ubuntu'
-  when: xbmc_enable_ubuntu_desktop
+  when: kodi_enable_ubuntu_desktop
 
 - name: Make sure ~/.config/autostart directory is available
   file: state=directory dest={{ item }} owner={{ htpc_username }} group={{ htpc_username }} mode=0700

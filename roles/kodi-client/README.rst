@@ -1,4 +1,4 @@
-xbmc-client
+kodi-client
 ===========
 
 An ansible role to setup and configure XBMC under Debian based distro's.
@@ -11,12 +11,12 @@ XBMC can be automatically configured in the following modes:
 
 In "Standalone Mode" XBMC will opperate using local storage and local sqlite database.
 
-In "HTPC Server Mode" XBMC will use mysql database installed on the same host as the xbmc-client or using external database installed on other host. When "HTPC Server" mode is applied XBMC can be configured to use external NFS storage. ( See example 2 )
+In "HTPC Server Mode" XBMC will use mysql database installed on the same host as the kodi-client or using external database installed on other host. When "HTPC Server" mode is applied XBMC can be configured to use external NFS storage. ( See example 2 )
 
 In "Client Only Mode" XBMC will be configured to use external database and external NAS by updating advancedsettings.xml. Should be installed on thin clients only.
 
 
-List of tasks that will be performed under xbmc-client role:
+List of tasks that will be performed under kodi-client role:
 
 1. Install ssh server to allow remote management.
 2. Setup XBMC user.
@@ -50,7 +50,7 @@ List of variables that can be passed to the role with default variable values::
 
     htpc_username: kodi              # User that will run kodi.
     htpc_user_password: kodi          # User's Password.
-    xbmc_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop.
+    kodi_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop.
 
 
     # When used together with deluge role, make sure deluge runs as xbmc user.
@@ -78,7 +78,7 @@ List of variables that can be passed to the role with default variable values::
     xbmc_external_nas:                # Use xbmc with external NAS
 
     # Default xbmc host IP. Used by other roles.
-    xbmc_host: "{{ ansible_default_ipv4.address }}" 
+    kodi_host: "{{ ansible_default_ipv4.address }}" 
 
 
 Dependencies
@@ -86,7 +86,7 @@ Dependencies
 
 This role is a part of `htpc-ansible` playbook that includes additional set of components required for HTPC automation.
 
-The following list of roles can be used together with xbmc-client role:
+The following list of roles can be used together with kodi-client role:
 
 - xbmc-mysql
 - xbmc-nas
@@ -107,15 +107,15 @@ Example Playbook
 
 Stanalone Mode installation on single host with default xbmc user ( xbmc/xbmc )::
 
-    - hosts: xbmc-clients
+    - hosts: kodi-clients
 
       roles:
-        - role: xbmc-client
+        - role: kodi-client
 
 
 HTPC Server Mode installation with external xbmc mysql database and external NAS. Automounter will be configured allow direct access to Media files::
 
-    - hosts: xbmc-clients
+    - hosts: kodi-clients
       sudo: True
 
       vars:
@@ -127,10 +127,10 @@ HTPC Server Mode installation with external xbmc mysql database and external NAS
         xbmc_external_nas: 10.0.0.1
         media_path: /tank/Media
         xbmc_standalone_mode: False
-        xbmc_enable_ubuntu_desktop: False
+        kodi_enable_ubuntu_desktop: False
 
       roles:
-        - role: xbmc-client
+        - role: kodi-client
 
 License
 -------

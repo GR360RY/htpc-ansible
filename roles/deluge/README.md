@@ -51,10 +51,10 @@ This role is a part of `htpc-ansible` playbook that includes additional set of c
 
 Dependant on `nzbtomedia` role for automating postprocessing with `sickbeard` and `couchpotato`.
 
-The following list of roles can be used together with xbmc-client role:
+The following list of roles can be used together with kodi-client role:
 
 ```    
- - xbmc-client
+ - kodi-client
  - xbmc-mysql
  - xbmc-nas
  - sickbeard

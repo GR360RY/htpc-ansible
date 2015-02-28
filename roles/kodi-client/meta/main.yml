@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Gregory Shulov
-  description: An ansible role to setup and configure XBMC under Debian based distro's
+  description: An ansible role to setup and configure Kodi under Debian based distro's
   # company: your company (optional)
   # Some suggested licenses:
   # - BSD (default)

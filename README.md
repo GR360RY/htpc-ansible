@@ -1,10 +1,10 @@
 ## htpc-ansible
-HTPC Server Automation with XBMC, Bittorent and Usenet Software
+HTPC Server Automation with Kodi, Bittorent, Usenet Software, Couchpotato, Sickbeard, Tvheadend and nzbToMedia postinstallation scripts.
 
 ## Overview
 This ansible playbook is designed to quickly deploy home HTPC server, which can perform variety of funcitons. It's based on an Ubuntu 14.04, and can set up several configuration variants. It includes roles, which can be set up on a single machine, or on a different ones, and can be customized through single configuration file, correctly deploying all the software.
 
-- [XBMC](http://xbmc.org/‎) - Open Source Home Theatre Software, with optional mysql backend support (can be used to manage single library for multiple XBMC clients at home)
+- [Kodi](http://kodi.tv/‎) - Open Source Home Theatre Software, with optional mysql backend support (can be used to manage single library for multiple Kodi clients at home)
 - NAS configuration with support for sharing the library over NFS and CIFS
 - [HTPC Manager](http://htpc.io) - combines all your favorite software into one slick interface
 - [Couchpotato](https://couchpota.to/) - Download movies automatically
@@ -36,12 +36,12 @@ __Reboot your machine following the installation.__
 The following list of tasks will be performed during the installation:
 
 * Install sshd service for remote access.
-* Add 'xbmc' user identified by 'xbmc' password.
+* Add 'kodi' user identified by 'kodi' password.
 * Create movies, tv, music, pictures and downloads folders under /mnt/media
-* Install latest XBMC version.
-* Configure xbmc user to autologin automatically and start XBMC software.
-* Enable Web Access to XBMC.
-* Create XBMC mysql database and configure it to use correct Movies and TV Shows paths.
+* Install latest Kodi version.
+* Configure HTPC user to autologin automatically and start Kodi software.
+* Enable Web Access to Kodi.
+* Create Kodi mysql database and configure it to use correct Movies and TV Shows paths.
 * Automatically configure scrappers for Movies and TV Sources
 * Share folders under /mnt/media over CIFS ( for Windows Machines ) and over NFS ( for Linux based Machines )
 * Install Deluge Daemon (Bittorent) or/and Sabnzbd(usenet). ( Sabnzbd will run on port 9000 )
@@ -71,8 +71,8 @@ Open `htpc-server.yml` in your favorite editor and update vars section.
 Most commonly changed variables are available in the htpc-server.yml file.
 All variables with detailed desription are located in each role README.md file:
 
-* [XBMC Client Customisations](roles/xbmc-client/README.md)
-* [XBMC MySQL Database Customisations](roles/xbmc-mysql/README.md)
+* [Kodi Client Customisations](roles/kodi-client/README.md)
+* [Kodi MySQL Database Customisations](roles/xbmc-mysql/README.md)
 * [NAS Customisations](roles/xbmc-nas/README.md)
 * [Sabnzbd Customisations](roles/sabnzbd/README.md)
 * [Deluge Customisations](roles/deluge/README.md)

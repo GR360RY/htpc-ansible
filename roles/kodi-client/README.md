@@ -1,4 +1,4 @@
-xbmc-client
+kodi-client
 ===========
 
 An ansible role to setup and configure Kodi under Debian based distro's.
@@ -11,7 +11,7 @@ This role requires Ansible 1.6 or higher. Platform requirements are listed in th
 Overview
 --------
 
-List of tasks that will be performed under xbmc-client role:
+List of tasks that will be performed under kodi-client role:
 
 1. Install ssh server to allow remote management.
 2. Setup Linux HTPC user.
@@ -38,10 +38,10 @@ pictures_folder: pictures
 
 htpc_username: kodi               # HTPC User that will run Kodi
 htpc_user_password: kodi          # HTPC User Password
-xbmc_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop
+kodi_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop
 
 # Default xbmc host IP. Used by other roles.
-xbmc_host: "{{ ansible_default_ipv4.address }}" 
+kodi_host: "{{ ansible_default_ipv4.address }}" 
 ```
 
 Configure Kodi to use Mysql Backend and NFS Mount
@@ -74,7 +74,7 @@ Dependencies
 
 This role is a part of `htpc-ansible` playbook that includes additional set of components required for HTPC automation.
 
-The following list of roles can be used together with xbmc-client role:
+The following list of roles can be used together with kodi-client role:
 
 - xbmc-mysql
 - xbmc-nas
@@ -96,21 +96,21 @@ Example Playbook
 Create HTPC user `foo`. Use local storage and sqlite database. Start XBMC session without Ubuntu Desktop:
 
 ```
-    - hosts: xbmc-clients
+    - hosts: kodi-clients
 
       vars:
         htpc_username: foo
         htpc_user_password: bar
-        xbmc_enable_ubuntu_desktop: False
+        kodi_enable_ubuntu_desktop: False
 
       roles:
-        - role: xbmc-client
+        - role: kodi-client
 ```
 
 Use MySQL Database for Kodi media Library:
 
 ```
-    - hosts: xbmc-clients
+    - hosts: kodi-clients
       sudo: True
 
       vars:
@@ -119,13 +119,13 @@ Use MySQL Database for Kodi media Library:
         xbmc_mysqldb_password: xbmc
 
       roles:
-        - role: xbmc-client
+        - role: kodi-client
 ```
 
 Use external NFS storage for media: 
 
 ```
-    - hosts: xbmc-clients
+    - hosts: kodi-clients
       sudo: True
 
       vars:
@@ -133,7 +133,7 @@ Use external NFS storage for media:
         media_path: /tank/Media
 
       roles:
-        - role: xbmc-client
+        - role: kodi-client
 ```
 
 

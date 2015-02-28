@@ -307,7 +307,7 @@ torrent_high_bandwidth = 0
 torrent_label = tv
 torrent_verify_cert = 0
 [XBMC]
-{% if xbmc_client_enabled is defined and xbmc_client_enabled %}
+{% if kodi_client_enabled is defined and kodi_client_enabled %}
 use_xbmc = 1
 {% else %}
 use_xbmc = 0
@@ -319,10 +319,10 @@ xbmc_notify_onsubtitledownload = 0
 xbmc_update_library = 1
 xbmc_update_full = 1
 xbmc_update_onlyfirst = 1
-{% if xbmc_client_enabled is defined and xbmc_client_enabled and xbmc_host == ansible_default_ipv4.address %}
+{% if kodi_client_enabled is defined and kodi_client_enabled and kodi_host == ansible_default_ipv4.address %}
 xbmc_host = localhost:8080
-{% elif xbmc_client_enabled is defined and xbmc_client_enabled and xbmc_host != ansible_default_ipv4.address %}
-xbmc_host = {{ xbmc_host }}:8080
+{% elif kodi_client_enabled is defined and kodi_client_enabled and kodi_host != ansible_default_ipv4.address %}
+xbmc_host = {{ kodi_host }}:8080
 {% else %}
 xbmc_host = ""
 {% endif %}

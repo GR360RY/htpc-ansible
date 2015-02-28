@@ -1,6 +1,6 @@
 ---
-# defaults file for xbmc-client
-xbmc_client_enabled: True
+# defaults file for kodi-client
+kodi_client_enabled: True
 
 kodi_repo: 'ppa:team-xbmc/ppa'    # XBMC Ubuntu ppa.
 
@@ -13,9 +13,9 @@ pictures_folder: pictures
 
 htpc_username: kodi               # User that will run XBMC
 htpc_user_password: kodi          # User's Password
-xbmc_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop
+kodi_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop
 
 # Helper Variables
 
-# Default xbmc host IP. Used by other roles.
-xbmc_host: "{{ ansible_default_ipv4.address }}"
+# Default Kodi host IP. Used by other roles.
+kodi_host: "{{ ansible_default_ipv4.address }}"
