@@ -36,8 +36,8 @@ tv_folder: tv
 music_folder: music
 pictures_folder: pictures
 
-htpc_username: xbmc               # HTPC User that will run Kodi
-htpc_user_password: xbmc          # HTPC User Password
+htpc_username: kodi               # HTPC User that will run Kodi
+htpc_user_password: kodi          # HTPC User Password
 xbmc_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop
 
 # Default xbmc host IP. Used by other roles.

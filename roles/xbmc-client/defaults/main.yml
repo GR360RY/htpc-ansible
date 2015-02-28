@@ -11,8 +11,8 @@ tv_folder: tv
 music_folder: music
 pictures_folder: pictures
 
-htpc_username: xbmc               # User that will run XBMC
-htpc_user_password: xbmc          # User's Password
+htpc_username: kodi               # User that will run XBMC
+htpc_user_password: kodi          # User's Password
 xbmc_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop
 
 # Helper Variables

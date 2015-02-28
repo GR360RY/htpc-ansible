@@ -7,8 +7,8 @@ tv_folder: tv
 music_folder: music
 pictures_folder: pictures
 
-htpc_username: xbmc          # User that will run XBMC
-htpc_user_password: xbmc     # User's Password
+htpc_username: kodi          # User that will run Kodi
+htpc_user_password: kodi     # User's Password
 
 # Enable/Disable Roles
 xbmc_client_enabled: True

@@ -48,8 +48,8 @@ List of variables that can be passed to the role with default variable values::
       downloads: Downloads
       tmp: tmp
 
-    htpc_username: xbmc              # User that will run XBMC.
-    htpc_user_password: xbmc          # User's Password.
+    htpc_username: kodi              # User that will run kodi.
+    htpc_user_password: kodi          # User's Password.
     xbmc_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop.
 
 
