@@ -33,7 +33,7 @@ This role is a part of `htpc-ansible` playbook that includes additional set of c
 The following list of roles can be used together with xbmc-mysql role:
 
      - kodi-client
-     - xbmc-nas
+     - htpc-nas
      - sickbeard
      - couchpotato
      - subnzbd

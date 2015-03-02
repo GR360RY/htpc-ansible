@@ -1,5 +1,5 @@
 ---
-# handlers file for xbmc-nas
+# handlers file for htpc-nas
 
 - name: update nfs exports
   command: /usr/sbin/exportfs -a

@@ -73,7 +73,7 @@ All variables with detailed desription are located in each role README.md file:
 
 * [Kodi Client Customisations](roles/kodi-client/README.md)
 * [Kodi MySQL Database Customisations](roles/xbmc-mysql/README.md)
-* [NAS Customisations](roles/xbmc-nas/README.md)
+* [NAS Customisations](roles/htpc-nas/README.md)
 * [Sabnzbd Customisations](roles/sabnzbd/README.md)
 * [Deluge Customisations](roles/deluge/README.md)
 * [SickBeard Customisations](roles/sickbeard/README.md)

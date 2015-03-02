@@ -6,7 +6,7 @@ Roles Index
 
    kodi-client
    xbmc-mysql
-   xbmc-nas
+   htpc-nas
    htpc-manager
    couchpotato
    sickbeard

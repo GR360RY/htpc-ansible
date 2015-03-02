@@ -42,7 +42,7 @@ This role is a part of `htpc-ansible` playbook that includes additional set of c
 The following list of roles can be used together with xbmc-mysql role:
 
      - kodi-client
-     - xbmc-nas
+     - htpc-nas
      - sickbeard
      - couchpotato
      - subnzbd
@@ -75,7 +75,7 @@ Install XBMC mysql on separate host::
         - role: xbmc-mysql
 
 
-Install xbmc-mysql together with kodi-client and xbmc-nas::
+Install xbmc-mysql together with kodi-client and htpc-nas::
 
     - hosts: htpc-server
       sudo: True
@@ -83,7 +83,7 @@ Install xbmc-mysql together with kodi-client and xbmc-nas::
       roles:
         - role: kodi-client
         - role: xbmc-mysql
-        - role: xbmc-nas
+        - role: htpc-nas
 
 
 License

@@ -1,4 +1,4 @@
-xbmc-nas
+htpc-nas
 ===========
 
 An ansible role to setup and configure NAS functionality ( NFS and Samba ) for HTPC Server under Debian based distro's.

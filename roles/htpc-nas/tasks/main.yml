@@ -1,5 +1,5 @@
 ---
-# tasks file for xbmc-nas
+# tasks file for htpc-nas
 
 - name: Install NFS Server
   apt: name=nfs-kernel-server state=installed update_cache=yes cache_valid_time=3600

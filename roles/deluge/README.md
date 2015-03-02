@@ -56,7 +56,7 @@ The following list of roles can be used together with kodi-client role:
 ```    
  - kodi-client
  - xbmc-mysql
- - xbmc-nas
+ - htpc-nas
  - sickbeard
  - couchpotato
  - subnzbd

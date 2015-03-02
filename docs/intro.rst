@@ -18,7 +18,7 @@ The following roles are currently available as part of htpc-ansible:
 
 * kodi-client - Kodi Open Source Home Theatre Software
 * xbmc-mysql - MySQL Backend for Kodi/XBMC ( Media library sharing for multiple Kodi/XBMC clients at home)
-* xbmc-nas - NAS configuration with support for sharing the library over NFS,CIFS
+* htpc-nas - NAS configuration with support for sharing the library over NFS,CIFS
 * htpc-manager - Web Front End for managing Kodi/XBMC, Couchpotato, Sick Beard, SABnzbd, Deluge and Tvheadend
 * couchpotato - Download movies automatically
 * sickbeard - Internet PVR for your TV Shows

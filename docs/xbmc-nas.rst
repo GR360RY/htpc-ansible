@@ -1,1 +1,1 @@
-.. include:: ../roles/xbmc-nas/README.rst
+.. include:: ../roles/htpc-nas/README.rst
