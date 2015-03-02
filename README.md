@@ -28,30 +28,76 @@ Open terminal and run:
 ```
 wget --no-check-certificate https://raw.github.com/GR360RY/htpc-ansible/master/scripts/quickinstall.sh -O - | sh
 ```
-	
+
+Choose roles/software and configure variables:
+
+```
+ >> Run Wizard
+Install Kodi ? [Y/n]:
+Install Kodi Mysql Backend? [Y/n]:
+Install NAS services ? [Y/n]:
+Install Deluge [Y/n]:
+Install Sabnzbd [y/N]:
+Install Sickbeard [Y/n]:
+Install Couchpotato [Y/n]:
+Install HTPC-Manager [Y/n]:
+Install TVheadend [y/N]:
+Media path [/mnt/media]:
+Movies Folder [movies]:
+TV Folder [tv]:
+Music Folder [music]:
+Pictures Folder [pictures]:
+HTPC User [kodi]:
+HTPC User password [kodi]:
+```
+
 __Reboot your machine following the installation.__
 
-### What will be installed and configured ?
-
-The following list of tasks will be performed during the installation:
-
-* Install sshd service for remote access.
-* Add 'kodi' user identified by 'kodi' password.
-* Create movies, tv, music, pictures and downloads folders under /mnt/media
-* Install latest Kodi version.
-* Configure HTPC user to autologin automatically and start Kodi software.
-* Enable Web Access to Kodi.
-* Create Kodi mysql database and configure it to use correct Movies and TV Shows paths.
-* Automatically configure scrappers for Movies and TV Sources
-* Share folders under /mnt/media over CIFS ( for Windows Machines ) and over NFS ( for Linux based Machines )
-* Install Deluge Daemon (Bittorent) or/and Sabnzbd(usenet). ( Sabnzbd will run on port 9000 )
-* Install SickBeard and Couchpotato for grabbing TV Shows and Movies. 
-* Install htpc-manager and configure all of the above service in htpc-manager.
-* Setup apache as reverse proxy to allow access to htpc-manager on port 80.
-
-All services ( besides Sabnzbd ) are configured with their default ports and settings, unless playbook has been modified.
-
 ## Customizing the setup
+
+The below list summarises tasks that will be performed in each role. Default variable values are appear in parentheses. 
+Additional information is availalble for each role in README.md link.
+
+* __kodi-client__ ([README.md](roles/kodi-client/README.md))
+    - Install sshd service for remote access.
+    - Create HTPC Linux User (`kodi`/`kodi`)
+    - Create movies, tv, music, pictures and downloads folders under "Media Path" (`/mnt/media`)
+    - Install latest Kodi version.
+    - Configure HTPC user to autologin automatically and start Kodi software.
+    - Enable Web Access to Kodi (username: `xbmc` and no password)
+
+* __kodi-mysql__ ([README.md](roles/kodi-mysql/README.md))
+    - Install Mysql Server
+    - Create Initial Databases for Videos and Music
+
+* __htpc-nas__ ([README.md](roles/htpc-nas/README.md))
+    - Share "Media Path" (`/mnt/media`) over NFS
+    - Share "Media Path" (`/mnt/media`) over CIFS to allow access from Windows Machines
+
+* __deluge__ ([README.md](roles/deluge/README.md))
+    - Install Deluge Daemon and configure to listen on port 8112
+    - Install Deluge-Web Daemon and configure to listen on port 58846 ( default password `deluge`)
+    - Create deluge downloads folders under "Media Path" ( `/mnt/media/downloads/incomplete/deluged` and `/mnt/media/downloads/incomplete/process`)
+    - Create `localclient` user and identified by `2b9cf85259f2149da47458eda73ba23ac06faa21`
+
+* __sabnzbd__ ([README.md](roles/sabnzbd/README.md))
+    - Install Sabnzbdplus and configure to listen on port __9000__ ( Port number conflict with htpc-manager. Default port changed from 8080 )
+    - Create sabnzbd incomplete downloads folder under "Media Path" ( `/mnt/media/downloads/incomplete/sabnzbd`)
+    - Configure API Key for allowing access from htpc-manager, couchpotato and sickbeard (`c48afc846972e295826bb05d2e84dd59`)
+
+* __sickbeard__ ([README.md](roles/sickbeard/README.md))
+    - Install Sickbeard
+
+* __couchpotato__ ([README.md](roles/couchpotato/README.md))
+    - Install Couchpotato
+
+* __htpc-manager__([README.md](roles/htpc-manager/README.md))
+    - Install htpc-manager
+    - Setup apache as reverse proxy to allow access to htpc-manager on port 80.
+
+* __tvheadend__([README.md](roles/tvheadend/README.md))
+    - Install Tvheadend
+
 
 __Install Ansible and Git__
 
@@ -70,15 +116,6 @@ __Edit Configuration__
 Open `htpc-server.yml` in your favorite editor and update vars section.
 Most commonly changed variables are available in the htpc-server.yml file.
 All variables with detailed desription are located in each role README.md file:
-
-* [Kodi Client Customisations](roles/kodi-client/README.md)
-* [Kodi MySQL Database Customisations](roles/xbmc-mysql/README.md)
-* [NAS Customisations](roles/htpc-nas/README.md)
-* [Sabnzbd Customisations](roles/sabnzbd/README.md)
-* [Deluge Customisations](roles/deluge/README.md)
-* [SickBeard Customisations](roles/sickbeard/README.md)
-* [CouchPotato Customisations](roles/couchpotato/README.md)
-* [HTPC-Manager Customisations](roles/htpc-manager/README.md)
 
 Run Ansible Playbook from your localhost:
 
