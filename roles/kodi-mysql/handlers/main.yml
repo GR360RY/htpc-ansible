@@ -1,5 +1,5 @@
 ---
-# handlers file for xbmc-mysql
+# handlers file for kodi-mysql
 
 - name: restart mysql
   service: name=mysql state=restarted enabled=yes

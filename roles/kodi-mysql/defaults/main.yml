@@ -1,5 +1,5 @@
 ---
-# defaults file for xbmc-mysql
+# defaults file for kodi-mysql
 kodi_mysql_enabled: True
 
 kodi_mysqldb_host: "{{ ansible_default_ipv4.address }}"

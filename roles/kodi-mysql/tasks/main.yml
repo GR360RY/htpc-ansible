@@ -1,5 +1,5 @@
 ---
-# tasks file for xbmc-mysql
+# tasks file for kodi-mysql
 
 # TODO:
 # 1. Add option to force database initialisation even if already exists
@@ -11,7 +11,7 @@
     - mysql-server
     - python-mysqldb
 
-- name: Create MySQL xbmc user for accessing shared databases
+- name: Create MySQL kodi user for accessing shared databases
   mysql_user: name={{ kodi_mysqldb_user }} password={{ kodi_mysqldb_password }} host={{ item }} priv=*.*:ALL state=present
   with_items:
     - 'localhost'

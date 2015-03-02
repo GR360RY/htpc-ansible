@@ -13,7 +13,7 @@
 
   roles:
     - { role: kodi-client, when: kodi_client_enabled }
-    - { role: xbmc-mysql, when: xbmc_mysql_enabled }
+    - { role: kodi-mysql, when: kodi_mysql_enabled }
     - { role: xbmc-nas, when: xbmc_nas_enabled }
     - { role: deluge, when: deluge_enabled }
     - { role: sabnzbd, when: sabnzbd_enabled }

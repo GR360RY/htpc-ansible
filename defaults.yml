@@ -12,7 +12,7 @@ htpc_user_password: kodi     # User's Password
 
 # Enable/Disable Roles
 kodi_client_enabled: True
-xbmc_mysql_enabled: True
+kodi_mysql_enabled: True
 xbmc_nas_enabled: True
 deluge_enabled: True
 sabnzbd_enabled: False
