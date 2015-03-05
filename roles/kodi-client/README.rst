@@ -71,9 +71,9 @@ List of variables that can be passed to the role with default variable values::
 
     # Uninitialised variables
 
-    xbmc_mysqldb_host:                # Defaults initialised in xbmc-mysql role
-    kodi_mysqldb_user:                # Defaults initialised in xbmc-mysql role
-    kodi_mysqldb_password:            # Defaults initialised in xbmc-mysql role
+    xbmc_mysqldb_host:                # Defaults initialised in kodi-mysql role
+    kodi_mysqldb_user:                # Defaults initialised in kodi-mysql role
+    kodi_mysqldb_password:            # Defaults initialised in kodi-mysql role
 
     xbmc_external_nas:                # Use xbmc with external NAS
 
@@ -88,7 +88,7 @@ This role is a part of `htpc-ansible` playbook that includes additional set of c
 
 The following list of roles can be used together with kodi-client role:
 
-- xbmc-mysql
+- kodi-mysql
 - htpc-nas
 - sickbeard
 - couchpotato

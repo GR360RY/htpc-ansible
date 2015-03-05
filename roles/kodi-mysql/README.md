@@ -1,4 +1,4 @@
-xbmc-mysql
+kodi-mysql
 ===========
 
 An ansible role to setup and configure Kodi Mysql Database under Debian based distro's. This role creates empty Music and Videos Databases with preconfigured media paths.
@@ -30,7 +30,7 @@ Dependencies
 
 This role is a part of `htpc-ansible` playbook that includes additional set of components required for HTPC automation.
 
-The following list of roles can be used together with xbmc-mysql role:
+The following list of roles can be used together with kodi-mysql role:
 
      - kodi-client
      - htpc-nas
@@ -62,7 +62,7 @@ Example Playbook
     music_folder: music
 
   roles:
-    - role: xbmc-mysql
+    - role: kodi-mysql
 ```
 
 License

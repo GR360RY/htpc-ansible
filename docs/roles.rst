@@ -5,7 +5,7 @@ Roles Index
    :maxdepth: 1
 
    kodi-client
-   xbmc-mysql
+   kodi-mysql
    htpc-nas
    htpc-manager
    couchpotato

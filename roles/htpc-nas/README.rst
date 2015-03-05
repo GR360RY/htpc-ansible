@@ -42,7 +42,7 @@ This role is a part of `htpc-ansible` playbook that includes additional set of c
 The following list of roles can be used together with kodi-client role::
     
      - kodi-client
-     - xbmc-mysql
+     - kodi-mysql
      - sickbeard
      - couchpotato
      - subnzbd

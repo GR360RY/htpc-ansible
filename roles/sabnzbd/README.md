@@ -48,7 +48,7 @@ The following list of roles can be used together with sabnzbd role:
 
 ```    
 - kodi-client
-- xbmc-mysql
+- kodi-mysql
 - htpc-nas
 - sickbeard
 - couchpotato

@@ -1,0 +1,1 @@
+.. include:: ../roles/kodi-mysql/README.rst

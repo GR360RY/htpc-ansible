@@ -1,9 +1,9 @@
-xbmc-mysql
+kodi-mysql
 ===========
 
 An ansible role to setup and configure XBMC Mysql Database under Debian based distro's.
 
-List of tasks that will be performed under xbmc-mysql role:
+List of tasks that will be performed under kodi-mysql role:
 
 1. Install Mysql Serever
 2. Create Initial XBMC Database with preconfigured Movies and TV Shows Sources
@@ -25,7 +25,7 @@ List of variables that can be passed to the role with default variable values::
     # If installed together with XBMC disable standalone mode.
     xbmc_standalone_mode: False        # Standalone box setup
 
-    # The following variables should be defined in playbook if xbmc-mysql is added without kodi-client role.
+    # The following variables should be defined in playbook if kodi-mysql is added without kodi-client role.
 
     media_path:                  # Location of xbmc media folders.
 
@@ -39,7 +39,7 @@ Dependencies
 
 This role is a part of `htpc-ansible` playbook that includes additional set of components required for HTPC automation.
 
-The following list of roles can be used together with xbmc-mysql role:
+The following list of roles can be used together with kodi-mysql role:
 
      - kodi-client
      - htpc-nas
@@ -72,17 +72,17 @@ Install XBMC mysql on separate host::
         music: Music
 
       roles:
-        - role: xbmc-mysql
+        - role: kodi-mysql
 
 
-Install xbmc-mysql together with kodi-client and htpc-nas::
+Install kodi-mysql together with kodi-client and htpc-nas::
 
     - hosts: htpc-server
       sudo: True
 
       roles:
         - role: kodi-client
-        - role: xbmc-mysql
+        - role: kodi-mysql
         - role: htpc-nas
 
 

@@ -1,7 +1,10 @@
+
 ## htpc-ansible
-HTPC Server Automation with Kodi, Bittorent, Usenet Software, Couchpotato, Sickbeard, Tvheadend and nzbToMedia postinstallation scripts.
+
+HTPC Server Automation with Kodi, Bittorent (Deluge), Usenet Software (sabnzbdplus), Couchpotato, Sickbeard, Tvheadend and nzbToMedia.
 
 ## Overview
+
 This ansible playbook is designed to quickly deploy home HTPC server, which can perform variety of funcitons. It's based on an Ubuntu 14.04, and can set up several configuration variants. It includes roles, which can be set up on a single machine, or on a different ones, and can be customized through single configuration file, correctly deploying all the software.
 
 - [Kodi](http://kodi.tv/‎) - Open Source Home Theatre Software, with optional mysql backend support (can be used to manage single library for multiple Kodi clients at home)
@@ -31,6 +34,10 @@ wget --no-check-certificate https://raw.github.com/GR360RY/htpc-ansible/master/s
 
 Choose roles/software and configure variables:
 
+__Warning: Don't enable Sabnzbd if you don't have usenet server credentials.__
+( When sabnzbd enabled, usenet will be used as a default search source in couchpotato and sickbeard )
+
+
 ```
  >> Run Wizard
 Install Kodi ? [Y/n]:
@@ -55,8 +62,35 @@ __Reboot your machine following the installation.__
 
 ## Customizing the setup
 
+### Install Ansible and Git
+
+```    
+sudo apt-get install software-properties-common
+sudo apt-add-repository -y ppa:ansible/ansible
+sudo apt-get update
+sudo apt-get -y install ansible git
+```
+
+### Clone the repository
+
+```
+git clone https://github.com/GR360RY/htpc-ansible.git
+cd htpc-ansible
+```
+
+### Edit Configuration
+
+Create/Open `custom.yml` in your favorite editor and add/update variables.
+Most commonly changed variables are available in the defaults.yml file.
+All variables with detailed desription are located in each role README.md file:
+
+Run Ansible Playbook from your localhost:
+
+    ansible-playbook -i hosts -c local -K htpc-server.yml
+
+### Role Tasks and Variables
+
 The below list summarises tasks that will be performed in each role. Default variable values are appear in parentheses. 
-Additional information is availalble for each role in README.md link.
 
 * __kodi-client__ ([README.md](roles/kodi-client/README.md))
     - Install sshd service for remote access.
@@ -98,66 +132,39 @@ Additional information is availalble for each role in README.md link.
 * __tvheadend__([README.md](roles/tvheadend/README.md))
     - Install Tvheadend
 
-
-__Install Ansible and Git__
-
-    sudo apt-get install software-properties-common
-    sudo apt-add-repository -y ppa:ansible/ansible
-    sudo apt-get update
-    sudo apt-get -y install ansible git
-
-__Clone the repository__
-
-    git clone https://github.com/GR360RY/htpc-ansible.git
-    cd htpc-ansible
-
-__Edit Configuration__
-
-Open `htpc-server.yml` in your favorite editor and update vars section.
-Most commonly changed variables are available in the htpc-server.yml file.
-All variables with detailed desription are located in each role README.md file:
-
-Run Ansible Playbook from your localhost:
-
-    ansible-playbook -i hosts -c local -K htpc-server.yml
-
-
 ## Development and Testing with Vagrant
 
-### Prerequisites
+If you want to test out the configuration in VirtualMachine or contribute to htpc-ansible development, install requirements and follow the below guide:
 
-#### Install Vagrant
-If you want to test out the configuration in VirtualMachine or contribute to htpc-ansible development,
-download and install [Vagrant](http://www.vagrantup.com/)
+### Requirements
 
-Install [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+* Install [Vagrant](http://www.vagrantup.com/)
+* Install [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+* Install [Snapshot plugin for Vagrant](https://github.com/scalefactory/vagrant-multiprovider-snap)
+* Install [Ansible](http://docs.ansible.com/intro_installation.html)
 
-#### Install snapshot plugin for Vagrant
-We will use a [vagrant-multiprovider-snap](https://github.com/scalefactory/vagrant-multiprovider-snap) to roll machine back instead of recreating box from scratch.
-```
-vagrant plugin install vagrant-multiprovider-snap
-```
 ### Deployment
 
-#### Bringing up the machine
-
-##### Bring up ubuntu desktop only
+* Bring up ubuntu desktop only
 ```
 vagrant up --no-provision
 ```
-##### Snapshot the machine.
 
+* Snapshot the machine.
 ```
 vagrant snap take
 ```
 
-#### Deploying htpc-ansible
+* Deploying htpc-ansible
 ```
 vagrant provision
 ```
 
-#### Reverting snapshot
-In case you want to redeploy from scratch - simply revert the snapshot back to the machine with desktop installed.
+* Reverting snapshot
+
+In case you want to redeploy from scratch - simply revert the snapshot back to 
+the machine with desktop installed.
+
 ```
 vagrant snap rollback
 ```

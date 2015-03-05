@@ -1,1 +1,0 @@
-.. include:: ../roles/xbmc-mysql/README.rst
