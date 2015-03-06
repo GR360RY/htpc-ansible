@@ -15,12 +15,12 @@
 
 - var_name: deluge_enabled
   text: 'Install Deluge'
-  prompt_line: 'Install Deluge'
+  prompt_line: 'Install Bittorent Client (Deluge)'
   type: 'yesno'
 
 - var_name: sabnzbd_enabled
   text: 'Install Sabnzbd'
-  prompt_line: 'Install Sabnzbd'
+  prompt_line: 'Install Newsgroups Client (Sabnzbd)'
   type: 'yesno'
   # sub_questions:
   #   - var_name: xbmc_password
