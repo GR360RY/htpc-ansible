@@ -6,7 +6,6 @@ sickbeard_repo: https://github.com/echel0n/SickRage.git
 sickbeard_branch: master
 
 sickbeard_api_key: 9d9af7ab6548948fcdc2db864ecd2588
-usenet_crawler_api_key: 9d9af7ab6548948fcdc2db864ecd2588
 
 media_path: /mnt/media
 downloads_path: "{{ media_path }}/downloads"           # Downloads path

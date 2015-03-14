@@ -17,6 +17,8 @@ List of variables that can be passed to the role with default variable values.
 sabnzbd_port: 9000
 sab_apikey: c48afc846972e295826bb05d2e84dd59
 
+usenet_crawler_api_key: 9d9af7ab6548948fcdc2db864ecd2588
+
 # Default download locations:
 media_path: /mnt/media
 downloads_path: "{{ media_path }}/downloads"
