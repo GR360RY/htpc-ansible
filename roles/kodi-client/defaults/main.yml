@@ -13,7 +13,9 @@ pictures_folder: pictures
 
 htpc_username: kodi               # User that will run XBMC
 htpc_user_password: kodi          # User's Password
+
 kodi_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop
+kodi_user_sudo_access: True       # Give default kodi user sudo access
 
 # Helper Variables
 

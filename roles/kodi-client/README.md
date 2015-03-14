@@ -16,7 +16,7 @@ List of tasks that will be performed under kodi-client role:
 1. Install ssh server to allow remote management.
 2. Setup Linux HTPC user.
 3. Configure LightDM to autlogin HTPC user and start Kodi automatically in full screen mode.
-4. Enable XBMC Internal Web Server.
+4. Enable Kodi Internal Web Server.
 5. Create Media Folders ( movies, tv, music and pictures ).
 
 Kodi can be configured to use Mysql Database.
@@ -39,6 +39,7 @@ pictures_folder: pictures
 htpc_username: kodi               # HTPC User that will run Kodi
 htpc_user_password: kodi          # HTPC User Password
 kodi_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop
+kodi_user_sudo_access: True       # Give default kodi user sudo access
 
 # Default xbmc host IP. Used by other roles.
 kodi_host: "{{ ansible_default_ipv4.address }}" 
