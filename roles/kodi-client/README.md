@@ -39,7 +39,7 @@ pictures_folder: pictures
 htpc_username: kodi               # HTPC User that will run Kodi
 htpc_user_password: kodi          # HTPC User Password
 kodi_enable_ubuntu_desktop: True  # Start XBMC as part of Ubuntu desktop
-kodi_user_sudo_access: True       # Give default kodi user sudo access
+htpc_user_sudo_access: True       # Give default htpc user sudo access
 
 # Default xbmc host IP. Used by other roles.
 kodi_host: "{{ ansible_default_ipv4.address }}" 

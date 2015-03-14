@@ -17,11 +17,11 @@
 
 - name: Make sure HTPC user is created with sudo access
   user: name={{ htpc_username }} password={{ htpc_user_generated_password.stdout }} state=present createhome=yes shell=/bin/bash groups=adm,cdrom,sudo,dip,plugdev,lpadmin,sambashare
-  when: kodi_user_sudo_access
+  when: htpc_user_sudo_access
 
 - name: Make sure HTPC user is created
   user: name={{ htpc_username }} password={{ htpc_user_generated_password.stdout }} state=present createhome=yes shell=/bin/bash groups=adm,cdrom,dip,plugdev,lpadmin,sambashare
-  when: not kodi_user_sudo_access
+  when: not htpc_user_sudo_access
 
 - name: Create HTPC user .cache/unity directory
   file: path="~{{ htpc_username }}/.cache/unity/" state=directory owner={{ htpc_username }} group={{ htpc_username }} mode=0755
