@@ -13,8 +13,10 @@ Role Variables
 
 List of variables that can be passed to the role with default variable values.
 
-
-
+```
+# htpc-manager branch
+htpc_manager_repo: https://github.com/styxit/HTPC-Manager
+```
 Dependencies
 ------------
 

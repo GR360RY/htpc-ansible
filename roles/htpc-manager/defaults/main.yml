@@ -3,3 +3,6 @@
 htpc_manager_enabled: True
 htpc_manager_path: /opt/htpc-manager
 htpc_manager_use_hostnames: True
+
+# htpc-manager branch
+htpc_manager_repo: https://github.com/styxit/HTPC-Manager
