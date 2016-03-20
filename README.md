@@ -1,26 +1,19 @@
 
 ## htpc-ansible
 
-HTPC Server Automation with Kodi, Bittorent (Deluge), Usenet Software (sabnzbdplus), Couchpotato, Sickbeard, Tvheadend and nzbToMedia.
+HTPC Server Automation with [Kodi](http://kodi.tv), [Deluge](http://deluge-torrent.org/) (Bittorent), [SABnzbd](http://sabnzbd.org/) (Usenet), [Couchpotato](https://couchpota.to/), [Sickrage](https://sickrage.github.io/), [HTPC-Manager](https://github.com/Hellowlol/HTPC-Manager.git), [Tvheadend](https://tvheadend.org/) and [nzbToMedia](https://github.com/clinton-hall/nzbToMedia).
 
 ## Overview
 
-This ansible playbook is designed to quickly deploy home HTPC server, which can perform variety of funcitons. It's based on an Ubuntu 14.04, and can set up several configuration variants. It includes roles, which can be set up on a single machine, or on a different ones, and can be customized through single configuration file, correctly deploying all the software.
+This project is designed to deploy and configure HTPC software on Ubuntu 14.04. It includes software roles, which can be set up on a single or multiple machines. All roles are customized with single configuration file, correctly deploying all the software.
 
-- [Kodi](http://kodi.tv/‎) - Open Source Home Theatre Software, with optional mysql backend support (can be used to manage single library for multiple Kodi clients at home)
-- NAS configuration with support for sharing the library over NFS and CIFS
-- [HTPC Manager](http://htpc.io) - combines all your favorite software into one slick interface
-- [Couchpotato](https://couchpota.to/) - Download movies automatically
-- [Sick Beard](http://sickbeard.com) - Internet PVR for your TV Shows
-- [SABnzbd](http://sabnzbd.org/) - NZB capable binary newsgrabber
-- [Deluge](http://deluge-torrent.org/) - Cross-platform BitTorrent client
-- [nzbToMedia](https://github.com/clinton-hall/nzbToMedia) - postprocessing for CouchPotatoServer and SickBeard and etc.
-- [Tvheadend](https://tvheadend.org/) - TV streaming server for Linux 
+All software packages are integrated together: 
 
-### Prerequisites
-
-1. Machine designated for an HTPC with Ubuntu 14.04 Desktop installed.
-2. Correctly working name resolution on home network or "Static IP" configured on Ubuntu.
+* Download clients ( Deluge and Sabnzbd ) will be configured and integrated into Couchpotato and Sickrage placing downloaded files into Movies and TV Shows folders. 
+* Kodi's will be configured with appropriate paths and new content will appear automatically in Kodi's Library. 
+* Nzbtomedia will verify downloaded content and notify PVR software if to snatch another release in case the downloaded release is corrupted.
+* HTPC Manager will be configured with all relevant API Keys and credentials to present a single web interface for managing Deluge, Sabnzbd, Sickrage, Couchpotato, Tvheadend and Kodi. 
+* Media folders and downloads will be shared with LAN clients ( Windows, Linux and Mac ) over CIFS, NFS and AFP.
 
 ## Quick installation
 
@@ -32,37 +25,96 @@ Open terminal and run:
 wget --no-check-certificate https://raw.github.com/GR360RY/htpc-ansible/master/scripts/quickinstall.sh -O - | sh
 ```
 
-Choose roles/software and configure variables:
-
-__Warning: Don't enable Sabnzbd if you don't have usenet server credentials.__
-( When sabnzbd enabled, usenet will be used as a default search source in couchpotato and sickbeard )
-
-
-```
- >> Run Wizard
-Install Kodi ? [Y/n]:
-Install Kodi Mysql Backend? [Y/n]:
-Install NAS services ? [Y/n]:
-Install Deluge [Y/n]:
-Install Sabnzbd [y/N]:
-Install Sickbeard [Y/n]:
-Install Couchpotato [Y/n]:
-Install HTPC-Manager [Y/n]:
-Install TVheadend [y/N]:
-Media path [/mnt/media]:
-Movies Folder [movies]:
-TV Folder [tv]:
-Music Folder [music]:
-Pictures Folder [pictures]:
-HTPC User [kodi]:
-HTPC User password [kodi]:
-```
-
 __Reboot your machine following the installation.__
+
+Downloads and Media folders layout if used with default variable values:
+
+```
+/mnt/media/             # Media path shared over NFS, CIFS and AFP
+├── downloads               
+│   ├── complete        # Complete Downloads for Deluge and Sabnzbd
+│   └── Incomplete
+│       ├── deluged     # Deluge Incomplete Downloads
+│       ├── sabnzbd     # Sabnzbd Incomplete Downloads
+│       └── process     # nzbtomedia processing folders
+│           ├── movie
+│           └── tv
+├── movies              # Movies path for Kodi and Couchpotato
+├── music               # Music library path in Kodi
+├── pictures            # Pictures path in Kodi
+└── tv                  # TV Shows path for Kodi and Sickrage
+```
+
+Default Credentials, Settings, Paths and URLs:
+
+* __HTPC User__
+    
+    - All services will be run under `htpc` user identified with `htpc` password
+    - Sudo access for `htpc` user will be enabled
+    - SSH service will be configured to start automatically on boot
+
+* __Media, Downloads and Network Shares__
+    
+    - All media and download folders will reside under `/mnt/media`
+    - AFP and Samba read/write access will be available with `htpc/htpc` credentials
+    - `/mnt/media` will be exported with NFS. NFS will "squash" all users to `htpc` uid
+
+* __Kodi__
+
+    - `htpc` user will be logged in automatically to Ubuntu desktop on boot
+    - Kodi will start in full screen as part of Ubuntu Desktop
+    - Kodi Web Service will be enabled on port __8080__ with user `kodi` and without a password
+    - Kodi will be configured to use MySQL as a backend
+    - Mysql user credentials for Kodi MySQL databases will be set to `kodi/kodi`
+    - `movies` and `tv` folders will be configured with default scrappers in Kodi
+
+* __Deluge__
+    
+    - Deluge-Web Daemon will be configured to listen on port __8112__
+    - Deluge Daemon will be configured to listen on port __58846__
+    - Default Deluge Web password will be set to `deluge`
+    - `tv` and `movie` labels will be configured.
+    - `nzbtomedia` postprocessing scripts will be configured for each label
+
+* __Sabnzbd__
+
+    - Sabnzbdplus will be configured to listen on port __9000__
+    - Usenet setup will remain to be completed through configuration wizard
+    - `movies` and `tv` categories will be configured
+    - `nzbtomedia` postprocessing scripts will be configured for each category
+
+
+* __Sickrage__
+
+    - Will be configured to listen on port __8081__
+    - Deluge will be configured as download client
+    - In "Search Providers", torrent trackers that do not require credentials will be configured
+    - Sabnzbd will be configured as download client, but no Usenet "Search Providers" will be defined
+    - Sickrage will sent "Rescan Library" command to Kodi on complete downloads
+
+* __Couchpotato__
+
+    - Will be configured to listen on port __5050__
+    - Deluge will be configured as download client
+    - In "Searcher", torrent trackers that do not require credentials will be configured
+    - Sabnzbd will be configured as download client, but no Usenet "Searcher" will be defined
+    - Couchpotato will sent "Rescan Library" command to Kodi on complete downloads
+
+* __HtpcManager__
+
+    - Use Hellowlol HTPC-Manager Fork
+    - Apache reverse proxy will be configured to serve HtpcManager on port 80
+    - HtpcManager will be configured to listen on port __8085__
+    - Name resolution between services will be configured using ZeroConf/Bonjour.
+    - HTPC will be resolvable with `hostname`.local. Assuming the hostname of the HTPC is htpc, 
+      HTPCManager will be accessible with http://htpc.local/. To enable ZeroConfg/Bonjour on Windows,
+      install [Bonjour Print Services for Windows](https://support.apple.com/kb/DL999?viewlocale=en_US&locale=en_US)
+      ( See customisation guide to change this behaviour )
+
 
 ## Customizing the setup
 
-### Install Ansible and Git
+### Install Requirements
 
 ```    
 sudo apt-get install software-properties-common
@@ -74,63 +126,25 @@ sudo apt-get -y install ansible git
 ### Clone the repository
 
 ```
-git clone https://github.com/GR360RY/htpc-ansible.git
+git clone https://github.com/GR360RY/htpc-ansible.git --recursive
 cd htpc-ansible
 ```
 
 ### Edit Configuration
 
-Create/Open `custom.yml` in your favorite editor and add/update variables.
-Most commonly changed variables are available in the defaults.yml file.
-All variables with detailed desription are located in each role README.md file:
+* Create custom configuration file:
 
-Run Ansible Playbook from your localhost:
+```
+cd custom
+cp custom.yml.sample custom.yml
+```
 
-    ansible-playbook -i hosts -c local -K htpc-server.yml
+* Open `custom.yml` in your favorite editor and update variable values.
+* Run Ansible Playbook from your localhost:
 
-### Role Tasks and Variables
-
-The below list summarises tasks that will be performed in each role. Default variable values are appear in parentheses. 
-
-* __kodi-client__ ([README.md](roles/kodi-client/README.md))
-    - Install sshd service for remote access.
-    - Create HTPC Linux User (`kodi`/`kodi`)
-    - Create movies, tv, music, pictures and downloads folders under "Media Path" (`/mnt/media`)
-    - Install latest Kodi version.
-    - Configure HTPC user to autologin automatically and start Kodi software.
-    - Enable Web Access to Kodi (username: `xbmc` and no password)
-
-* __kodi-mysql__ ([README.md](roles/kodi-mysql/README.md))
-    - Install Mysql Server
-    - Create Initial Databases for Videos and Music
-
-* __htpc-nas__ ([README.md](roles/htpc-nas/README.md))
-    - Share "Media Path" (`/mnt/media`) over NFS
-    - Share "Media Path" (`/mnt/media`) over CIFS to allow access from Windows Machines
-
-* __deluge__ ([README.md](roles/deluge/README.md))
-    - Install Deluge Daemon and configure to listen on port 8112
-    - Install Deluge-Web Daemon and configure to listen on port 58846 ( default password `deluge`)
-    - Create deluge downloads folders under "Media Path" ( `/mnt/media/downloads/incomplete/deluged` and `/mnt/media/downloads/incomplete/process`)
-    - Create `localclient` user and identified by `2b9cf85259f2149da47458eda73ba23ac06faa21`
-
-* __sabnzbd__ ([README.md](roles/sabnzbd/README.md))
-    - Install Sabnzbdplus and configure to listen on port __9000__ ( Port number conflict with htpc-manager. Default port changed from 8080 )
-    - Create sabnzbd incomplete downloads folder under "Media Path" ( `/mnt/media/downloads/incomplete/sabnzbd`)
-    - Configure API Key for allowing access from htpc-manager, couchpotato and sickbeard (`c48afc846972e295826bb05d2e84dd59`)
-
-* __sickbeard__ ([README.md](roles/sickbeard/README.md))
-    - Install Sickbeard
-
-* __couchpotato__ ([README.md](roles/couchpotato/README.md))
-    - Install Couchpotato
-
-* __htpc-manager__([README.md](roles/htpc-manager/README.md))
-    - Install htpc-manager
-    - Setup apache as reverse proxy to allow access to htpc-manager on port 80.
-
-* __tvheadend__([README.md](roles/tvheadend/README.md))
-    - Install Tvheadend
+```
+ansible-playbook -i hosts -c local -K htpc-server.yml
+```
 
 ## Development and Testing with Vagrant
 
@@ -140,35 +154,38 @@ If you want to test out the configuration in VirtualMachine or contribute to htp
 
 * Install [Vagrant](http://www.vagrantup.com/)
 * Install [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-* Install [Snapshot plugin for Vagrant](https://github.com/scalefactory/vagrant-multiprovider-snap)
 * Install [Ansible](http://docs.ansible.com/intro_installation.html)
 
 ### Deployment
 
 * Bring up ubuntu desktop only
+
 ```
 vagrant up --no-provision
 ```
 
 * Snapshot the machine.
+
 ```
-vagrant snap take
+vagrant snapshot save before_provisioning
 ```
 
 * Deploying htpc-ansible
+
 ```
 vagrant provision
 ```
 
 * Reverting snapshot
 
-In case you want to redeploy from scratch - simply revert the snapshot back to 
+In case you want to redeploy from scratch - simply revert the snapshot back to
 the machine with desktop installed.
 
 ```
-vagrant snap rollback
+vagrant snapshot restore before_provisioning
 ```
 
 #### Testing and configuring WEB services
+
 Vagrant box is configured to have bridged eth1 interface.
-All the web services can be tested and configured through [http://htpc-vm/](http://htpc-vm/)
+All the web services can be tested and configured through [http://htpc-server/](http://htpc-server/)

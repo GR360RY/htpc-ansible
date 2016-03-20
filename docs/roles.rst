@@ -2,14 +2,16 @@ Roles Index
 ~~~~~~~~~~~
 
 .. toctree::
-   :maxdepth: 1
+   :titlesonly:
 
+   htpc-common
+   htpc-nas
    kodi-client
    kodi-mysql
-   htpc-nas
-   htpc-manager
-   couchpotato
-   sickbeard
-   sabnzbd
    deluge
-   tvheadend
+   sabnzbd
+   nzbtomedia
+   couchpotato
+   sickrage
+   htpc-manager
+

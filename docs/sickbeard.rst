@@ -1,1 +1,0 @@
-.. include:: ../roles/sickbeard/README.rst

@@ -1,23 +1,22 @@
+# htpc-server.yml
 ---
 - hosts: htpc-server
-  sudo: True
+  become: yes
 
   pre_tasks:
 
-    - name: Load default variables from defaults.yml
-      include_vars: defaults.yml
-    
+    # Copy custom/custom.yml.sample to custom/custom.yml
+    # Update variable values
     - name: Load custom variables from custom.yml
-      include_vars: custom.yml
+      include_vars: custom/custom.yml
       failed_when: false
 
   roles:
-    - { role: kodi-client, when: kodi_client_enabled }
-    - { role: kodi-mysql, when: kodi_mysql_enabled }
-    - { role: htpc-nas, when: xbmc_nas_enabled }
-    - { role: deluge, when: deluge_enabled }
-    - { role: sabnzbd, when: sabnzbd_enabled }
-    - { role: sickbeard, when: sickbeard_enabled }
-    - { role: couchpotato, when: couchpotato_enabled }
-    - { role: htpc-manager, when: htpc_manager_enabled }
-    - { role: tvheadend, when: tvheadend_enabled }
+    - { role: GR360RY.kodi-client, when: kodi_client_enabled }
+    - { role: GR360RY.kodi-mysql, when: kodi_mysql_enabled }
+    - { role: GR360RY.htpc-nas, when: htpc_nas_enabled }
+    - { role: GR360RY.deluge, when: deluge_enabled }
+    - { role: GR360RY.sabnzbd, when: sabnzbd_enabled }
+    - { role: GR360RY.sickrage, when: sickbeard_enabled }
+    - { role: GR360RY.couchpotato, when: couchpotato_enabled }
+    - { role: GR360RY.htpc-manager, when: htpc_manager_enabled }

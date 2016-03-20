@@ -1,0 +1,30 @@
+[submodule "roles/GR360RY.htpc-common"]
+	path = roles/GR360RY.htpc-common
+	url = https://github.com/GR360RY/ansible-role-htpc-common.git
+[submodule "roles/GR360RY.htpc-nas"]
+	path = roles/GR360RY.htpc-nas
+	url = https://github.com/GR360RY/ansible-role-htpc-nas.git
+[submodule "roles/GR360RY.kodi-client"]
+	path = roles/GR360RY.kodi-client
+	url = https://github.com/GR360RY/ansible-role-kodi-client.git
+[submodule "roles/GR360RY.kodi-mysql"]
+	path = roles/GR360RY.kodi-mysql
+	url = https://github.com/GR360RY/ansible-role-kodi-mysql.git
+[submodule "roles/GR360RY.deluge"]
+	path = roles/GR360RY.deluge
+	url = https://github.com/GR360RY/ansible-role-deluge.git
+[submodule "roles/GR360RY.sickrage"]
+	path = roles/GR360RY.sickrage
+	url = https://github.com/GR360RY/ansible-role-sickrage.git
+[submodule "roles/GR360RY.couchpotato"]
+	path = roles/GR360RY.couchpotato
+	url = https://github.com/GR360RY/ansible-role-couchpotato.git
+[submodule "roles/GR360RY.nzbtomedia"]
+	path = roles/GR360RY.nzbtomedia
+	url = https://github.com/GR360RY/ansible-role-nzbtomedia.git
+[submodule "roles/GR360RY.htpc-manager"]
+	path = roles/GR360RY.htpc-manager
+	url = https://github.com/GR360RY/ansible-role-htpc-manager.git
+[submodule "roles/GR360RY.sabnzbd"]
+	path = roles/GR360RY.sabnzbd
+	url = https://github.com/GR360RY/ansible-role-sabnzbd.git

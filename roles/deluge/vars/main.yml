@@ -1,5 +1,0 @@
----
-# vars file for deluge
-
-# Make sure nzbtomedia script will be owned by deluged_user
-nzbtomedia_user: "{{ deluged_user }}"

@@ -1,5 +1,0 @@
----
-# handlers file for sabnzbd
-
-- name: restart sabnzbd
-  service: name=sabnzbdplus state=restarted

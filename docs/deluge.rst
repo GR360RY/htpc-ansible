@@ -1,1 +1,0 @@
-.. include:: ../roles/deluge/README.rst

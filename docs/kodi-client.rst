@@ -1,1 +1,0 @@
-.. include:: ../roles/kodi-client/README.rst

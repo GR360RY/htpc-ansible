@@ -1,1 +1,0 @@
-.. include:: ../roles/sabnzbd/README.rst

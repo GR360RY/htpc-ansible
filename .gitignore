@@ -1,3 +1,6 @@
 .vagrant
+.media
+.DS_Store
 custom.yml
+docs/_build/*
 TODO.md

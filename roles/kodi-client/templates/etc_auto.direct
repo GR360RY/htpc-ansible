@@ -1,1 +1,0 @@
-{{ media_path }} -rw {{ xbmc_external_nas }}:{{ media_path }}

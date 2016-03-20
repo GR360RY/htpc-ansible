@@ -1,5 +1,0 @@
----
-# vars file for couchpotato
-
-couchpotato_repo: https://github.com/RuudBurger/CouchPotatoServer.git
-couchpotato_init_script: couchpotato

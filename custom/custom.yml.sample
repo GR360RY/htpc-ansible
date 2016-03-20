@@ -1,0 +1,108 @@
+# Copy custom/custom.yml.sample to custom/custom.yml
+# Modify lines were defaults that need to be changed.
+
+# Switches to Enable/Disable Roles
+
+kodi_client_enabled: yes
+kodi_mysql_enabled: yes
+htpc_nas_enabled: yes
+deluge_enabled: yes
+sabnzbd_enabled: yes
+sickbeard_enabled: yes
+couchpotato_enabled: yes
+htpc_manager_enabled: yes
+
+# htpc-common role
+# ----------------
+
+htpc_user_username: htpc
+htpc_user_password: htpc
+htpc_user_group: htpc
+htpc_user_shell: /bin/bash
+htpc_user_sudo_access: yes
+htpc_ssh_service: yes
+htpc_create_media_folders: yes
+htpc_zeroconf: yes
+htpc_media_path: /mnt/media
+htpc_media_movies: movies
+htpc_media_tv: tv
+htpc_media_music: music
+htpc_media_pictures: pictures
+htpc_downloads_complete: "{{ htpc_media_path }}/downloads/complete"
+htpc_downloads_incomplete: "{{ htpc_media_path }}/downloads/incomplete"
+
+# kodi-client role
+# ----------------
+
+# set to 'kodi' to run Kodi as standalone Xsession.
+kodi_xsession: ubuntu
+
+# kodi-mysql role
+# ---------------
+
+kodi_mysqldb_user: kodi
+kodi_mysqldb_password: kodi
+
+# htpc-nas role
+# -------------
+
+# Enable NFS sharing ( Used by Kodi to share media )
+htpc_nas_nfs: yes
+# Enable Windows Sharing
+htpc_nas_cifs: yes
+# Enable Mac Sharing
+htpc_nas_afp: yes
+
+# deluge role
+# -----------
+
+# Deluge Daemon Path
+deluged_path: /opt/deluged
+# Deluge Incomplete download locations
+deluged_incomplete: "{{ htpc_downloads_incomplete }}/deluged"
+# Password for localclient user.
+deluged_localclient_password: 2b9cf85259f2149da47458eda73ba23ac06faa21
+deluged_port: 58846
+deluge_web_port: 8112
+
+# sabnzbd role
+# ------------
+
+# Subnzbd Daemon Path
+sabnzbd_path: /opt/sabnzbd
+# Sabnzbd API Key
+sab_apikey: c48afc846972e295826bb05d2e84dd59
+# Sabnzbd Incomplete download locations
+sabnzbd_incomplete: "{{ htpc_downloads_incomplete }}/sabnzbd"
+# Sabnzbd port. Default port 8080 conflicts with Kodi default port
+sabnzbd_port: 9000
+
+# Automatically configure usenet-crawler provider if API key is available
+# usenet_crawler_api_key: 9d9af7ab6548948fcdc2db864ecd2588
+
+# Configure news group server and account
+
+# newsgroups_servers: 
+#   - name: news.someserver.com
+#     username: foo
+#     password: bar
+#     connections: 20
+
+# sickrage role
+# -------------
+
+sickbeard_path: /opt/sickrage
+sickbeard_api_key: 9d9af7ab6548948fcdc2db864ecd2588
+
+# couchpotato role
+# ----------------
+
+couchpotato_path: /opt/couchpotato
+couchpotato_apikey: bb138ccd9df84c33af9b310325b0d658
+
+# htpc-manager role
+# -----------------
+
+htpc_manager_path: /opt/HTPCManager
+# Available values are zeroconf, hostname, staticip
+htpc_resolving: zeroconf
