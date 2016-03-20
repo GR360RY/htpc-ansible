@@ -7,7 +7,7 @@ sudo /usr/bin/pip install -U ansible
 
 if [ ! -d "$HOME/htpc-ansible" ]; then
 	echo -e  "\n\033[0;32m >> Clone htpc-ansible repository\033[0m"
-	git clone git://github.com/GR360RY/htpc-ansible.git "$HOME/htpc-ansible"
+	git clone --recursive git://github.com/GR360RY/htpc-ansible.git "$HOME/htpc-ansible"
 else
 	echo -e "\n\033[0;32m >> htpc-ansible is already available\033[0m"
 fi
