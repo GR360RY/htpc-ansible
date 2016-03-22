@@ -1,0 +1,3 @@
+Acquire::http::No-Cache "true";
+Acquire::http::Max-Age "0";
+Acquire::BrokenProxy "true";
