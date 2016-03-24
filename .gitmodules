@@ -28,3 +28,6 @@
 [submodule "roles/GR360RY.sabnzbd"]
 	path = roles/GR360RY.sabnzbd
 	url = https://github.com/GR360RY/ansible-role-sabnzbd.git
+[submodule "roles/GR360RY.docker"]
+	path = roles/GR360RY.docker
+	url = https://github.com/GR360RY/ansible-role-docker.git
