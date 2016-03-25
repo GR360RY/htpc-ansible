@@ -4,3 +4,4 @@
 custom.yml
 docs/_build/*
 TODO.md
+*.retry
