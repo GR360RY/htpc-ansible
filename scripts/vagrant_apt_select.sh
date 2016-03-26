@@ -1,10 +1,5 @@
 #!/bin/sh
 
-# Update apt sources.list to use local mirror
-if [ ! -e "/etc/apt/apt.conf.d/10broken_proxy" ]; then
-	sudo cp /vagrant/scripts/vagrant_10broken_proxy /etc/apt/apt.conf.d/10broken_proxy
-fi
-
 if [ ! -d "/opt/apt-select" ]; then
 	sudo apt-get update
 	sudo DEBIAN_FRONTEND=noninteractive apt-get install -y git 'python(3?)-bs4$'

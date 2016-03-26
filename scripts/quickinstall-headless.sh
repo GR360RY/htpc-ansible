@@ -15,4 +15,4 @@ cd "$HOME/htpc-ansible"
 # echo -e "\n\033[0;32m >> Run Wizard\033[0m"
 # python scripts/wizard.py <&1
 echo -e "\n\033[0;32m >> Installing ...\033[0m"
-ansible-playbook -i inventory/server-withclient -c local -K htpc-server.yml
+ansible-playbook -i inventory/server-headless -c local -K htpc-server.yml

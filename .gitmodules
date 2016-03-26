@@ -31,3 +31,6 @@
 [submodule "roles/GR360RY.docker"]
 	path = roles/GR360RY.docker
 	url = https://github.com/GR360RY/ansible-role-docker.git
+[submodule "roles/GR360RY.docker-kodi"]
+	path = roles/GR360RY.docker-kodi
+	url = https://github.com/GR360RY/ansible-role-docker-kodi.git

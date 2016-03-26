@@ -3,6 +3,8 @@
 
 # Switches to Enable/Disable Roles
 
+# Don't disable kodi_client_enabled, kodi_mysql_enabled and htpc_nas_enabled
+# when installing with docker-kodi role.
 kodi_client_enabled: yes
 kodi_mysql_enabled: yes
 htpc_nas_enabled: yes
@@ -12,17 +14,23 @@ sickbeard_enabled: yes
 couchpotato_enabled: yes
 htpc_manager_enabled: yes
 
+
 # htpc-common role
 # ----------------
 
+# htpc user
 htpc_user_username: htpc
 htpc_user_password: htpc
 htpc_user_group: htpc
 htpc_user_shell: /bin/bash
 htpc_user_sudo_access: yes
+
+# services
 htpc_ssh_service: yes
 htpc_create_media_folders: yes
 htpc_zeroconf: yes
+
+# downloads and media directories
 htpc_media_path: /mnt/media
 htpc_media_movies: movies
 htpc_media_tv: tv
@@ -31,17 +39,39 @@ htpc_media_pictures: pictures
 htpc_downloads_complete: "{{ htpc_media_path }}/downloads/complete"
 htpc_downloads_incomplete: "{{ htpc_media_path }}/downloads/incomplete"
 
+# Helper variable. In use by other roles
+# Change the way different service are resolved in configuration files.
+# Available values are zeroconf, hostname and staticip
+htpc_resolving: zeroconf
+
+# Helper variable. In use by other roles
+# When installed with docker role, make sure htpc user can access the docker daemon
+docker_group_members:
+  - "{{ htpc_user_username }}" 
+
+
 # kodi-client role
 # ----------------
 
 # set to 'kodi' to run Kodi as standalone Xsession.
 kodi_xsession: ubuntu
 
+
+# docker-kodi role
+# ----------------
+
+kodi_config_path: /opt/kodi-server
+
+kodi_web_server_username: kodi
+kodi_web_server_password:
+
+
 # kodi-mysql role
 # ---------------
 
 kodi_mysqldb_user: kodi
 kodi_mysqldb_password: kodi
+
 
 # htpc-nas role
 # -------------
@@ -52,6 +82,7 @@ htpc_nas_nfs: yes
 htpc_nas_cifs: yes
 # Enable Mac Sharing
 htpc_nas_afp: yes
+
 
 # deluge role
 # -----------
@@ -65,15 +96,19 @@ deluged_localclient_password: 2b9cf85259f2149da47458eda73ba23ac06faa21
 deluged_port: 58846
 deluge_web_port: 8112
 
+
 # sabnzbd role
 # ------------
 
 # Subnzbd Daemon Path
 sabnzbd_path: /opt/sabnzbd
+
 # Sabnzbd API Key
 sab_apikey: c48afc846972e295826bb05d2e84dd59
+
 # Sabnzbd Incomplete download locations
 sabnzbd_incomplete: "{{ htpc_downloads_incomplete }}/sabnzbd"
+
 # Sabnzbd port. Default port 8080 conflicts with Kodi default port
 sabnzbd_port: 9000
 
@@ -88,11 +123,13 @@ sabnzbd_port: 9000
 #     password: bar
 #     connections: 20
 
+
 # sickrage role
 # -------------
 
 sickbeard_path: /opt/sickrage
 sickbeard_api_key: 9d9af7ab6548948fcdc2db864ecd2588
+
 
 # couchpotato role
 # ----------------
@@ -100,9 +137,8 @@ sickbeard_api_key: 9d9af7ab6548948fcdc2db864ecd2588
 couchpotato_path: /opt/couchpotato
 couchpotato_apikey: bb138ccd9df84c33af9b310325b0d658
 
+
 # htpc-manager role
 # -----------------
 
 htpc_manager_path: /opt/HTPCManager
-# Available values are zeroconf, hostname, staticip
-htpc_resolving: zeroconf

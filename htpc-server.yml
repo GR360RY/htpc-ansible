@@ -1,6 +1,6 @@
 # htpc-server.yml
 ---
-- hosts: htpc-server
+- hosts: fullclient
   become: yes
 
   pre_tasks:
@@ -15,6 +15,27 @@
     - { role: GR360RY.kodi-client, when: kodi_client_enabled }
     - { role: GR360RY.kodi-mysql, when: kodi_mysql_enabled }
     - { role: GR360RY.htpc-nas, when: htpc_nas_enabled }
+    - { role: GR360RY.deluge, when: deluge_enabled }
+    - { role: GR360RY.sabnzbd, when: sabnzbd_enabled }
+    - { role: GR360RY.sickrage, when: sickbeard_enabled }
+    - { role: GR360RY.couchpotato, when: couchpotato_enabled }
+    - { role: GR360RY.htpc-manager, when: htpc_manager_enabled }
+
+
+- hosts: headless
+  become: yes
+
+  pre_tasks:
+
+    # Copy custom/custom.yml.sample to custom/custom.yml
+    # Update variable values
+    - name: Load custom variables from custom.yml
+      include_vars: custom/custom.yml
+      failed_when: false
+
+  # docker-kodi will also install kodi-mysql and htpc-nas
+  roles:
+    - { role: GR360RY.docker-kodi, when: kodi_client_enabled }
     - { role: GR360RY.deluge, when: deluge_enabled }
     - { role: GR360RY.sabnzbd, when: sabnzbd_enabled }
     - { role: GR360RY.sickrage, when: sickbeard_enabled }
