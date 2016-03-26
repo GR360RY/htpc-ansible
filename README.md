@@ -17,13 +17,28 @@ All software packages are integrated together:
 
 ## Quick installation
 
-Login to your Ubuntu 14.04 machine using gui or console.
+There are two modes of installation:
 
-Open terminal and run:
+* Ubuntu 14.04 Desktop - machine is connected to TV/Monitor. Kodi GUI will start on boot.
+* Ubuntu 14.04 Server - Kodi will run in docker container. 
+
+In both modes media is shared over CIFS, NFS and AFP and Kodi uses MySQL.
+
+Login to your Ubuntu 14.04 machine using gui or console. Run __ONE__ of the below:
+
+
+__Desktop Mode:__
 
 ```
 wget --no-check-certificate https://raw.github.com/GR360RY/htpc-ansible/master/scripts/quickinstall.sh -O - | sh
 ```
+
+__Server Mode:__
+
+```
+wget --no-check-certificate https://raw.github.com/GR360RY/htpc-ansible/master/scripts/quickinstall-headless.sh -O - | sh
+```
+
 
 __Reboot your machine following the installation.__
 
@@ -47,6 +62,15 @@ Downloads and Media folders layout if used with default variable values:
 
 Default Credentials, Settings, Paths and URLs:
 
+* __Name Resolution__
+
+    - Name resolution between services will be configured using ZeroConf/Bonjour.
+    - HTPC will be resolvable with `hostname.local`. Assuming the hostname of the HTPC is htpc, 
+      HTPCManager will be accessible with http://htpc.local/. To enable ZeroConf/Bonjour on Windows,
+      install [Bonjour Print Services for Windows](https://support.apple.com/kb/DL999?viewlocale=en_US&locale=en_US)
+      ( See customisation part to change this behaviour )
+    
+
 * __HTPC User__
     
     - All services will be run under `htpc` user identified with `htpc` password
@@ -59,14 +83,18 @@ Default Credentials, Settings, Paths and URLs:
     - AFP and Samba read/write access will be available with `htpc/htpc` credentials
     - `/mnt/media` will be exported with NFS. NFS will "squash" all users to `htpc` uid
 
-* __Kodi__
+* __Kodi__ ( Desktop Mode Only )
 
     - `htpc` user will be logged in automatically to Ubuntu desktop on boot
     - Kodi will start in full screen as part of Ubuntu Desktop
+
+* __Kodi__ ( Server and Desktop Modes )
+    
     - Kodi Web Service will be enabled on port __8080__ with user `kodi` and without a password
     - Kodi will be configured to use MySQL as a backend
     - Mysql user credentials for Kodi MySQL databases will be set to `kodi/kodi`
     - `movies` and `tv` folders will be configured with default scrappers in Kodi
+    - Create hidden `/mnt/media/.kodi_client_setup` folder with `advancedsettings.xml` for configuring additional Kodi clients
 
 * __Deluge__
     
@@ -105,11 +133,6 @@ Default Credentials, Settings, Paths and URLs:
     - Use Hellowlol HTPC-Manager Fork
     - Apache reverse proxy will be configured to serve HtpcManager on port 80
     - HtpcManager will be configured to listen on port __8085__
-    - Name resolution between services will be configured using ZeroConf/Bonjour.
-    - HTPC will be resolvable with `hostname`.local. Assuming the hostname of the HTPC is htpc, 
-      HTPCManager will be accessible with http://htpc.local/. To enable ZeroConfg/Bonjour on Windows,
-      install [Bonjour Print Services for Windows](https://support.apple.com/kb/DL999?viewlocale=en_US&locale=en_US)
-      ( See customisation guide to change this behaviour )
 
 
 ## Customizing the setup
@@ -142,9 +165,18 @@ cp custom.yml.sample custom.yml
 * Open `custom.yml` in your favorite editor and update variable values.
 * Run Ansible Playbook from your localhost:
 
+__Desktop Mode:__
+
 ```
-ansible-playbook -i hosts -c local -K htpc-server.yml
+ansible-playbook -i inventory/server-withclient -c local -K htpc-server.yml
 ```
+
+__Server Mode:__
+
+```
+ansible-playbook -i inventory/server-headless -c local -K htpc-server.yml
+```
+
 
 ## Development and Testing with Vagrant
 
@@ -158,10 +190,28 @@ If you want to test out the configuration in VirtualMachine or contribute to htp
 
 ### Deployment
 
-* Bring up ubuntu desktop only
+Both __Server__ and __Desktop__ modes can be tested in Vagrant. Vagrantfile presents multimachine environment were only __Server__ VM will be started by default. To test __Desktop__ mode, run `vagrant up fullclient`.
 
 ```
-vagrant up --no-provision
+ ~/dev/htpc-ansible ⮀ ⭠ master± ⮀ vagrant status
+Current machine states:
+
+headless                  not created (virtualbox)
+fullclient                not created (virtualbox)
+
+This environment represents multiple VMs. The VMs are all listed
+above with their current state. For more information about a specific
+VM, run `vagrant status NAME`.
+```
+
+* Start the VM
+
+```
+# Server
+vagrant up headless --no-provision
+
+#Desktop
+vagrant up fullclient --no-provision
 ```
 
 * Snapshot the machine.
@@ -187,5 +237,9 @@ vagrant snapshot restore before_provisioning
 
 #### Testing and configuring WEB services
 
-Vagrant box is configured to have bridged eth1 interface.
-All the web services can be tested and configured through [http://htpc-server/](http://htpc-server/)
+Vagrant boxes are configured to have bridged eth1 interface.
+All the web services can be tested and configured as following:
+
+* Server Mode [http://htpc-server-vm.local/](http://htpc-server-vm.local/)
+* Desktop Mode [http://htpc-vm.local/](http://htpc-vm.local/)
+
